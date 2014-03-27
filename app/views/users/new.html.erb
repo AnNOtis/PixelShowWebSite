@@ -1,8 +1,8 @@
 
 <h1>Sign up</h1>
-
+<%= render 'shared/error_messages' %>
 <%= form_for @user do |f| %>
-<%= f.label :name %>
+<%= f.label :name ,'姓名' %>
 <%= f.text_field :name%>
 <%= f.label :email %>
 <%= f.text_field :email%>
