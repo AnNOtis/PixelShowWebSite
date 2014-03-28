@@ -19,9 +19,10 @@ body{
 
 header{
 	background: #367294;
-	padding: 10px 30px;
+	padding: 0 30px;
 	color: #FFF;
 	box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
+	line-height: 60px;
 	.header{
 		font-size: 24px;
 		display: inline-block;
@@ -36,7 +37,6 @@ header{
 			list-style-type: none;
 			padding: 0 20px;
 			font-size: 16px;
-			line-height: 24px;
 		}
 		.account-field{
 			margin-left: 130px;
