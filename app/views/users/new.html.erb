@@ -1,14 +1,16 @@
 
-<h1>Sign up</h1>
-<%= render 'shared/error_messages' %>
-<%= form_for @user do |f| %>
+<!-- <h1>Sign up</h1> -->
+
+<%= form_for @user, :html=>{:class=>'signup-form'} do |f| %>
+<div class="title">註冊</div>
 <%= f.label :name ,'姓名' %>
-<%= f.text_field :name%>
+<%= f.text_field :name, :placeholder=>''%>
 <%= f.label :email %>
 <%= f.text_field :email%>
 <%= f.label :password %>
 <%= f.password_field :password%>
 <%= f.label :password_confirmation %>
 <%= f.password_field :password_confirmation%>
+<%= render 'shared/error_messages' %>
 <%= f.submit %>
 <% end %>
