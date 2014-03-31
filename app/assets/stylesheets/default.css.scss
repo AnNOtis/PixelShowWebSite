@@ -1,5 +1,6 @@
 $primary-yellow: #FFD600;
-
+$deep-blue: #367294;
+$deep-blue-hover:#3E668B;
 *{
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
@@ -20,28 +21,54 @@ body{
 }
 
 header{
-	background: #367294;
-	padding: 0 30px;
+	background: $deep-blue;
+	padding: 0 60px;
 	color: #FFF;
 	box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
-	line-height: 60px;
 	.header{
-		font-size: 24px;
+		font-size: 0;
 		display: inline-block;
+		>span{
+			font-size: 24px;
+			line-height: 60px;
+		}
 	}
 	nav{
 		float:right;
-		ul{
-			margin:0;
-		}
 		li{
-			float:left;
-			list-style-type: none;
-			padding: 0 20px;
-			font-size: 16px;
+			cursor:pointer;
 		}
+		>ul{
+			margin:0;
+			>li{
+				position:relative;
+				float:left;
+				list-style-type: none;
+				padding: 0 20px;
+				font-size: 16px;
+				line-height: 60px;
+			}
+			&>li:hover{
+				background-color: $deep-blue-hover;
+			}
+		}
+		
 		.account-field{
 			margin-left: 130px;
+			min-width: 100px;
+			text-align: center;
+		}
+	}
+	ul.dropdown-menu{
+		position:absolute;
+		padding:0px;
+		width:100%;
+		left:0;
+		top: 60px;
+		list-style: none;
+		background-color: #555; 
+		li:hover{
+			background-color: #444;
 		}
 	}
 }
@@ -62,4 +89,21 @@ header{
 	content:"";
 	display:block;
 	clear:both;
+}
+
+
+.alert{
+	width:400px;
+	margin:30px auto;
+	opacity:0.7;
+	line-height: 1.5;
+	padding:5px;
+	border-radius: 5px;
+	&.alert-success{
+		background-color: rgb(244,23,23);
+	}
+	&.alert-error{
+		background-color: rgba(255, 0, 0, 0.5);
+	}
+
 }
