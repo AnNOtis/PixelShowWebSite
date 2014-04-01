@@ -9,6 +9,7 @@ PixelShowWeb::Application.routes.draw do
   root 'static_pages#home'
   match '/signup', to: 'users#new', via: 'get'
   match '/login', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: [:get,:delete]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

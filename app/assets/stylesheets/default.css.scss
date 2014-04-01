@@ -1,11 +1,16 @@
 $primary-yellow: #FFD600;
 $deep-blue: #367294;
-$deep-blue-hover:#3E668B;
+$deep-blue-hover:#1A4872;
 *{
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	box-sizing:border-box;
 }
+a,a:hover,a:active{
+	text-decoration: none;
+	color:black;
+}
+
 .debug_dump{
 	background-color: rgba(255, 113, 113, 0.3);
 	line-height: 1.5;
@@ -25,12 +30,16 @@ header{
 	padding: 0 60px;
 	color: #FFF;
 	box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
+	a,a:hover,a:active{
+		color: #fff;
+	}
 	.header{
 		font-size: 0;
 		display: inline-block;
 		>span{
 			font-size: 24px;
 			line-height: 60px;
+			cursor: pointer;
 		}
 	}
 	nav{
@@ -57,20 +66,28 @@ header{
 			margin-left: 130px;
 			min-width: 100px;
 			text-align: center;
+			.dropdown-menu{
+				display:none;
+				position:absolute;
+				padding:0px;
+				width:100%;
+				left:0;
+				top: 60px;
+				list-style: none;
+				background-color: #555; 
+				z-index: 2;
+				
+				li:hover{
+					background-color: #444;
+				}
+			}
+			&:hover>.dropdown-menu{
+				display:block;
+			}
 		}
 	}
-	ul.dropdown-menu{
-		position:absolute;
-		padding:0px;
-		width:100%;
-		left:0;
-		top: 60px;
-		list-style: none;
-		background-color: #555; 
-		li:hover{
-			background-color: #444;
-		}
-	}
+
+
 }
 
 .btn{

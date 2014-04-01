@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$().ready(function() {
+
+
+$("[link-to]").on("click",function() {window.location=""+$(this).attr("link-to")+"";});
+
+	
+});
+
