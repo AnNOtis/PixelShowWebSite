@@ -1,6 +1,15 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.hint-field{
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	width: auto;
+	margin: 0 20px;
+	padding: 20px 60px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
 
 $right-padding: 80px;
 .hero-unit{

@@ -1,4 +1,5 @@
 $primary-yellow: #FFD600;
+$primary-yellow-hover: #FFE103;;
 $deep-blue: #367294;
 $deep-blue-hover:#1A4872;
 *{
@@ -92,6 +93,7 @@ header{
 
 .btn{
 	display:inline-block;
+	position:relative;
 	padding: 0 20px;
 	line-height: 2;
 	border-radius: 5px;
@@ -99,6 +101,38 @@ header{
 	&.btn-highlight{
 		font-size: 24px;
 		background-color: $primary-yellow;
+	}
+	&.small-btn-highlight{
+		font-size: 16px;
+		color:#444;
+		background-color: $primary-yellow;
+	}
+	&.small-btn-highlight:hover{
+		font-size: 16px;
+		color:#444;
+		background-color: $primary-yellow-hover;
+	}
+	&.small-btn-grey{
+		font-size: 16px;
+		background-color: #999;
+		color:#444;
+	}
+	&.small-btn-grey:hover{
+		font-size: 16px;
+		background-color: #aaa;
+		color:#444;
+	}
+	&.reflect:after{
+		display: block;
+		position: absolute;
+		content: "";
+		background-color: rgba(0, 0, 0, 0.1);
+		height: 50%;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 5px;
 	}
 }
 
