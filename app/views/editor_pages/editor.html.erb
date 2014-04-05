@@ -8,3 +8,57 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+var length=400;
+var size = 5;
+var dataset = [["#345","#123","#5f7","#111","#980"],
+			   ["#145","#223","#f67","#411","#280"],
+			   ["#345","#a23","#569","#f11","#580"],
+			   ["#945","#e23","#567","#211","#180"],
+			   ["#745","#923","#4f7","#181","#980"]];
+var rowG =d3.select("svg.canvas").selectAll("g")
+.data(dataset,function(row,yPosition) {
+	$.each(row,function(xPosition,value) {
+		var cell = {};
+		cell.x = xPosition;
+		cell.y = yPosition;
+		cell.value = value;
+		row[xPosition] = cell;
+	});
+	console.log(row);
+	return dataset;
+})
+.enter()
+.append('g')
+.attr('height',function(d) {
+	return length/size;
+})
+.attr('x',0)
+.attr('y',function(d,i) {
+	return i*length/size;
+})
+.text(function(d,index) {return index});
+
+rowG.selectAll('rect')
+.data(function(d) {
+	console.log(d);
+	return d;
+})
+.enter()
+.append('rect')
+.attr('width',function(d) {
+	return length/size;
+})
+.attr('height',function(d) {
+	return length/size;
+})
+.attr('x',function(d,i) {
+	return d.x*length/size;
+})
+.attr('y',function(d,i) {
+	return d.y*length/size;
+})
+.attr('fill',function(d,i) {return d.value});
+
+</script>
