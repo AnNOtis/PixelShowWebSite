@@ -6,7 +6,7 @@
 			</svg>
 		</div>
 		<div class="edit-tool">
-			<div class="color-picker" id="color-picker"></div>
+			<div type="color" class="color-picker" id="color-picker"></div>
 			<div class="mode-switcher">
 				<table><tr><td><div class="switch-btn">圖像</div></td><td><div class="switch-btn">動畫</div></td><td><div class="switch-btn">文字</div></td></tr></table>
 			</div>
@@ -123,4 +123,26 @@ function make_y_axis(){
 	.scale(xScale)
 	.orient('left');
 }
+
+var initialColor = '#02508d';
+$('#color-picker').css('background-color',initialColor);
+$("#color-picker").spectrum({
+			className: 'color-picker',
+		    color: initialColor,
+		    showInput: true,
+		    showPalette: true,
+		    clickoutFiresChange: true,
+		    showInitial: true,
+		    showButtons: false,
+		    beforeShow: function(color) {
+		    	
+			},
+		    change: function(color) {
+		    	console.log("change!!");
+		    	$('#color-picker').css('background-color',color);
+			},
+			move: function(color) {
+		    	$('#color-picker').css('background-color',color);
+			}
+		});
 </script>
