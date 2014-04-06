@@ -3,10 +3,74 @@
 	display: inline-block;
 }
 .editor-wrapper{
+	position:relative;
 	width: 600px;
 	min-height: 300px;
+	padding-right: 200px;
 	margin: 30px auto;
 	background-color: #eee;
 	box-shadow: 1px 1px 3px 3px rgba(0,0,0,0.2);
 	font-size: 0;
+}
+
+$colorpicker-size: 60px;
+$mode-btn-size: 50px;
+.edit-tool{
+	position:absolute;
+	top:0;
+	right:0;
+	width:200px;
+	height:100%;
+	font-size: 20px;
+	.color-picker{
+		width:$colorpicker-size;
+		height:$colorpicker-size;
+		margin:30px auto;
+		border: 2px solid #fff;
+	}
+	.mode-switcher table{
+		width:100%;
+		td .switch-btn{
+			width:$mode-btn-size;
+			height:$mode-btn-size;
+			line-height: $mode-btn-size;
+			margin:0 auto;
+			cursor:pointer;
+			text-align:center;
+			background-color: #ffc200;
+			box-shadow: 0 1px 1px 1px #aaa;
+			border-radius: 5px;
+		}
+	}
+	.finished-btn{
+		position:absolute;
+		bottom:20px;
+		width:100%;
+		background-color: #4775A3;
+		color: #FFF;
+		line-height: 40px;
+		text-align: right;
+		padding-right: 20px;
+		&:after{
+			content:"";
+			display: block;
+			position:absolute;
+			top:0;
+			right:-40px;
+			height:0;
+			width:0;
+			border: 20px solid transparent;
+			border-left: 20px solid #01AA96;
+		}
+	}
+
+}
+.canvas .axis{
+	stroke-opacity:0;
+}
+
+.canvas:hover .axis{
+	stroke:#111;
+	stroke-width:1;
+	stroke-opacity:0.3;
 }
