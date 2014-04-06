@@ -125,6 +125,7 @@ function make_y_axis(){
 }
 
 var initialColor = '#02508d';
+var currentColor = initialColor;
 $('#color-picker').css('background-color',initialColor);
 $("#color-picker").spectrum({
 			className: 'color-picker',
@@ -139,10 +140,17 @@ $("#color-picker").spectrum({
 			},
 		    change: function(color) {
 		    	console.log("change!!");
+		    	currentColor = color;
 		    	$('#color-picker').css('background-color',color);
 			},
 			move: function(color) {
+				currentColor = color;
 		    	$('#color-picker').css('background-color',color);
 			}
 		});
+
+$("rect").on('click',function() {
+	console.log(currentColor);
+	$(this).css("fill",currentColor);
+});
 </script>
