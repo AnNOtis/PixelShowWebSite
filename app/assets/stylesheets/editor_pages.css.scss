@@ -65,6 +65,9 @@ $mode-btn-size: 50px;
 	}
 
 }
+.canvas rect{
+	cursor:pointer;
+}
 .canvas .axis{
 	stroke-opacity:0;
 }

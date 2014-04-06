@@ -149,8 +149,29 @@ $("#color-picker").spectrum({
 			}
 		});
 
-$("rect").on('click',function() {
-	console.log(currentColor);
+//畫筆的模式
+var PENCIL_MODE = 1;
+var LINE_MODE = 2;
+var FILL_MODE = 3;
+
+
+var toggleMouseDown = false;//記錄滑鼠是否被按下
+
+$('rect').on('mousedown',function(){
+	toggleMouseDown = true;
 	$(this).css("fill",currentColor);
 });
+$('rect').on('mouseover',function(){
+	if(toggleMouseDown){
+		$(this).css("fill",currentColor);		
+	}
+});
+$('rect').on('mouseup',function(){
+	toggleMouseDown = false;
+	$(this).css("fill",currentColor);
+});
+$('.canvas').on('mouseleave',function(){
+	toggleMouseDown = false;
+});
+
 </script>
