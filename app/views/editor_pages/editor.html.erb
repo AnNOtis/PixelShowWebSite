@@ -159,19 +159,49 @@ var toggleMouseDown = false;//記錄滑鼠是否被按下
 
 $('rect').on('mousedown',function(){
 	toggleMouseDown = true;
-	$(this).css("fill",currentColor);
+	$(this).attr("fill",currentColor);
 });
 $('rect').on('mouseover',function(){
 	if(toggleMouseDown){
-		$(this).css("fill",currentColor);		
+		$(this).attr("fill",currentColor);		
 	}
 });
 $('rect').on('mouseup',function(){
 	toggleMouseDown = false;
-	$(this).css("fill",currentColor);
+	$(this).attr("fill",currentColor);
 });
 $('.canvas').on('mouseleave',function(){
 	toggleMouseDown = false;
 });
+
+var transformCodeToData = function(dataset){
+	dataset = [];
+	$('.canvas').find('g').each(function() {
+		var rowData = [];
+		$(this).find('rect').each(function() {
+			rowData.push($(this).attr('fill'));
+		});
+		dataset.push(rowData);
+		debugger
+	});
+}
+
+var autoFillBlock = function(dataset,x,y,color){
+	var showHeight = dataset.length;
+	var showWidth = dataset[0].length;
+	var topColor = -1;
+	var bottomColor = -1;
+	var leftColor = -1;
+	var rightColor = -1;
+	if((x-1)>=0){
+
+	}
+	if((x+1>showWidth)){
+
+	}
+}
+
+
+
 
 </script>
