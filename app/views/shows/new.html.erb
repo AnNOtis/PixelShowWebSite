@@ -1,2 +1,5 @@
-<h1>Shows#new</h1>
-<p>Find me in app/views/shows/new.html.erb</p>
+<%=form_for(@show) do |f|%>
+<div class="title">title</div>
+<%= f.text_field :name %>
+<%= f.submit %>
+<% end %>

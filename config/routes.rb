@@ -2,6 +2,7 @@ PixelShowWeb::Application.routes.draw do
   get "shows/new"
   get "shows/show"
   resources :users
+  resources :shows
   resources :sessions, only:[:new,:create, :destroy]
   get "static_pages/about"
 
