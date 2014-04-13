@@ -5,6 +5,8 @@ gem 'rails', '4.0.3'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 
+gem 'pry'
+
 gem "d3_rails"
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
