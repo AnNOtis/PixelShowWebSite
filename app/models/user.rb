@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-	has_many :shows
+	has_many :shows,dependent: :destroy
+
 	before_save { self.email = email.downcase } #會在create update之前都被觸發
 	before_create :create_remenber_token
 	validates :name, presence:true,length:{ in: 3..20 }
