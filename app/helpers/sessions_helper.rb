@@ -14,7 +14,12 @@ module SessionsHelper
   def signed_in?
   	!current_user.nil?
   end
-
+  def require_login
+    unless signed_in?
+      flash[:error] = "必須先登入"
+      redirect_to '/login'
+    end
+  end
   def current_user=(user)
     @current_user = user
   end

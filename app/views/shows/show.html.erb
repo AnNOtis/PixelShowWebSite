@@ -1,2 +1,207 @@
-<h1>Shows#show</h1>
-<p>Find me in app/views/shows/show.html.erb</p>
+<div class="container">
+	<div class="editor-wrapper">
+		<div class="canvas-container">
+			<svg class="canvas" width="400" height="400">
+
+			</svg>
+		</div>
+		<div class="edit-tool">
+			<div type="color" class="color-picker" id="color-picker"></div>
+			<div class="mode-switcher">
+				<table><tr><td><div class="switch-btn">圖像</div></td><td><div class="switch-btn">動畫</div></td><td><div class="switch-btn">文字</div></td></tr></table>
+			</div>
+			<div class="finished-btn">完成</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+var length=400;
+var size = 10;
+var svg =d3.select("svg.canvas");
+var dataset = [["#345","#123","#5f7","#111","#980","#345","#123","#5f7","#111","#980"],
+			   ["#145","#223","#f67","#411","#280","#345","#123","#5f7","#111","#980"],
+			   ["#345","#a23","#569","#f11","#580","#345","#123","#5f7","#111","#980"],
+			   ["#945","#e23","#567","#211","#180","#345","#123","#5f7","#111","#980"],
+			   ["#745","#923","#4f7","#181","#980","#345","#123","#5f7","#111","#980"],
+			   ["#345","#123","#5f7","#111","#980","#345","#123","#5f7","#111","#980"],
+			   ["#145","#223","#f67","#411","#280","#345","#123","#5f7","#111","#980"],
+			   ["#345","#a23","#569","#f11","#580","#345","#123","#5f7","#111","#980"],
+			   ["#945","#e23","#567","#211","#180","#345","#123","#5f7","#111","#980"],
+			   ["#745","#923","#4f7","#181","#980","#345","#123","#5f7","#111","#980"]];
+var rowG =svg.selectAll("g.row")
+.data(dataset,function(row,yPosition) {
+	$.each(row,function(xPosition,value) {
+		var cell = {};
+		cell.x = xPosition;
+		cell.y = yPosition;
+		cell.value = value;
+		row[xPosition] = cell;
+	});
+	console.log(row);
+	return dataset;
+})
+.enter()
+.append('g')
+.attr('height',function(d) {
+	return length/size;
+})
+.attr('x',0)
+.attr('y',function(d,i) {
+	return i*length/size;
+})
+.text(function(d,index) {return index});
+
+rowG.selectAll('rect')
+.data(function(d) {
+	console.log(d);
+	return d;
+})
+.enter()
+.append('rect')
+.attr('width',function(d) {
+	return length/size;
+})
+.attr('height',function(d) {
+	return length/size;
+})
+.attr('x',function(d,i) {
+	return d.x*length/size;
+})
+.attr('y',function(d,i) {
+	return d.y*length/size;
+})
+.attr('fill',function(d,i) {return d.value});
+
+
+
+
+svg.selectAll('.xAxis').data(d3.range(0,size+1))
+.enter()
+.append('line')
+.attr('class','axis')
+.attr('x1',function(d) {
+	return 0;
+})
+.attr('y1',function(d) {
+	return d*length/size;
+})
+.attr('x2',function(d) {
+	return length;
+})
+.attr('y2',function(d) {
+	return d*length/size;
+});
+
+
+svg.selectAll('.yAxis').data(d3.range(0,size+1))
+.enter()
+.append('line')
+.attr('class','axis')
+.attr('x1',function(d) {
+	return d*length/size;
+})
+.attr('y1',function(d) {
+	return 0;
+})
+.attr('x2',function(d) {
+	return d*length/size;
+})
+.attr('y2',function(d) {
+	return length;
+});
+
+
+function make_x_axis(){
+	return d3.svg.axis()
+	.scale(xScale)
+	.orient('bottom');
+}
+function make_y_axis(){
+	return d3.svg.axis()
+	.scale(xScale)
+	.orient('left');
+}
+
+var initialColor = '#02508d';
+var currentColor = initialColor;
+$('#color-picker').css('background-color',initialColor);
+$("#color-picker").spectrum({
+			className: 'color-picker',
+		    color: initialColor,
+		    showInput: true,
+		    showPalette: true,
+		    clickoutFiresChange: true,
+		    showInitial: true,
+		    showButtons: false,
+		    beforeShow: function(color) {
+		    	
+			},
+		    change: function(color) {
+		    	console.log("change!!");
+		    	currentColor = color;
+		    	$('#color-picker').css('background-color',color);
+			},
+			move: function(color) {
+				currentColor = color;
+		    	$('#color-picker').css('background-color',color);
+			}
+		});
+
+//畫筆的模式
+var PENCIL_MODE = 1;
+var LINE_MODE = 2;
+var FILL_MODE = 3;
+
+
+var toggleMouseDown = false;//記錄滑鼠是否被按下
+
+$('rect').on('mousedown',function(){
+	toggleMouseDown = true;
+	$(this).attr("fill",currentColor);
+});
+$('rect').on('mouseover',function(){
+	if(toggleMouseDown){
+		$(this).attr("fill",currentColor);		
+	}
+});
+$('rect').on('mouseup',function(){
+	toggleMouseDown = false;
+	$(this).attr("fill",currentColor);
+});
+$('.canvas').on('mouseleave',function(){
+	toggleMouseDown = false;
+});
+
+var transformCodeToData = function(dataset){
+	dataset = [];
+	$('.canvas').find('g').each(function() {
+		var rowData = [];
+		$(this).find('rect').each(function() {
+			rowData.push($(this).attr('fill'));
+		});
+		dataset.push(rowData);
+		debugger
+	});
+}
+
+var autoFillBlock = function(dataset,x,y,color){
+	var showHeight = dataset.length;
+	var showWidth = dataset[0].length;
+	var topColor = -1;
+	var bottomColor = -1;
+	var leftColor = -1;
+	var rightColor = -1;
+	if((x-1)>=0){
+
+	}
+	if((x+1>showWidth)){
+
+	}
+}
+
+
+
+
+</script>
