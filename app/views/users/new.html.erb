@@ -6,11 +6,11 @@
 <%= f.label :name ,'姓名' %>
 <%= f.text_field :name, :placeholder=>''%>
 <%= f.label :email %>
-<%= f.text_field :email%>
-<%= f.label :password %>
-<%= f.password_field :password%>
-<%= f.label :password_confirmation %>
+<%= f.text_field :email %>
+<%= f.label :password , "密碼"%>
+<%= f.password_field :password %>
+<%= f.label :password_confirmation, '密碼確認' %>
 <%= f.password_field :password_confirmation%>
-<%= render 'shared/error_messages' %>
+<%= render 'shared/error_messages', object: f.object %>
 <%= f.submit %>
 <% end %>
