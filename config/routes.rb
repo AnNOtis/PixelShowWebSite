@@ -2,7 +2,12 @@ PixelShowWeb::Application.routes.draw do
   get "shows/new"
   get "shows/show"
   resources :users
+  
   resources :shows
+  match '/shows/:id/autosave', to: 'shows#auto_save', via: 'post', as: 'autosave_show'
+
+
+
   resources :sessions, only:[:new,:create, :destroy]
   get "static_pages/about"
 

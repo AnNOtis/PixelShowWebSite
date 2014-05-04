@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="editor-wrapper">
 		<div class="canvas-container">
-			<svg class="canvas" width="400" height="400">
+			<svg id="canvas" class="canvas" width="400" height="400">
 
 			</svg>
 		</div>
@@ -20,16 +20,7 @@
 var length=400;
 var size = 10;
 var svg =d3.select("svg.canvas");
-var dataset = [["#345","#123","#5f7","#111","#980","#345","#123","#5f7","#111","#980"],
-			   ["#145","#223","#f67","#411","#280","#345","#123","#5f7","#111","#980"],
-			   ["#345","#a23","#569","#f11","#580","#345","#123","#5f7","#111","#980"],
-			   ["#945","#e23","#567","#211","#180","#345","#123","#5f7","#111","#980"],
-			   ["#745","#923","#4f7","#181","#980","#345","#123","#5f7","#111","#980"],
-			   ["#345","#123","#5f7","#111","#980","#345","#123","#5f7","#111","#980"],
-			   ["#145","#223","#f67","#411","#280","#345","#123","#5f7","#111","#980"],
-			   ["#345","#a23","#569","#f11","#580","#345","#123","#5f7","#111","#980"],
-			   ["#945","#e23","#567","#211","#180","#345","#123","#5f7","#111","#980"],
-			   ["#745","#923","#4f7","#181","#980","#345","#123","#5f7","#111","#980"]];
+var dataset = convertStrToCodeArr("<%= @show.data %>");
 var rowG =svg.selectAll("g.row")
 .data(dataset,function(row,yPosition) {
 	$.each(row,function(xPosition,value) {
@@ -39,7 +30,7 @@ var rowG =svg.selectAll("g.row")
 		cell.value = value;
 		row[xPosition] = cell;
 	});
-	console.log(row);
+	// console.log(row);
 	return dataset;
 })
 .enter()
@@ -55,7 +46,7 @@ var rowG =svg.selectAll("g.row")
 
 rowG.selectAll('rect')
 .data(function(d) {
-	console.log(d);
+	// console.log(d);
 	return d;
 })
 .enter()
@@ -139,7 +130,7 @@ $("#color-picker").spectrum({
 		    	
 			},
 		    change: function(color) {
-		    	console.log("change!!");
+		    	// console.log("change!!");
 		    	currentColor = color;
 		    	$('#color-picker').css('background-color',color);
 			},
@@ -170,13 +161,38 @@ $('rect').on('mouseup',function(){
 	toggleMouseDown = false;
 	$(this).attr("fill",currentColor);
 });
-$('.canvas').on('mouseleave',function(){
-	toggleMouseDown = false;
-});
-
-var transformCodeToData = function(dataset){
+// $('.canvas').on('mouseleave',function(){
+// 	toggleMouseDown = false;
+// });
+//從資料庫出來的show資料轉換成js array
+function convertStrToCodeArr(data){
+	// console.log(data);
+	var tempArr = data.slice(1,data.length).split("_");
+	var resultArr = [];
+	$.each(tempArr,function(index,value){
+		var noPrefixArr = value.slice(1,value.length).split("#");
+		$.each(noPrefixArr,function(index,value){
+			noPrefixArr[index] = "#"+value;
+		})
+		//console.log(noPrefixArr);
+		resultArr.push(noPrefixArr);
+	});
+	return resultArr;
+}
+function convertImgToStr(){
+	result = "";
+	$('#canvas').find('g').each(function(){
+		result+="_";
+		$(this).find('rect').each(function(){
+			var color = $(this).attr('fill');
+			result+= color;
+		})
+	})
+	return result;
+}
+var convertCodeToImg = function(dataset){
 	dataset = [];
-	$('.canvas').find('g').each(function() {
+	$('#canvas').find('g').each(function() {
 		var rowData = [];
 		$(this).find('rect').each(function() {
 			rowData.push($(this).attr('fill'));
@@ -200,8 +216,16 @@ var autoFillBlock = function(dataset,x,y,color){
 
 	}
 }
+$("#save-btn").click(function(){
+	$.ajax({
+		url: "<%= autosave_show_path(@show) %>",
+		type: "post",
+		dataType: "JSON",
+		data: {data:convertImgToStr()}
+	});
 
-$ajax
+	
+});
 
 
 </script>
