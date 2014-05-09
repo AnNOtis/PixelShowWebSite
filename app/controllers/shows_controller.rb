@@ -18,10 +18,40 @@ class ShowsController < ApplicationController
     end
   end
   def update
-    if Show.update(params[:show])
+   
+    # if Show.update(params[:show])
+    #   redirect_to shows_url
+    # else params[:finish]
+    # else
+
+    # end
+    #FIXME
+    #hack一個param到form中
+    #params[:behavior] = :show, :finish 
+    case params[:behavior]
+    when :show
+      Show.update(params[:show])
       redirect_to shows_url
+    when :finish
+      # redirect
     else
+      # autosave
+      @show = current_user.shows.find(params[:id]).update(data: params[:data]);
+      if @show
+        respond_to do |format|
+          format.json { 
+            render json: true
+          }
+        end
+      else
+        respond_to do |format|
+          format.json { 
+            render json: @show.errors
+          }
+        end
+      end
     end
+      
   end
 
   def show

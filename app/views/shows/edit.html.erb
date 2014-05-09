@@ -20,18 +20,82 @@ var length=400;
 var length = $("svg.canvas").attr("width");
 var size = 10;
 var svg =d3.select("svg.canvas");
-var dataset = convertStrToCodeArr("<%= @show.data %>");
+var dataset;
 $().ready(function(){
 
-
+	dataset = MainWidget.convertStrToCodeArr("<%= @show.data %>");
 	ShowWidget.generateShow('svg.canvas', 10, dataset);
 	ShowWidget.generateAxis('svg.canvas');
 
 	ColorPickerWidget.init();
-
+	MainWidget.init();
 });
 
+var MainWidget;
+MainWidget = {
+	settings:{
 
+	},
+	init: function(){
+
+	},
+	convertStrToCodeArr: function(data) {
+		// console.log(data);
+		var tempArr = data.slice(1,data.length).split("_");
+		var resultArr = [];
+		$.each(tempArr,function(index,value){
+			var noPrefixArr = value.slice(1,value.length).split("#");
+			$.each(noPrefixArr,function(index,value){
+				noPrefixArr[index] = "#"+value;
+			})
+			//console.log(noPrefixArr);
+			resultArr.push(noPrefixArr);
+		});
+		return resultArr;
+	},
+	convertImgToStr: function(){
+		result = "";
+		$('#canvas').find('g').each(function(){
+			result+="_";
+			$(this).find('rect').each(function(){
+				var color = $(this).attr('fill');
+				result+= color;
+			})
+		})
+		return result;
+	},
+	convertCodeToImg: function(dataset){
+		dataset = [];
+		$('#canvas').find('g').each(function() {
+			var rowData = [];
+			$(this).find('rect').each(function() {
+				rowData.push($(this).attr('fill'));
+			});
+			dataset.push(rowData);
+			debugger
+		});
+	},
+	autoFillBlock: function(dataset,x,y,color){
+		var showHeight = dataset.length;
+		var showWidth = dataset[0].length;
+		var topColor = -1;
+		var bottomColor = -1;
+		var leftColor = -1;
+		var rightColor = -1;
+		if((x-1)>=0){
+
+		}
+		if((x+1>showWidth)){
+
+		}
+	}
+
+
+
+}
+
+
+//顯示show
 var ShowWidget;
 ShowWidget = {
 	setting:{
@@ -137,42 +201,42 @@ ShowWidget = {
 // 	toggleMouseDown = false;
 // });
 //從資料庫出來的show資料轉換成js array
-function convertStrToCodeArr(data){
-	// console.log(data);
-	var tempArr = data.slice(1,data.length).split("_");
-	var resultArr = [];
-	$.each(tempArr,function(index,value){
-		var noPrefixArr = value.slice(1,value.length).split("#");
-		$.each(noPrefixArr,function(index,value){
-			noPrefixArr[index] = "#"+value;
-		})
-		//console.log(noPrefixArr);
-		resultArr.push(noPrefixArr);
-	});
-	return resultArr;
-}
-function convertImgToStr(){
-	result = "";
-	$('#canvas').find('g').each(function(){
-		result+="_";
-		$(this).find('rect').each(function(){
-			var color = $(this).attr('fill');
-			result+= color;
-		})
-	})
-	return result;
-}
-var convertCodeToImg = function(dataset){
-	dataset = [];
-	$('#canvas').find('g').each(function() {
-		var rowData = [];
-		$(this).find('rect').each(function() {
-			rowData.push($(this).attr('fill'));
-		});
-		dataset.push(rowData);
-		debugger
-	});
-}
+// function convertStrToCodeArr(data){
+// 	// console.log(data);
+// 	var tempArr = data.slice(1,data.length).split("_");
+// 	var resultArr = [];
+// 	$.each(tempArr,function(index,value){
+// 		var noPrefixArr = value.slice(1,value.length).split("#");
+// 		$.each(noPrefixArr,function(index,value){
+// 			noPrefixArr[index] = "#"+value;
+// 		})
+// 		//console.log(noPrefixArr);
+// 		resultArr.push(noPrefixArr);
+// 	});
+// 	return resultArr;
+// }
+// function convertImgToStr(){
+// 	result = "";
+// 	$('#canvas').find('g').each(function(){
+// 		result+="_";
+// 		$(this).find('rect').each(function(){
+// 			var color = $(this).attr('fill');
+// 			result+= color;
+// 		})
+// 	})
+// 	return result;
+// }
+// var convertCodeToImg = function(dataset){
+// 	dataset = [];
+// 	$('#canvas').find('g').each(function() {
+// 		var rowData = [];
+// 		$(this).find('rect').each(function() {
+// 			rowData.push($(this).attr('fill'));
+// 		});
+// 		dataset.push(rowData);
+// 		debugger
+// 	});
+// }
 
 var autoFillBlock = function(dataset,x,y,color){
 	var showHeight = dataset.length;
@@ -190,10 +254,10 @@ var autoFillBlock = function(dataset,x,y,color){
 }
 function sendDataToServer() {
 	$.ajax({
-		url: "<%= autosave_show_path(@show) %>",
-		type: "post",
+		url: "<%= show_path(@show) %>",
+		type: "PUT",
 		dataType: "JSON",
-		data: {data:convertImgToStr()}
+		data: {data:MainWidget.convertImgToStr()}
 	});
 };
 
