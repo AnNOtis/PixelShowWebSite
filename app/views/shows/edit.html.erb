@@ -16,151 +16,123 @@
 </div>
 
 <script type="text/javascript">
-
 var length=400;
+var length = $("svg.canvas").attr("width");
 var size = 10;
 var svg =d3.select("svg.canvas");
 var dataset = convertStrToCodeArr("<%= @show.data %>");
-var rowG =svg.selectAll("g.row")
-.data(dataset,function(row,yPosition) {
-	$.each(row,function(xPosition,value) {
-		var cell = {};
-		cell.x = xPosition;
-		cell.y = yPosition;
-		cell.value = value;
-		row[xPosition] = cell;
-	});
-	// console.log(row);
-	return dataset;
-})
-.enter()
-.append('g')
-.attr('height',function(d) {
-	return length/size;
-})
-.attr('x',0)
-.attr('y',function(d,i) {
-	return i*length/size;
-})
-.text(function(d,index) {return index});
-
-rowG.selectAll('rect')
-.data(function(d) {
-	// console.log(d);
-	return d;
-})
-.enter()
-.append('rect')
-.attr('width',function(d) {
-	return length/size;
-})
-.attr('height',function(d) {
-	return length/size;
-})
-.attr('x',function(d,i) {
-	return d.x*length/size;
-})
-.attr('y',function(d,i) {
-	return d.y*length/size;
-})
-.attr('fill',function(d,i) {return d.value});
+$().ready(function(){
 
 
+	ShowWidget.generateShow('svg.canvas', 10, dataset);
+	ShowWidget.generateAxis('svg.canvas');
 
+	ColorPickerWidget.init();
 
-svg.selectAll('.xAxis').data(d3.range(0,size+1))
-.enter()
-.append('line')
-.attr('class','axis')
-.attr('x1',function(d) {
-	return 0;
-})
-.attr('y1',function(d) {
-	return d*length/size;
-})
-.attr('x2',function(d) {
-	return length;
-})
-.attr('y2',function(d) {
-	return d*length/size;
 });
 
 
-svg.selectAll('.yAxis').data(d3.range(0,size+1))
-.enter()
-.append('line')
-.attr('class','axis')
-.attr('x1',function(d) {
-	return d*length/size;
-})
-.attr('y1',function(d) {
-	return 0;
-})
-.attr('x2',function(d) {
-	return d*length/size;
-})
-.attr('y2',function(d) {
-	return length;
-});
+var ShowWidget;
+ShowWidget = {
+	setting:{
 
+	},
+	init: function(){
 
-function make_x_axis(){
-	return d3.svg.axis()
-	.scale(xScale)
-	.orient('bottom');
-}
-function make_y_axis(){
-	return d3.svg.axis()
-	.scale(xScale)
-	.orient('left');
-}
+	},
+	generateShow: function(s_canvas, size, colorData){
+		var canvas = d3.select(s_canvas);
+		var canvasLength = $(s_canvas).attr("width");
 
-var initialColor = '#02508d';
-var currentColor = initialColor;
-$('#color-picker').css('background-color',initialColor);
-$("#color-picker").spectrum({
-			className: 'color-picker',
-		    color: initialColor,
-		    showInput: true,
-		    showPalette: true,
-		    clickoutFiresChange: true,
-		    showInitial: true,
-		    showButtons: false,
-		    beforeShow: function(color) {
-		    	
-			},
-		    change: function(color) {
-		    	// console.log("change!!");
-		    	currentColor = color;
-		    	$('#color-picker').css('background-color',color);
-			},
-			move: function(color) {
-				currentColor = color;
-		    	$('#color-picker').css('background-color',color);
-			}
+		//generate group
+		var rowG = canvas.selectAll("g.row")
+		.data(colorData,function(row,yPosition) {
+			$.each(row,function(xPosition,value) {
+				var cell = {};
+				cell.x = xPosition;
+				cell.y = yPosition;
+				cell.value = value;
+				row[xPosition] = cell;
+			});
+			// console.log(row);
+			return colorData;
+		})
+		.enter()
+		.append('g')
+		.attr('height',function(d) {
+			return canvasLength/size;
+		})
+		.attr('x',0)
+		.attr('y',function(d,i) {
+			return i*canvasLength/size;
+		})
+		.text(function(d,index) {return index});
+
+		//fill color
+		rowG.selectAll('rect')
+		.data(function(d) {
+			// console.log(d);
+			return d;
+		})
+		.enter()
+		.append('rect')
+		.attr('width',function(d) {
+			return canvasLength/size;
+		})
+		.attr('height',function(d) {
+			return canvasLength/size;
+		})
+		.attr('x',function(d,i) {
+			return d.x*canvasLength/size;
+		})
+		.attr('y',function(d,i) {
+			return d.y*canvasLength/size;
+		})
+		.attr('fill',function(d,i) {return d.value});
+	},
+	generateAxis: function(s_canvas){
+		var canvas = d3.select(s_canvas);
+		canvas.selectAll('.xAxis').data(d3.range(0,size+1))
+		.enter()
+		.append('line')
+		.attr('class','axis')
+		.attr('x1',function(d) {
+			return 0;
+		})
+		.attr('y1',function(d) {
+			return d*length/size;
+		})
+		.attr('x2',function(d) {
+			return length;
+		})
+		.attr('y2',function(d) {
+			return d*length/size;
 		});
 
-//畫筆的模式
-var PENCIL_MODE = 1;
-var LINE_MODE = 2;
-var FILL_MODE = 3;
 
-
-var toggleMouseDown = false;//記錄滑鼠是否被按下
-
-$('rect').on('mousedown',function(){
-	toggleMouseDown = true;
-	$(this).attr("fill",currentColor);
-});
-$('rect').on('mouseover',function(){
-	if(toggleMouseDown){
-		$(this).attr("fill",currentColor);		
+		canvas.selectAll('.yAxis').data(d3.range(0,size+1))
+		.enter()
+		.append('line')
+		.attr('class','axis')
+		.attr('x1',function(d) {
+			return d*length/size;
+		})
+		.attr('y1',function(d) {
+			return 0;
+		})
+		.attr('x2',function(d) {
+			return d*length/size;
+		})
+		.attr('y2',function(d) {
+			return length;
+		});
 	}
-});
-$('rect').on('mouseup',function(){
-	toggleMouseDown = false;
-	$(this).attr("fill",currentColor);
-});
+
+};
+
+
+
+
 // $('.canvas').on('mouseleave',function(){
 // 	toggleMouseDown = false;
 // });
@@ -216,16 +188,83 @@ var autoFillBlock = function(dataset,x,y,color){
 
 	}
 }
-$("#save-btn").click(function(){
+function sendDataToServer() {
 	$.ajax({
 		url: "<%= autosave_show_path(@show) %>",
 		type: "post",
 		dataType: "JSON",
 		data: {data:convertImgToStr()}
 	});
+};
 
-	
+$("#save-btn").click(function(){
+	sendDataToServer();
 });
 
+
+</script>
+
+<script>
+
+	var cs;
+	var ColorPickerWidget;
+
+	ColorPickerWidget = {
+		settings:{
+			//畫筆的模式
+			PENCIL_MODE:1,
+			LINE_MODE:2,
+			FILL_MODE:3,
+			initialColor:'#02508d',
+			currentColor:'',//init currentColor
+		},
+		init: function(){
+			cs = ColorPickerWidget.settings;
+			cs.currentColor = cs.initialColor;
+			ColorPickerWidget.bindUIActions();
+			ColorPickerWidget.initColorPicker();
+		},
+		bindUIActions: function(){
+			var toggleMouseDown = false;//記錄滑鼠是否被按下
+			$(document).on('mousedown','rect',function(){
+				toggleMouseDown = true;
+				$(this).attr("fill",cs.currentColor);
+			});
+			$(document).on('mouseover','rect',function(){
+				if(toggleMouseDown){
+					$(this).attr("fill",cs.currentColor);		
+				}
+			});
+			$(document).on('mouseup','rect',function(){
+				toggleMouseDown = false;
+				$(this).attr("fill",cs.currentColor);
+				sendDataToServer();
+			});
+		},
+		initColorPicker: function(){
+			$('#color-picker').css('background-color',cs.initialColor);
+			$("#color-picker").spectrum({
+				className: 'color-picker',
+			    color: cs.initialColor,
+			    showInput: true,
+			    showPalette: true,
+			    clickoutFiresChange: true,
+			    showInitial: true,
+			    showButtons: false,
+			    beforeShow: function(color) {
+			    	
+				},
+			    change: function(color) {
+			    	// console.log("change!!");
+			    	cs.currentColor = color;
+			    	$('#color-picker').css('background-color',color);
+				},
+				move: function(color) {
+					cs.currentColor = color;
+			    	$('#color-picker').css('background-color',color);
+				}
+			});
+		}
+	}
 
 </script>

@@ -28,7 +28,7 @@ class ShowsController < ApplicationController
   end
   def auto_save
     @show = current_user.shows.find(params[:id]).update(data: params[:data]);
-    if @show      
+    if @show
       respond_to do |format|
         format.json { 
           render json: true
