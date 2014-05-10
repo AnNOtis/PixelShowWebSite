@@ -1,5 +1,8 @@
 class ShowsController < ApplicationController
   before_action :require_login
+  def index
+    @shows = current_user.shows.all
+  end
   def new
   	@show = current_user.shows.build()
   end

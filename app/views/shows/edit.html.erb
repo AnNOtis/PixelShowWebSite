@@ -10,7 +10,8 @@
 			<div class="mode-switcher">
 				<table><tr><td><div class="switch-btn">圖像</div></td><td><div class="switch-btn">動畫</div></td><td><div class="switch-btn">文字</div></td></tr></table>
 			</div>
-			<div id="save-btn" class="finished-btn">完成</div>
+			<!-- <a id="save-btn" class="finished-btn">完成</a> -->
+			<%= link_to '完成',shows_path, id:'save-btn' , class:'finished-btn' %>
 		</div>
 	</div>
 </div>
@@ -19,7 +20,6 @@
 var length=400;
 var length = $("svg.canvas").attr("width");
 var size = 10;
-var svg =d3.select("svg.canvas");
 var dataset;
 $().ready(function(){
 
@@ -95,104 +95,7 @@ MainWidget = {
 }
 
 
-//顯示show
-var ShowWidget;
-ShowWidget = {
-	setting:{
 
-	},
-	init: function(){
-
-	},
-	generateShow: function(s_canvas, size, colorData){
-		var canvas = d3.select(s_canvas);
-		var canvasLength = $(s_canvas).attr("width");
-
-		//generate group
-		var rowG = canvas.selectAll("g.row")
-		.data(colorData,function(row,yPosition) {
-			$.each(row,function(xPosition,value) {
-				var cell = {};
-				cell.x = xPosition;
-				cell.y = yPosition;
-				cell.value = value;
-				row[xPosition] = cell;
-			});
-			// console.log(row);
-			return colorData;
-		})
-		.enter()
-		.append('g')
-		.attr('height',function(d) {
-			return canvasLength/size;
-		})
-		.attr('x',0)
-		.attr('y',function(d,i) {
-			return i*canvasLength/size;
-		})
-		.text(function(d,index) {return index});
-
-		//fill color
-		rowG.selectAll('rect')
-		.data(function(d) {
-			// console.log(d);
-			return d;
-		})
-		.enter()
-		.append('rect')
-		.attr('width',function(d) {
-			return canvasLength/size;
-		})
-		.attr('height',function(d) {
-			return canvasLength/size;
-		})
-		.attr('x',function(d,i) {
-			return d.x*canvasLength/size;
-		})
-		.attr('y',function(d,i) {
-			return d.y*canvasLength/size;
-		})
-		.attr('fill',function(d,i) {return d.value});
-	},
-	generateAxis: function(s_canvas){
-		var canvas = d3.select(s_canvas);
-		canvas.selectAll('.xAxis').data(d3.range(0,size+1))
-		.enter()
-		.append('line')
-		.attr('class','axis')
-		.attr('x1',function(d) {
-			return 0;
-		})
-		.attr('y1',function(d) {
-			return d*length/size;
-		})
-		.attr('x2',function(d) {
-			return length;
-		})
-		.attr('y2',function(d) {
-			return d*length/size;
-		});
-
-
-		canvas.selectAll('.yAxis').data(d3.range(0,size+1))
-		.enter()
-		.append('line')
-		.attr('class','axis')
-		.attr('x1',function(d) {
-			return d*length/size;
-		})
-		.attr('y1',function(d) {
-			return 0;
-		})
-		.attr('x2',function(d) {
-			return d*length/size;
-		})
-		.attr('y2',function(d) {
-			return length;
-		});
-	}
-
-};
 
 
 
@@ -290,16 +193,16 @@ $("#save-btn").click(function(){
 		},
 		bindUIActions: function(){
 			var toggleMouseDown = false;//記錄滑鼠是否被按下
-			$(document).on('mousedown','rect',function(){
+			$("svg.canvas").on('mousedown','rect',function(){
 				toggleMouseDown = true;
 				$(this).attr("fill",cs.currentColor);
 			});
-			$(document).on('mouseover','rect',function(){
+			$("svg.canvas").on('mouseover','rect',function(){
 				if(toggleMouseDown){
 					$(this).attr("fill",cs.currentColor);		
 				}
 			});
-			$(document).on('mouseup','rect',function(){
+			$("svg.canvas").on('mouseup','rect',function(){
 				toggleMouseDown = false;
 				$(this).attr("fill",cs.currentColor);
 				sendDataToServer();
