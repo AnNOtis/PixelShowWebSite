@@ -21,24 +21,20 @@ class ShowsController < ApplicationController
     end
   end
   def update
-   
-    # if Show.update(params[:show])
-    #   redirect_to shows_url
-    # else params[:finish]
-    # else
+    behavior = params['behavior'] || 'auto_save'
+    self.send(behavior.to_sym,params)
+  end
 
-    # end
-    #FIXME
-    #hack一個param到form中
-    #params[:behavior] = :show, :finish 
-    case params[:behavior]
-    when :show
+  def show
+  end
+
+
+  private
+    def finish_edit(params)
       Show.update(params[:show])
       redirect_to shows_url
-    when :finish
-      # redirect
-    else
-      # autosave
+    end
+    def auto_save(params)
       @show = current_user.shows.find(params[:id]).update(data: params[:data]);
       if @show
         respond_to do |format|
@@ -54,28 +50,6 @@ class ShowsController < ApplicationController
         end
       end
     end
-      
-  end
-
-  def show
-  end
-  def auto_save
-    @show = current_user.shows.find(params[:id]).update(data: params[:data]);
-    if @show
-      respond_to do |format|
-        format.json { 
-          render json: true
-        }
-      end
-    else
-      respond_to do |format|
-        format.json { 
-          render json: @show.errors
-        }
-      end
-    end
-  end
-  private
 	  def show_params
 	  	params.require(:show).permit(:name,:permit)
 	  end

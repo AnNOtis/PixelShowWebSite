@@ -1,5 +1,5 @@
 <% @shows.each do |show| %>
-	<svg id="<%="show-#{show.id}"%>" class="js-shows" width="100" height="100" style="border:1px solid #888;" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= edit_show_path(show) %>">
+	<svg id="<%="show-#{show.id}"%>" class="js-shows" width="200" height="200" style="border:1px solid #888; margin:20px;" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= edit_show_path(show) %>">
 	</svg>
 <% end %>
 
