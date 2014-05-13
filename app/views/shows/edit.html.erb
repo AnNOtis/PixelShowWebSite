@@ -10,10 +10,17 @@
 			<div class="mode-switcher">
 				<table><tr><td><div class="switch-btn">圖像</div></td><td><div class="switch-btn">動畫</div></td><td><div class="switch-btn">文字</div></td></tr></table>
 			</div>
-			<!-- <a id="save-btn" class="finished-btn">完成</a> -->
-			<%= link_to '完成',shows_path, id:'save-btn' , class:'finished-btn' %>
+			<button id="save-btn" class="finished-btn">完成</button>
+			<!--<%= link_to '完成',show_path(@show,behavior: "finish_edit"),method: :put, id:'save-btn' , class:'finished-btn' %>-->
 		</div>
 	</div>
+
+	<%= form_for @show do |f|%>
+		<%= f.hidden_field :id %>
+		<%= f.hidden_field :name %>
+		<%= f.hidden_field :data %>
+		<%= f.hidden_field :behavior,{value:"finish_edit"}%>
+	<% end %>
 </div>
 
 <script type="text/javascript">
@@ -30,14 +37,37 @@ $().ready(function(){
 	ColorPickerWidget.init();
 	MainWidget.init();
 });
-
+var ms;
 var MainWidget;
 MainWidget = {
 	settings:{
-
+		$canvas: $('#canvas')
 	},
 	init: function(){
-
+		ms = this.settings;
+		this.bindUIActions();
+	},
+	bindUIActions: function(){
+		var toggleMouseDown = false;//記錄滑鼠是否被按下
+		ms.$canvas.on('mousedown','rect',function(){
+			toggleMouseDown = true;
+			$(this).attr("fill",cs.currentColor);
+		});
+		ms.$canvas.on('mouseover','rect',function(){
+			if(toggleMouseDown){
+				$(this).attr("fill",cs.currentColor);		
+			}
+		});
+		ms.$canvas.on('mouseup','rect',function(){
+			toggleMouseDown = false;
+			$(this).attr("fill",cs.currentColor);
+			sendDataToServer();
+		});
+		$("#save-btn").click(function() {
+			console.log("!!!");
+			$("#show_data").val(MainWidget.convertImgToStr());
+			$("#edit_show_<%=@show.id%>").submit();
+		});
 	},
 	convertStrToCodeArr: function(data) {
 		// console.log(data);
@@ -89,8 +119,6 @@ MainWidget = {
 
 		}
 	}
-
-
 
 }
 
@@ -192,27 +220,14 @@ $("#save-btn").click(function(){
 			ColorPickerWidget.initColorPicker();
 		},
 		bindUIActions: function(){
-			var toggleMouseDown = false;//記錄滑鼠是否被按下
-			$("svg.canvas").on('mousedown','rect',function(){
-				toggleMouseDown = true;
-				$(this).attr("fill",cs.currentColor);
-			});
-			$("svg.canvas").on('mouseover','rect',function(){
-				if(toggleMouseDown){
-					$(this).attr("fill",cs.currentColor);		
-				}
-			});
-			$("svg.canvas").on('mouseup','rect',function(){
-				toggleMouseDown = false;
-				$(this).attr("fill",cs.currentColor);
-				sendDataToServer();
-			});
+			
 		},
 		initColorPicker: function(){
 			$('#color-picker').css('background-color',cs.initialColor);
 			$("#color-picker").spectrum({
 				className: 'color-picker',
 			    color: cs.initialColor,
+			    preferredFormat: "hex",
 			    showInput: true,
 			    showPalette: true,
 			    clickoutFiresChange: true,

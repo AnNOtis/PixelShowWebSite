@@ -21,7 +21,7 @@ class ShowsController < ApplicationController
     end
   end
   def update
-    behavior = params['behavior'] || 'auto_save'
+    behavior = show_params ? show_params['behavior'] : 'auto_save'
     self.send(behavior.to_sym,params)
   end
 
@@ -31,11 +31,13 @@ class ShowsController < ApplicationController
 
   private
     def finish_edit(params)
-      Show.update(params[:show])
+      assign_params = show_params.dup
+      assign_params.delete(:behavior)
+      Show.update(params['id'],assign_params)
       redirect_to shows_url
     end
     def auto_save(params)
-      @show = current_user.shows.find(params[:id]).update(data: params[:data]);
+      @show = current_user.shows.update(params[:id],data: autosave_params[:data]);
       if @show
         respond_to do |format|
           format.json { 
@@ -51,10 +53,10 @@ class ShowsController < ApplicationController
       end
     end
 	  def show_params
-	  	params.require(:show).permit(:name,:permit)
+	  	params.require(:show).permit(:id,:name,:data,:behavior) if params[:show]
 	  end
     def autosave_params
-      params.require(:show).permit(:name, :data)
+      params.permit(:name, :data)
     end
   
 end

@@ -12,3 +12,11 @@
  *= require_tree .
  *= require spectrum
  */
+
+
+ /*- BASE STYLE
+ --------------------------------------------------*/
+.container{
+	width:960px;
+	margin: 0 auto;
+}
