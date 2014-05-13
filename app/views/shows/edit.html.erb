@@ -5,22 +5,24 @@
 
 			</svg>
 		</div>
-		<div class="edit-tool">
-			<div type="color" class="color-picker" id="color-picker"></div>
-			<div class="mode-switcher">
-				<table><tr><td><div class="switch-btn">圖像</div></td><td><div class="switch-btn">動畫</div></td><td><div class="switch-btn">文字</div></td></tr></table>
-			</div>
-			<button id="save-btn" class="finished-btn">完成</button>
-			<!--<%= link_to '完成',show_path(@show,behavior: "finish_edit"),method: :put, id:'save-btn' , class:'finished-btn' %>-->
+		<div class="info-field">
+			<%= form_for @show do |f|%>
+				<%= f.hidden_field :id %>
+				<%= f.text_field :name, autocomplete:"off" %>
+				<%= f.hidden_field :data %>
+				<%= f.hidden_field :behavior,{value:"finish_edit"}%>
+			<% end %>
 		</div>
+		
 	</div>
-
-	<%= form_for @show do |f|%>
-		<%= f.hidden_field :id %>
-		<%= f.hidden_field :name %>
-		<%= f.hidden_field :data %>
-		<%= f.hidden_field :behavior,{value:"finish_edit"}%>
-	<% end %>
+	<div class="edit-tool">
+		<div type="color" class="color-picker" id="color-picker"></div>
+		<div class="mode-switcher">
+			<table><tr><td><div class="switch-btn">圖像</div></td><td><div class="switch-btn">動畫</div></td><td><div class="switch-btn">文字</div></td></tr></table>
+		</div>
+		<button id="save-btn" class="finished-btn">完成</button>
+		<!--<%= link_to '完成',show_path(@show,behavior: "finish_edit"),method: :put, id:'save-btn' , class:'finished-btn' %>-->
+	</div>
 </div>
 
 <script type="text/javascript">
@@ -123,51 +125,6 @@ MainWidget = {
 }
 
 
-
-
-
-
-
-// $('.canvas').on('mouseleave',function(){
-// 	toggleMouseDown = false;
-// });
-//從資料庫出來的show資料轉換成js array
-// function convertStrToCodeArr(data){
-// 	// console.log(data);
-// 	var tempArr = data.slice(1,data.length).split("_");
-// 	var resultArr = [];
-// 	$.each(tempArr,function(index,value){
-// 		var noPrefixArr = value.slice(1,value.length).split("#");
-// 		$.each(noPrefixArr,function(index,value){
-// 			noPrefixArr[index] = "#"+value;
-// 		})
-// 		//console.log(noPrefixArr);
-// 		resultArr.push(noPrefixArr);
-// 	});
-// 	return resultArr;
-// }
-// function convertImgToStr(){
-// 	result = "";
-// 	$('#canvas').find('g').each(function(){
-// 		result+="_";
-// 		$(this).find('rect').each(function(){
-// 			var color = $(this).attr('fill');
-// 			result+= color;
-// 		})
-// 	})
-// 	return result;
-// }
-// var convertCodeToImg = function(dataset){
-// 	dataset = [];
-// 	$('#canvas').find('g').each(function() {
-// 		var rowData = [];
-// 		$(this).find('rect').each(function() {
-// 			rowData.push($(this).attr('fill'));
-// 		});
-// 		dataset.push(rowData);
-// 		debugger
-// 	});
-// }
 
 var autoFillBlock = function(dataset,x,y,color){
 	var showHeight = dataset.length;

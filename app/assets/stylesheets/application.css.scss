@@ -35,7 +35,7 @@
 --------------------------------------------------*/
 .s-show-card{
 	display:inline-block;
-
+	position:relative;
 	padding:10px;
 	margin: 30px 28px;
 	background-color: #fff;
@@ -50,4 +50,24 @@
 	svg{	
 
 	}
+	&.add-btn{
+		position:fixed;
+		bottom: 0;
+		right:0;
+		cursor:pointer;
+		width:180px;
+		height:200px;
+		line-height: 180px;
+		text-align: center;
+		font-size: 60px;
+		background-color: rgba(0,0,0,0.2);
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		&:hover{
+			background-color: rgba(0,0,0,0.3);
+		}
+	}
 }
+
+
