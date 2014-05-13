@@ -20,3 +20,33 @@
 	width:960px;
 	margin: 0 auto;
 }
+
+
+/*- TEXT STYLE
+--------------------------------------------------*/
+.muted{
+	color:#aaa;
+	font-size: 0.8em;
+}
+
+
+/*- SHOW CARD
+--------------------------------------------------*/
+.s-show-card{
+	display:inline-block;
+
+	padding:10px;
+	margin: 30px 1%;
+	background-color: #fff;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 2px 0 0 #aaa;
+	-moz-box-shadow: 0 2px 0 0 #aaa;
+	box-shadow: 0 2px 0 0 #aaa;
+	.info{
+		line-height: 1;
+		margin-top: 5px;
+	}
+	svg{	
+
+	}
+}

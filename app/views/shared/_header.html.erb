@@ -1,24 +1,26 @@
 <header>
-	<div class="header" link-to="<%= root_path%>"><span>Pixel Show</span></div>
-	<nav>
-		<ul>
-			<li>我的作品</li>
-			<li>畫廊</li>
-			<li>電影</li>
-			<li class="account-field">
-			<% if signed_in?%>
-			<%= current_user[:name]%>
-			<ul class="dropdown-menu">
-				<li link-to="<%=user_path current_user%>">個人設定</li>
-				<li>作品集</li>	
-				<li link-to="<%=signout_path%>">登出</li>
+	<div class="container">
+		<div class="header" link-to="<%= root_path%>"><span>Pixel Show</span></div>
+		<nav>
+			<ul>
+				<li>我的作品</li>
+				<li>畫廊</li>
+				<li>電影</li>
+				<li class="account-field">
+				<% if signed_in?%>
+				<%= current_user[:name]%>
+				<ul class="dropdown-menu">
+					<li link-to="<%=user_path current_user%>">個人設定</li>
+					<li>作品集</li>	
+					<li link-to="<%=signout_path%>">登出</li>
+				</ul>
+				<% else %>
+					<div link-to="<%=login_path%>">登入</div>
+				<% end %>	
+				</li>
 			</ul>
-			<% else %>
-				<div link-to="<%=login_path%>">登入</div>
-			<% end %>	
-			</li>
-		</ul>
-	</nav>
+		</nav>
+	</div>
 	
 </header>
 

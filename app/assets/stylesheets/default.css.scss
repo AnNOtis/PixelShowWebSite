@@ -24,11 +24,12 @@ body{
 	margin: 0;
 	padding: 0;
 	background: url(/bg_wood_@2X.png);
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 header{
 	background: $deep-blue;
-	padding: 0 60px;
+	width:100%;
 	color: #FFF;
 	box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
 	a,a:hover,a:active{
