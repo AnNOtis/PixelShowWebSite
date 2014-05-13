@@ -1,10 +1,13 @@
 <div class="container">
-	<% @shows.each do |show| %>
-
-	<div class="s-show-card">
-		<svg id="<%="show-#{show.id}"%>" class="js-shows" width="150" height="150" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= edit_show_path(show) %>">
-		</svg>
-		<div class="muted info"><%= show.name %></div>
+	<% @shows.in_groups_of(4) do |group| %>
+	<div class="row">
+		<% group.compact.each do |show| %>
+			<div class="s-show-card to-table-cell">
+				<svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= edit_show_path(show) %>">
+				</svg>
+				<div class="muted info"><%= show.name %></div>
+			</div>
+		<% end %>
 	</div>
 	<% end %>
 	
