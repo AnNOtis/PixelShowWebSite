@@ -6,6 +6,7 @@
 				<svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= edit_show_path(show) %>">
 				</svg>
 				<div class="muted info"><%= show.name %></div>
+				<fi class="lsf-icon" title="view"></fi>
 			</div>
 		<% end %>
 	</div>
@@ -18,8 +19,6 @@
 	</div>
 	
 </div>
-
-
 
 <script>
 	$('.js-shows').each(function() {
