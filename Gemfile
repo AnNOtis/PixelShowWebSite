@@ -9,12 +9,9 @@ gem 'pry'
 
 gem "d3_rails"
 # Use sqlite3 as the database for Active Record
+gem 'pg'
 
-group :development do
-  gem 'sqlite3'
-end
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
