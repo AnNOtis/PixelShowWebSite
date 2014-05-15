@@ -21,5 +21,6 @@ module PixelShowWeb
     # config.i18n.default_locale = :de
     #config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
     config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
+    config.serve_static_assets = true
   end
 end
