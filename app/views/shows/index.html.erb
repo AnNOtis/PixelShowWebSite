@@ -5,7 +5,8 @@
 			<div class="s-show-card to-table-cell">
 				<svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= edit_show_path(show) %>">
 				</svg>
-				<div class="muted info"><%= show.name %></div>
+				<div class="muted info"><%= show.updated_at.strftime("%b %d, %Y") %></div>
+				<div class="info"><%= show.name %></div>
 				<div class="social-info">
 					<span class="viewer"><fi class="lsf-icon" title="view"></fi><span class="number">12</span></span>
 					<span class="lover"><fi class="lsf-icon" title="love"></fi><span class="number">1</span></span>

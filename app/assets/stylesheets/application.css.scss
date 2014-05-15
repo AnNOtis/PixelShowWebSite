@@ -77,15 +77,19 @@
 	display:inline-block;
 	position:relative;
 	padding:10px;
+	padding-bottom: 6px;
 	margin: 30px 28px;
 	background-color: #fff;
 	border-radius: 3px;
 	-webkit-box-shadow: 0 2px 0 0 #aaa;
 	-moz-box-shadow: 0 2px 0 0 #aaa;
 	box-shadow: 0 2px 0 0 #aaa;
+	color:#555;
 	.info{
 		line-height: 1;
 		margin-top: 5px;
+		padding-right:6px;
+		text-align: right;
 	}
 	.social-info{
 		position: absolute;
