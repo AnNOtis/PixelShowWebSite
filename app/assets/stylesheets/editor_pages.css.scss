@@ -17,6 +17,7 @@
 		top:0;
 		right:0;
 		width:350px;
+		min-height: 350px;
 		margin:20px 10px;
 	}
 	input{
@@ -31,6 +32,35 @@
 		&:focus{
 			outline: none;
 			box-shadow: 0 0 5px 3px rgba(0,0,0,0.1) inset;
+		}
+		&::-webkit-input-placeholder {
+			color: rgba(0, 0, 0,0.3);
+			font-size: 16px;
+		}
+	}
+	.finished-btn{
+		cursor: pointer;
+		position: absolute;
+		right: 0;
+		bottom: 20px;
+		width: 50%;
+		font-size: 16px;
+		margin: 30px 0 10px 0;
+		border-radius: 5px;
+		background-color: rgba(0, 0, 0, 0.1);
+		color: rgba(0, 0, 0, 0.3);
+		line-height: 40px;
+		padding-left: 5%;
+		padding-right: 20px;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-ms-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		transition: all 0.3s ease;
+		&:hover{
+			padding-left: 16%;
+			background-color: #367294;
+			color: #aeff32;
 		}
 	}
 }
@@ -65,27 +95,7 @@ $mode-btn-size: 50px;
 			border-radius: 5px;
 		}
 	}
-	.finished-btn{
-		position:absolute;
-		bottom:20px;
-		width:100%;
-		background-color: #4775A3;
-		color: #FFF;
-		line-height: 40px;
-		text-align: right;
-		padding-right: 20px;
-		&:after{
-			content:"";
-			display: block;
-			position:absolute;
-			top:0;
-			right:-40px;
-			height:0;
-			width:0;
-			border: 20px solid transparent;
-			border-left: 20px solid #01AA96;
-		}
-	}
+	
 
 }
 .canvas rect{
