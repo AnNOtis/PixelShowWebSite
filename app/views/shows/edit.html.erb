@@ -53,8 +53,12 @@ MainWidget = {
 	bindUIActions: function(){
 		var toggleMouseDown = false;//記錄滑鼠是否被按下
 		ms.$canvas.on('mousedown','rect',function(){
-			toggleMouseDown = true;
-			$(this).attr("fill",cs.currentColor);
+			if(cs.currentMode == cs.FILL_MODE){
+
+			}else{
+				toggleMouseDown = true;
+				$(this).attr("fill",cs.currentColor);
+			}
 		});
 		ms.$canvas.on('mouseover','rect',function(){
 			if(toggleMouseDown){
@@ -108,20 +112,46 @@ MainWidget = {
 			debugger
 		});
 	},
-	autoFillBlock: function(dataset,x,y,color){
-		var showHeight = dataset.length;
-		var showWidth = dataset[0].length;
-		var topColor = -1;
-		var bottomColor = -1;
-		var leftColor = -1;
-		var rightColor = -1;
-		if((x-1)>=0){
+	autoFillBlock: function(x,y,fillColor){
+		// dataset = MainWidget.convertStrToCodeArr(MainWidget.convertImgToStr());
+		// MainWidget.calFillBlock(x,y,fillColor);
+		// console.log("!!!!");
+		// ShowWidget.generateShow('svg.canvas', 10, dataset);
+	},
+	calFillBlock: function(x,y,fillColor){
+		// console.log("X:"+x);
+		// console.log("Y:"+y);
+		// var height = dataset.length;
+		// var width = dataset[0].length;
+		// var currentColor = dataset[x][y];
 
-		}
-		if((x+1>showWidth)){
+		// // var topColor = dataset[x][y-1];
+		// // var bottomColor = dataset[x][y+1];
+		// // var leftColor = dataset[x-1][y];
+		// // var rightColor = dataset[x+1][y];
 
-		}
+		// if(dataset[x][y-1]&&currentColor==dataset[x][y-1]){
+		// 	console.log("top");
+		// 	dataset[x][y-1].value = fillColor;
+		// 	MainWidget.calFillBlock(x,y-1,fillColor);
+		// }
+		// if(dataset[x][y+1]&&currentColor==dataset[x][y+1]){
+		// 	console.log("bottom");
+		// 	dataset[x][y+1].value = fillColor;
+		// 	MainWidget.calFillBlock(x,y+1,fillColor);
+		// }
+		// if(dataset[x-1][y]&&currentColor==dataset[x-1][y]){
+		// 	console.log("left");
+		// 	dataset[x-1][y].value = fillColor;
+		// 	MainWidget.calFillBlock(x-1,y,fillColor);
+		// }
+		// if(dataset[x+1][y]&&currentColor==dataset[x+1][y]){
+		// 	console.log("right");
+		// 	dataset[x+1][y].value = fillColor;
+		// 	MainWidget.calFillBlock(x+1,y,fillColor);
+		// }
 	}
+
 
 }
 
@@ -168,6 +198,7 @@ $("#save-btn").click(function(){
 			PENCIL_MODE:1,
 			LINE_MODE:2,
 			FILL_MODE:3,
+			currentMode:1,//預設為畫筆模式
 			initialColor:'#02508d',
 			currentColor:'',//init currentColor
 		},
