@@ -6,7 +6,10 @@ class Show < ActiveRecord::Base
 	private
 	def init_data
 		if self.data.nil?
-	      self.data = ('_'+'#fff'*10)*10
+	      self.data = ('_'+'#ffffff'*10)*10
+	    end
+	    if self.person_number.nil?
+	    	self.person_number = 0
 	    end
 	end
 end
