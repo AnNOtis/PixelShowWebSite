@@ -10,6 +10,9 @@ gem 'pry'
 gem "d3_rails"
 # Use sqlite3 as the database for Active Record
 
+#permalink plugin
+gem 'friendly_id', '~> 5.0.1'
+
 # gem 'pg'
 gem 'sqlite3'
 
