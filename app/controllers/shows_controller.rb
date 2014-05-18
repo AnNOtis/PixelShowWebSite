@@ -17,7 +17,7 @@ class ShowsController < ApplicationController
   def edit
     @show = current_user.shows.find(params[:id])
     if @show.data.nil?
-      @show.data = ('_'+'#fff'*10)*10
+      @show.data = ('_'+'#ffffff'*10)*10
     end
   end
   def update
