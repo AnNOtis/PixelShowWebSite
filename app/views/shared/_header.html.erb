@@ -3,9 +3,8 @@
 		<div class="header" link-to="<%= root_path%>"><span>Pixel Show</span></div>
 		<nav>
 			<ul>
-				<li link-to="<%=shows_path%>">我的作品</li>
-				<li>畫廊</li>
-				<li>電影</li>
+				<li link-to="<%=shows_path%>">My Show</li>
+				<li>Explore</li>
 				<li class="account-field">
 				<% if signed_in?%>
 				<%= current_user[:name]%>
