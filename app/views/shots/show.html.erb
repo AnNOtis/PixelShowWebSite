@@ -1,6 +1,83 @@
-<h1>
-<%= @shot.name %>
-</h1>
-<h1>
-<%= @shot.slug %>
-</h1>
+<div class="shot-wrapper">
+	<!-- name, title, show, action, action detail -->
+	<div class="main-wrapper">
+		<div class="info-container">
+			<div class="main-info">
+				<div class="name"><%= @shot.name %></div>
+				<span class="creator">by <span><a href="#"><%= @shot.user.name %></a></span></span>
+				<span class="created-time"><%= @shot.created_at.strftime("%b %d, %Y") %></span>
+			</div>
+			<div class="person-number">
+				<div class="lsf-icon" title="user"></div>
+				<div class="number"><%= @shot.person_number %></div>
+			</div>		
+		</div>
+
+		<div class="view-container">
+			<div class="view-operation">
+				<ul class="clear-fix">
+					<li>1x</li>
+					<li>2x</li>
+					<li>4x</li>
+				</ul>
+			</div>
+			<svg id="canvas" class="canvas" width="350" height="350"></svg>
+		</div>
+
+		<div class="action-container">
+			<div class="like-box">
+				<div class="number">153</div>
+				<div class="text">likes</div>
+				<span class="lsf-icon" title="heartempty"></span>
+			</div>
+			<div class="share-box">
+				<div class="number">0</div>
+				<div class="text">share</div>
+				<span class="lsf-icon" title="share"></span>
+			</div>
+			<div class="fork-box">
+				<div class="number">0</div>
+				<div class="text">fork</div>
+				<span class="lsf-icon" title="dish"></span>
+			</div>
+		</div>
+	</div>
+
+	<!-- colot list, description, comment,  -->
+	<div class="detail-wrapper">
+		<div class="color-container">
+			<!-- <ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul> -->
+		</div>
+		<div class="description-container">
+			
+		</div>
+		<div class="comment-container">
+			<div class="comment-number">13 Responses</div>
+			<div class="comment-list">
+				<div class="comment-block">
+					<div class="thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>
+					<div class="name lsf-icon" title="quote"><%= @shot.user.name %></div>
+					<div class="comment">Say Something~</div>
+				</div>
+
+				<div class="comment-block">
+					<div class="thumbnail"><img src="http://hiphop-n-more.com/wp-content/uploads/2014/01/ice-cube-4.jpeg" alt=""></div>
+					<div class="name">Black eyes</div>
+					<div class="comment">Say Something~</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script>
+	$().ready(function() {
+		ShowWidget.generateShow('#canvas',10,ShowWidget.convertStrToCodeArr("<%= @shot.data %>"));
+	});
+
+</script>
