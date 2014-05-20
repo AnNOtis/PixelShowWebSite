@@ -4,7 +4,7 @@
 		<nav>
 			<ul>
 				<li link-to="<%=shows_path%>">My Show</li>
-				<li>Explore</li>
+				<li link-to="<%=shots_path%>">Explore</li>
 				<li class="account-field">
 				<% if signed_in?%>
 				<%= current_user[:name]%>

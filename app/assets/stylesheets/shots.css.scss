@@ -195,7 +195,7 @@
 					 transition: all 0.3s; 
 					&:focus{
 						border: 2px solid #AAA;
-						padding: 10px;
+						padding: 8px;
 						height:70px;
 					}
 					&:focus+.finished-btn{

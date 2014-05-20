@@ -1,5 +1,7 @@
 class ShotsController < ApplicationController
-
+	def index
+		
+	end
 	def show
 		begin
 			@shot = Show.find(params[:id])
