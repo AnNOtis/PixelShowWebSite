@@ -31,6 +31,7 @@ var length=400;
 var length = $("svg.canvas").attr("width");
 var size = 10;
 var dataset;
+var dataArr;
 $().ready(function(){
 
 	dataset = MainWidget.convertStrToCodeArr("<%= @show.data %>");
@@ -54,7 +55,7 @@ MainWidget = {
 		var toggleMouseDown = false;//記錄滑鼠是否被按下
 		ms.$canvas.on('mousedown','rect',function(){
 			if(cs.currentMode == cs.FILL_MODE){
-
+				MainWidget.autoFillBlock($(this).attr('data-x'),$(this).attr('data-y'),cs.currentColor);
 			}else{
 				toggleMouseDown = true;
 				$(this).attr("fill",cs.currentColor);
@@ -71,7 +72,6 @@ MainWidget = {
 			sendDataToServer();
 		});
 		$("#save-btn").click(function() {
-			console.log("!!!");
 			$("#show_data").val(MainWidget.convertImgToStr());
 			$("#edit_show_<%=@show.id%>").submit();
 		});
@@ -101,6 +101,18 @@ MainWidget = {
 		})
 		return result;
 	},
+	convertImgToArr: function(){
+		var result = [];
+		$('#canvas').find('g').each(function(){
+			var rowArr = []
+			$(this).find('rect').each(function(){
+				var color = $(this).attr('fill');
+				rowArr.push(color);
+			})
+			result.push(rowArr);
+		})
+		return result;
+	},
 	convertCodeToImg: function(dataset){
 		dataset = [];
 		$('#canvas').find('g').each(function() {
@@ -117,39 +129,36 @@ MainWidget = {
 		// MainWidget.calFillBlock(x,y,fillColor);
 		// console.log("!!!!");
 		// ShowWidget.generateShow('svg.canvas', 10, dataset);
+		x = parseInt(x);
+		y = parseInt(y);
+		dataArr = MainWidget.convertImgToArr();
+		var preColor = dataArr[y][x];
+		MainWidget.calFillBlock(x,y,preColor,fillColor);
+		ShowWidget.generateShow('#canvas',10,dataArr);
+		ShowWidget.generateAxis('#canvas');
+		sendDataToServer();
 	},
-	calFillBlock: function(x,y,fillColor){
-		// console.log("X:"+x);
-		// console.log("Y:"+y);
-		// var height = dataset.length;
-		// var width = dataset[0].length;
-		// var currentColor = dataset[x][y];
-
-		// // var topColor = dataset[x][y-1];
-		// // var bottomColor = dataset[x][y+1];
-		// // var leftColor = dataset[x-1][y];
-		// // var rightColor = dataset[x+1][y];
-
-		// if(dataset[x][y-1]&&currentColor==dataset[x][y-1]){
-		// 	console.log("top");
-		// 	dataset[x][y-1].value = fillColor;
-		// 	MainWidget.calFillBlock(x,y-1,fillColor);
-		// }
-		// if(dataset[x][y+1]&&currentColor==dataset[x][y+1]){
-		// 	console.log("bottom");
-		// 	dataset[x][y+1].value = fillColor;
-		// 	MainWidget.calFillBlock(x,y+1,fillColor);
-		// }
-		// if(dataset[x-1][y]&&currentColor==dataset[x-1][y]){
-		// 	console.log("left");
-		// 	dataset[x-1][y].value = fillColor;
-		// 	MainWidget.calFillBlock(x-1,y,fillColor);
-		// }
-		// if(dataset[x+1][y]&&currentColor==dataset[x+1][y]){
-		// 	console.log("right");
-		// 	dataset[x+1][y].value = fillColor;
-		// 	MainWidget.calFillBlock(x+1,y,fillColor);
-		// }
+	calFillBlock: function(x,y,preColor,fillColor){
+		console.log('x:'+x+'y:'+y);
+		if(x<0||x>(dataArr.length-1)||y<0||y>(dataArr[0].length-1)){
+			// console.log('1')
+			return;
+		}
+		var currentColor = dataArr[y][x];
+		if(dataArr[y][x]==fillColor){
+			// console.log('2')
+			return;
+		}
+		if(preColor!=dataArr[y][x]){
+			// console.log('3')
+			return;
+		}
+		dataArr[y][x] = fillColor;
+		// setTimeout(function() {},500);
+		MainWidget.calFillBlock(x+1,y,currentColor,fillColor);
+		MainWidget.calFillBlock(x,y+1,currentColor,fillColor);
+		MainWidget.calFillBlock(x-1,y,currentColor,fillColor);
+		MainWidget.calFillBlock(x,y-1,currentColor,fillColor);
 	}
 
 
@@ -157,7 +166,7 @@ MainWidget = {
 
 
 
-var autoFillBlock = function(dataset,x,y,color){
+var autoFillBlock = function(x,y,targetColor,replaceColor){
 	var showHeight = dataset.length;
 	var showWidth = dataset[0].length;
 	var topColor = -1;

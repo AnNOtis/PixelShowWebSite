@@ -8,6 +8,7 @@ ShowWidget = {
 
 	},
 	generateShow: function(s_canvas, size, colorData){
+		$(s_canvas).empty();
 		var canvas = d3.select(s_canvas);
 		var canvasLength = $(s_canvas).attr("width");
 		//generate group
@@ -53,6 +54,12 @@ ShowWidget = {
 		})
 		.attr('y',function(d,i) {
 			return d.y*canvasLength/size;
+		})
+		.attr('data-x',function(d,i) {
+			return d.x;
+		})
+		.attr('data-y',function(d,i) {
+			return d.y;
 		})
 		.attr('fill',function(d,i) {return d.value});
 	},
