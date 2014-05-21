@@ -1,7 +1,7 @@
 //顯示show
 var ShowWidget={};
 ShowWidget = {
-	setting:{
+	settings:{
 
 	},
 	init: function(){
@@ -64,6 +64,7 @@ ShowWidget = {
 		.attr('fill',function(d,i) {return d.value});
 	},
 	generateAxis: function(s_canvas){
+		console.log("generateAxis");
 		var canvas = d3.select(s_canvas);
 		canvas.selectAll('.xAxis').data(d3.range(0,size+1))
 		.enter()
@@ -100,9 +101,9 @@ ShowWidget = {
 			return length;
 		});
 	},
-	convertStrToCodeArr: function(data) {
-		// console.log(data);
-		var tempArr = data.slice(1,data.length).split("_");
+	convertStrToCodeArr: function(dataString) {
+		// console.log(dataString);
+		var tempArr = dataString.slice(1,dataString.length).split("_");
 		var resultArr = [];
 		$.each(tempArr,function(index,value){
 			var noPrefixArr = value.slice(1,value.length).split("#");
@@ -114,7 +115,8 @@ ShowWidget = {
 		});
 		return resultArr;
 	},
-	convertImgToStr: function(){
+	//@param canvas:svg element
+	convertImgToStr: function(canvas){
 		result = "";
 		$('#canvas').find('g').each(function(){
 			result+="_";
@@ -125,30 +127,38 @@ ShowWidget = {
 		})
 		return result;
 	},
-	convertCodeToImg: function(dataset){
-		dataset = [];
-		$('#canvas').find('g').each(function() {
-			var rowData = [];
-			$(this).find('rect').each(function() {
-				rowData.push($(this).attr('fill'));
-			});
-			dataset.push(rowData);
-			debugger
-		});
+
+	autoFillBlock: function(canvas,x,y,fillColor){
+		x = parseInt(x);
+		y = parseInt(y);
+		dataArr = ShowWidget.convertImgToArr(canvas);
+		var preColor = dataArr[y][x];
+		ShowWidget.calFillBlock(x,y,preColor,fillColor);
+		ShowWidget.generateShow(canvas,10,dataArr);
+		ShowWidget.generateAxis(canvas);
+		sendDataToServer();
 	},
-	autoFillBlock: function(dataset,x,y,color){
-		var showHeight = dataset.length;
-		var showWidth = dataset[0].length;
-		var topColor = -1;
-		var bottomColor = -1;
-		var leftColor = -1;
-		var rightColor = -1;
-		if((x-1)>=0){
-
+	calFillBlock: function(x,y,preColor,fillColor){
+		// console.log('x:'+x+'y:'+y);
+		if(x<0||x>(dataArr.length-1)||y<0||y>(dataArr[0].length-1)){
+			// console.log('1')
+			return;
 		}
-		if((x+1>showWidth)){
-
+		var currentColor = dataArr[y][x];
+		if(dataArr[y][x]==fillColor){
+			// console.log('2')
+			return;
 		}
+		if(preColor!=dataArr[y][x]){
+			// console.log('3')
+			return;
+		}
+		dataArr[y][x] = fillColor;
+		// setTimeout(function() {},500);
+		ShowWidget.calFillBlock(x+1,y,currentColor,fillColor);
+		ShowWidget.calFillBlock(x,y+1,currentColor,fillColor);
+		ShowWidget.calFillBlock(x-1,y,currentColor,fillColor);
+		ShowWidget.calFillBlock(x,y-1,currentColor,fillColor);
 	}
 
 };
