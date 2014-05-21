@@ -7,22 +7,24 @@ ShowWidget = {
 	init: function(){
 
 	},
-	generateShow: function(s_canvas, size, colorData){
-		$(s_canvas).empty();
-		var canvas = d3.select(s_canvas);
-		var canvasLength = $(s_canvas).attr("width");
-		//generate group
-		var rowG = canvas.selectAll("g.row")
-		.data(colorData,function(row,yPosition) {
-			$.each(row,function(xPosition,value) {
+	generateShow: function(s_canvas, size, showData){
+		//$(s_canvas).empty();
+		
+		var myCanvas = d3.select(s_canvas);
+		var canvasLength = $(s_canvas).attr("width");	
+		myCanvas.selectAll("g").remove();
+		myCanvas.selectAll("line").remove();
+
+		var rowG = myCanvas.selectAll("g")
+		.data(showData,function(row,yPosition){
+			$.each(row,function(xPosition,value){
 				var cell = {};
 				cell.x = xPosition;
 				cell.y = yPosition;
 				cell.value = value;
 				row[xPosition] = cell;
 			});
-			// console.log(row);
-			return colorData;
+			return showData;
 		})
 		.enter()
 		.append('g')
@@ -32,8 +34,7 @@ ShowWidget = {
 		.attr('x',0)
 		.attr('y',function(d,i) {
 			return i*canvasLength/size;
-		})
-		.text(function(d,index) {return index});
+		});
 
 		//fill color
 		rowG.selectAll('rect')
@@ -41,30 +42,23 @@ ShowWidget = {
 			// console.log(d);
 			return d;
 		})
-		.enter()
-		.append('rect')
-		.attr('width',function(d) {
-			return canvasLength/size;
+		.enter().append('rect')
+		.attr({
+	    width: canvasLength/size,
+	    height: canvasLength/size
+	  })
+		.attr({
+		  x: function (d) { return d.x*canvasLength/size; },
+		  y: function (d) { return d.y*canvasLength/size; },
 		})
-		.attr('height',function(d) {
-			return canvasLength/size;
-		})
-		.attr('x',function(d,i) {
-			return d.x*canvasLength/size;
-		})
-		.attr('y',function(d,i) {
-			return d.y*canvasLength/size;
-		})
-		.attr('data-x',function(d,i) {
-			return d.x;
-		})
-		.attr('data-y',function(d,i) {
-			return d.y;
-		})
-		.attr('fill',function(d,i) {return d.value});
+		.attr({
+		  "data-x": function (d) { return d.x; },
+		  "data-y": function (d) { return d.x; },
+		  fill: function (d) { return d.value; }
+		});
 	},
 	generateAxis: function(s_canvas){
-		console.log("generateAxis");
+		// console.log("generateAxis");
 		var canvas = d3.select(s_canvas);
 		canvas.selectAll('.xAxis').data(d3.range(0,size+1))
 		.enter()
@@ -127,7 +121,18 @@ ShowWidget = {
 		})
 		return result;
 	},
-
+	convertImgToArr: function(canvas){
+ 		var result = [];
+ 		$(canvas).find('g').each(function(){
+ 			var rowArr = []
+ 			$(this).find('rect').each(function(){
+ 				var color = $(this).attr('fill');
+  			rowArr.push(color);
+ 			})
+ 			result.push(rowArr);
+ 		})
+ 		return result;
+ 	},
 	autoFillBlock: function(canvas,x,y,fillColor){
 		x = parseInt(x);
 		y = parseInt(y);
@@ -136,7 +141,6 @@ ShowWidget = {
 		ShowWidget.calFillBlock(x,y,preColor,fillColor);
 		ShowWidget.generateShow(canvas,10,dataArr);
 		ShowWidget.generateAxis(canvas);
-		sendDataToServer();
 	},
 	calFillBlock: function(x,y,preColor,fillColor){
 		// console.log('x:'+x+'y:'+y);

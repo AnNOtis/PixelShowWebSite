@@ -18,9 +18,11 @@
 	</div>
 	<div class="edit-tool">
 		<div type="color" class="color-picker" id="color-picker"></div>
-		<!-- <div class="mode-switcher">
-			<table><tr><td><div class="switch-btn">圖像</div></td><td><div class="switch-btn">動畫</div></td><td><div class="switch-btn">文字</div></td></tr></table>
-		</div> -->
+		<div class="paint-mode-group">
+			<div class="mode-btn lsf-icon active" title="brush" data-mode=1></div>
+			<div class="mode-btn lsf-icon" title="paint" data-mode=3></div>
+		</div>
+		
 	</div>
 </div>
 
@@ -58,7 +60,7 @@ MainWidget = {
 		var toggleMouseDown = false;//記錄滑鼠是否被按下
 		ms.$canvas.on('mousedown','rect',function(){
 			if(ms.currentMode == ms.FILL_MODE){
-				ShowWidget.autoFillBlock(ms.$canvas,$(this).attr('data-x'),$(this).attr('data-y'),cs.currentColor);
+				ShowWidget.autoFillBlock('svg.canvas',$(this).attr('data-x'),$(this).attr('data-y'),cs.currentColor);
 			}else{
 				toggleMouseDown = true;
 				$(this).attr("fill",cs.currentColor);
@@ -75,10 +77,17 @@ MainWidget = {
 			MainWidget.sendDataToServer(ms.$canvas);
 		});
 
+		$(".mode-btn").click(function() {
+			ms.currentMode = $(this).attr("data-mode");
+			$(".mode-btn").removeClass('active');
+			$(this).addClass('active');
+		});
+
 		$("#save-btn").click(function() {
 			$("#show_data").val(ShowWidget.convertImgToStr(ms.$canvas));
 			$("#edit_show_<%=@show.id%>").submit();
 		});
+
 	},
 	sendDataToServer: function(canvas){
 		$.ajax({

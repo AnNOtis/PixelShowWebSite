@@ -71,9 +71,8 @@ $mode-btn-size: 50px;
 	position:absolute;
 	top:0;
 	left:0;
-	width:200px;
 	height:100%;
-	padding-top:100px;
+	padding: 100px 20px;
 	font-size: 20px;
 	.color-picker{
 		width:$colorpicker-size;
@@ -81,21 +80,26 @@ $mode-btn-size: 50px;
 		margin:30px auto;
 		border: 2px solid #fff;
 	}
-	.mode-switcher table{
-		width:100%;
-		td .switch-btn{
-			width:$mode-btn-size;
-			height:$mode-btn-size;
-			line-height: $mode-btn-size;
-			margin:0 auto;
-			cursor:pointer;
-			text-align:center;
-			background-color: #ffc200;
-			box-shadow: 0 1px 1px 1px #aaa;
-			border-radius: 5px;
-		}
+	.paint-mode-group{
+		background-color: rgba(0, 0, 0, 0.1);
+		padding: 10px 0;
+		border-radius: 5px;
 	}
-	
+	.mode-btn{
+		font-size: 30px;
+		text-align: center;
+		color: #aaa;
+	}
+	.mode-btn:hover{
+		color:#999;
+	}
+	.mode-btn:before{
+		margin:0;
+	}
+	.mode-btn.active{
+		color: #FFF;
+		text-shadow: 1px 3px 0px #5897C9;
+	}
 
 }
 .canvas rect{
