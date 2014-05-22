@@ -185,9 +185,9 @@
 					width: 100%;
 					resize: none;
 					outline: none;
-					border:none;
+					border: 2px solid transparent;
 					padding-left:10px;
-					padding-top: 5px;
+					padding-top: 3px;
 					-webkit-transition: all 0.3s;
 					 -moz-transition: all 0.3s;
 					 -ms-transition: all 0.3s;
@@ -195,7 +195,7 @@
 					 transition: all 0.3s; 
 					&:focus{
 						border: 2px solid #AAA;
-						padding: 8px;
+						padding: 10px;
 						height:70px;
 					}
 					&:focus+.finished-btn{
