@@ -53,7 +53,7 @@ ShowWidget = {
 		})
 		.attr({
 		  "data-x": function (d) { return d.x; },
-		  "data-y": function (d) { return d.x; },
+		  "data-y": function (d) { return d.y; },
 		  fill: function (d) { return d.value; }
 		});
 	},
@@ -141,20 +141,21 @@ ShowWidget = {
 		ShowWidget.calFillBlock(x,y,preColor,fillColor);
 		ShowWidget.generateShow(canvas,10,dataArr);
 		ShowWidget.generateAxis(canvas);
+		console.log('!!!');
 	},
 	calFillBlock: function(x,y,preColor,fillColor){
-		// console.log('x:'+x+'y:'+y);
+		console.log('x:'+x+'y:'+y);
 		if(x<0||x>(dataArr.length-1)||y<0||y>(dataArr[0].length-1)){
-			// console.log('1')
+			console.log('meet edge');
 			return;
 		}
 		var currentColor = dataArr[y][x];
 		if(dataArr[y][x]==fillColor){
-			// console.log('2')
+			console.log('dataArr[y][x]==fillColor');
 			return;
 		}
 		if(preColor!=dataArr[y][x]){
-			// console.log('3')
+			console.log('preColor!=dataArr[y][x]');
 			return;
 		}
 		dataArr[y][x] = fillColor;
