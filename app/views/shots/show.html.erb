@@ -60,23 +60,19 @@
 			<div class="comment-list">
 				<div class="comment-block">
 					<div class="thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>
-					<div class="name lsf-icon" title="quote"><%= @shot.user.name %></div>
+					<div class="name lsf-icon" title="quote"><%= current_user.name %></div>
 
 					<textarea type="textarea" class="comment-field" placeholder="say something . . ."></textarea>
 					<div class="lsf-icon finished-btn" title="ok">送出</div>
 
 				</div>
+				<% @comments.each do |comment| %>
 				<div class="comment-block">
 					<div class="thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>
-					<div class="name lsf-icon" title="quote"><%= @shot.user.name %></div>
-					<div class="comment">Say Something~</div>
+					<div class="name lsf-icon" title="quote"><%= comment.user.name %></div>
+					<div class="comment"><%= comment.content %></div>
 				</div>
-
-				<div class="comment-block">
-					<div class="thumbnail"><img src="http://hiphop-n-more.com/wp-content/uploads/2014/01/ice-cube-4.jpeg" alt=""></div>
-					<div class="name">Black eyes</div>
-					<div class="comment">Say Something~</div>
-				</div>
+				<% end %>
 			</div>
 		</div>
 

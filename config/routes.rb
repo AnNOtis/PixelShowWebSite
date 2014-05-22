@@ -1,4 +1,5 @@
 PixelShowWeb::Application.routes.draw do
+  get "comments/create"
   get "shows/new"
   get "shows/show"
   resources :users

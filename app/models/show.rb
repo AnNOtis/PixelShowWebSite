@@ -1,8 +1,9 @@
 class Show < ActiveRecord::Base
 	extend FriendlyId
 	friendly_id :name_and_creator, use: [:slugged, :finders]
-
 	belongs_to :user
+	has_many :comments
+
 	validates :name, presence: true
 	validates :slug, presence: true
 	default_scope { order("created_at DESC") } #按照創建時間排序
