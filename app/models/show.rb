@@ -3,6 +3,7 @@ class Show < ActiveRecord::Base
 	friendly_id :name_and_creator, use: [:slugged, :finders]
 	belongs_to :user
 	has_many :comments
+	has_many :likes
 
 	validates :name, presence: true
 	validates :slug, presence: true
