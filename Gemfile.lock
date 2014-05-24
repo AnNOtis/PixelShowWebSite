@@ -30,6 +30,11 @@ GEM
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.1.4)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -39,8 +44,16 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    columnize (0.8.9)
     d3_rails (3.4.4)
       railties (>= 3.1.0)
+    debug_inspector (0.0.2)
+    debugger (1.6.7)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.3.5)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.3.5)
     erubis (2.7.0)
     execjs (2.0.2)
     friendly_id (5.0.3)
@@ -66,6 +79,9 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-debugger (0.2.2)
+      debugger (~> 1.3)
+      pry (~> 0.9.10)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -129,12 +145,15 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (~> 3.1.2)
+  better_errors
+  binding_of_caller
   coffee-rails (~> 4.0.0)
   d3_rails
   friendly_id (~> 5.0.1)
   jbuilder (~> 1.2)
   jquery-rails
   pry
+  pry-debugger
   rails (= 4.0.3)
   rails_12factor
   sass-rails (~> 4.0.0)

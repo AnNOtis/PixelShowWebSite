@@ -5,7 +5,6 @@ gem 'rails', '4.0.3'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 
-gem 'pry'
 
 gem "d3_rails"
 # Use sqlite3 as the database for Active Record
@@ -15,6 +14,13 @@ gem 'friendly_id', '~> 5.0.1'
 
 # gem 'pg'
 gem 'sqlite3'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry'
+  gem 'pry-debugger'
+end
 
 group :production do
   gem 'rails_12factor'
