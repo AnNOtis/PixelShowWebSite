@@ -58,6 +58,7 @@
 		<div class="comment-container">
 			<div class="comment-number">13 Responses</div>
 			<div class="comment-list">
+				<% if (signed_in?) %>
 				<div class="comment-block">
 					<div class="thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>
 					<div class="name lsf-icon" title="quote"><%= current_user.name %></div>
@@ -66,6 +67,7 @@
 					<div id="send-comment" class="comment-focus-group lsf-icon finished-btn" title="ok">送出</div>
 
 				</div>
+				<% end %>
 				<% @comments.each do |comment| %>
 				<div class="comment-block">
 					<div class="thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>

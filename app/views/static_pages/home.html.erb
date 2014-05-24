@@ -1,6 +1,8 @@
+<% if (!signed_in?) %>
 <div class="hint-field">
-	<div class="btn small-btn-blue reflect">Sign up</div><span> or </span><div class="btn small-btn-highlight reflect">Try now</div>
+	<div class="btn small-btn-blue reflect" link-to="/signup">Sign up</div><span> or </span><div class="btn small-btn-highlight reflect">Try now</div>
 </div>
+<% end %>
 <style>
 	.club{
 		position:absolute; 
