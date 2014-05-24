@@ -1,6 +1,6 @@
 class ShotsController < ApplicationController
 	def index
-		
+		@shots = Show.all.sample(8)
 	end
 	def show
 		begin

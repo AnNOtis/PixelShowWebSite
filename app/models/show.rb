@@ -27,6 +27,6 @@ class Show < ActiveRecord::Base
 
 	#overwrite frendlyId changed method
 	def should_generate_new_friendly_id?
-	    name_changed?
+	    name_changed?||self.slug.nil?
 	end
 end
