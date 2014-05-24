@@ -1,10 +1,11 @@
 PixelShowWeb::Application.routes.draw do
-  get "comments/create"
   get "shows/new"
   get "shows/show"
   resources :users
   
-  resources :shows
+  resources :shows do
+    resource :comment, only: :create
+  end
   match '/shows/:id/autosave', to: 'shows#auto_save', via: 'post', as: 'autosave_show'
 
   resources :shots, only:[:index, :show]

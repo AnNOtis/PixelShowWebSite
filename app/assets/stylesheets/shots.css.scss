@@ -193,12 +193,12 @@
 					 -ms-transition: all 0.3s;
 					 -o-transition: all 0.3s;
 					 transition: all 0.3s; 
-					&:focus{
+					&.active{
 						border: 2px solid #AAA;
 						padding: 10px;
 						height:70px;
 					}
-					&:focus+.finished-btn{
+					&.active+.finished-btn{
 						opacity:1;
 						line-height: 1.5;
 					}

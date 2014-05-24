@@ -5,7 +5,7 @@ class ShotsController < ApplicationController
 	def show
 		begin
 			@shot = Show.find(params[:id])
-			@comments = @shot.comments.all
+			@comments = @shot.comments.order(created_at: :desc).all
 			@shot.person_number+=1
 			@shot.save
 		rescue ActiveRecord::RecordNotFound  
