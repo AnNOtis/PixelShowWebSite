@@ -1,14 +1,13 @@
 class LikesController < ApplicationController
   def create
-    binding.pry
   	show = Show.find(like_params[:show_id])
   	like = show.likes.build(user_id: current_user.id, show_id: like_params[:show_id])
-  	show.like_number = show.like_number+1
   	respond_to do |format|
     	if show.save
-    		format.json {render json: @show}
+        show.update(like_number: (show.like_number+1))
+    		format.json {render json: show}
     	else
-    		format.json {render json: @show.errors}
+    		format.json {render json: show.errors, status: 403}
     	end
     end
   end
