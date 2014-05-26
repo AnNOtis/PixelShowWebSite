@@ -3,13 +3,18 @@ class Show < ActiveRecord::Base
 	friendly_id :name_and_creator, use: [:slugged, :finders]
 	belongs_to :user
 	has_many :comments
-	has_many :likes
+	has_many :likes , autosave:true
 
 	validates :name, presence: true
 	validates :slug, presence: true
 	default_scope { order("created_at DESC") } #按照創建時間排序
 	before_save :init_data
 
+	after_initialize do |user|
+    if self.like_number.nil?
+    	self.like_number = 0
+    end
+  end	
 
 	private
 	def init_data
