@@ -1,5 +1,6 @@
 class Show < ActiveRecord::Base
 	extend FriendlyId
+	# require 'babosa'
 	friendly_id :name_and_creator, use: [:slugged, :finders]
 	belongs_to :user
 	has_many :comments
@@ -15,7 +16,14 @@ class Show < ActiveRecord::Base
     	self.like_number = 0
     end
   end	
-
+	def normalize_friendly_id(input)
+    #strip the string
+    str = input.strip
+    # str.gsub! /\s*[^A-Za-z0-9]\s*/, '-'
+    str.gsub! /[^-\p{L}]/, '-'
+    str.gsub! /-+/, "-"
+    str.downcase
+  end
 	private
 	def init_data
 		if self.data.nil?
@@ -35,4 +43,6 @@ class Show < ActiveRecord::Base
 	def should_generate_new_friendly_id?
 	    name_changed?||self.slug.nil?
 	end
+
+
 end
