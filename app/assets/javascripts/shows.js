@@ -136,6 +136,7 @@ ShowWidget = {
 			debugger
 		});
 	},
+  // I don't like this
 	autoFillBlock: function(dataset,x,y,color){
 		var showHeight = dataset.length;
 		var showWidth = dataset[0].length;
