@@ -16,7 +16,6 @@ gem 'friendly_id', '~> 5.0.1'
 gem 'sqlite3'
 
 group :development do
-  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-debugger'

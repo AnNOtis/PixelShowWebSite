@@ -25,7 +25,7 @@
     </div>
 
     <div class="action-container">
-      <div id="like-btn" class="like-box">
+      <div id="like-btn" class="like-box <% unless @is_like.nil? %> active <% end %>">
         <div class="number">153</div>
         <div class="text">likes</div>
         <span class="lsf-icon" title="heartempty"></span>
