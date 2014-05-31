@@ -6,7 +6,7 @@ PixelShowWeb::Application.routes.draw do
   
   resources :shows do
     resource :comment, only: :create
-    resource :like, only: [ :create, :delete ] 
+    resource :like, only: [ :create, :destroy ] 
   end
   match '/shows/:id/autosave', to: 'shows#auto_save', via: 'post', as: 'autosave_show'
 

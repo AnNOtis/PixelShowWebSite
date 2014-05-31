@@ -25,7 +25,7 @@
     </div>
 
     <div class="action-container">
-      <div id="like-btn" class="like-box <% unless @is_like.nil? %> active <% end %>">
+      <div id="like-btn" class="like-box <% if @is_like %> active <% end %>">
         <div class="number">153</div>
         <div class="text">likes</div>
         <span class="lsf-icon" title="heartempty"></span>
@@ -108,6 +108,14 @@
           PageWidget.unactiveCommentField();
         }
       });
+
+      $("#like-btn").click(function() {
+        if(!$(this).hasClass("active")){
+          PageWidget.addLike($(this));
+        }else{
+          PageWidget.cancelLike($(this));
+        }
+      });
     },
     unactiveCommentField: function() {
       $("#comment-field").removeClass("active");
@@ -133,16 +141,35 @@
 
       });
     },
-    addLike: function(){
+    addLike: function($this){
+      console.log("addLike!!");
       $.ajax({
         url:"<%= show_like_path(@shot) %>",
         type:"POST",
         dataType:"JSON",
         success:function(result) {
           console.log(result);
+          PageWidget.activeLikeIcon($this);
         }
-
       });
+    },
+    cancelLike: function($this){
+      console.log("cancelLike!!");
+      $.ajax({
+        url:"<%= show_like_path(@shot) %>",
+        type:"DELETE",
+        dataType:"JSON",
+        success:function(result) {
+          console.log(result);
+          PageWidget.unactiveLikeIcon($this);
+        }
+      });
+    },
+    activeLikeIcon: function($this){
+      $this.addClass("active");
+    },
+    unactiveLikeIcon: function($this){
+      $this.removeClass("active");
     }
   };
   
