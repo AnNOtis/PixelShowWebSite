@@ -8,7 +8,8 @@ PixelShowWeb::Application.routes.draw do
     resource :comment, only: :create
     resource :like, only: [ :create, :destroy ] 
   end
-  match '/shows/:id/autosave', to: 'shows#auto_save', via: 'post', as: 'autosave_show'
+
+  get '/auth/:provider/callback', to:'sessions#create'
 
   resources :shots, only:[:index, :show]
 
