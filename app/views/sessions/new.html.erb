@@ -8,3 +8,12 @@
 
 <%= f.submit '登入' %>
 <% end %>
+
+<div class="auth-form">
+  <%= link_to '/auth/facebook',class:'each-auth' do%>
+    <span class="lsf-icon facebook" title="facebook"></span>
+  <% end %>
+  <%= link_to '/auth/facebook',class:'each-auth' do%>
+    <span class="lsf-icon google" title="google"></span>
+  <% end %>
+</div>

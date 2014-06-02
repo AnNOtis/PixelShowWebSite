@@ -7,7 +7,6 @@
 	width:400px;
 	margin: 30px auto;
 	background-color:#fff;
-	border-radius: 15px;
 	padding-bottom: 80px;
 	line-height: 2;
 	-webkit-box-shadow: 0 2px 0 #AAA;
@@ -17,8 +16,6 @@
 		background-color: #367294;
 		font-size: 24px;
 		line-height: 2;
-		border-top-left-radius: 15px;
-		border-top-right-radius: 15px;
 		text-align: center;
 		color:#fff;
 
@@ -59,11 +56,10 @@
 		line-height: 2.5;
 		margin-top: 15px;
 		margin-right: 5%;
-		background-color: #5BA23F;
-		color: #fff;
-		-webkit-box-shadow: 0 2px 0 #AAA;
-		-moz-box-shadow: 0 2px 0 #AAA;
-		box-shadow: 0 2px 0 #AAA;
+		&:hover{
+		  color: #444;
+		  background-color: #ffe103;
+		}
 	}
 	ul.error{
 		margin: 0 auto;
@@ -75,5 +71,24 @@
 			color: rgba(235, 10, 10, 0.5);
 			line-height: 1.8;
 		}
+	}
+}
+.auth-form{
+	width:400px;
+	margin: 0 auto;
+	padding: 0 20px;
+	.each-auth{
+		float: right;
+		font-size: 50px;
+		opacity: 0.9;
+		&:hover{
+			opacity:1;
+		}
+	}
+	.facebook{
+		color: rgb(30, 72, 114);
+	}
+	.google{
+		color: rgb(185, 59, 74);
 	}
 }
