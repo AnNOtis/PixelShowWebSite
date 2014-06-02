@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601053209) do
+ActiveRecord::Schema.define(version: 20140602045044) do
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20140601053209) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.boolean  "is_auth"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
