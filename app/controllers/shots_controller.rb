@@ -1,8 +1,12 @@
 class ShotsController < ApplicationController
+	TIMEFRAME = ['day','week','month']
 	def index
-		binding.pry
-		timeframe = params[:timeframe]
-		@shots = Show.all.sample(8)
+		if params[:timeframe]
+			@shots = popular_show(params[:timeframe])
+		else
+			@shots = Show.all.shuffle
+		end
+		
 	end
 	def show
 		@shot = Show.find(params[:id])
@@ -13,4 +17,14 @@ class ShotsController < ApplicationController
 		@shot.person_number+=1
 		@shot.save
 	end
+
+	private 
+		def popular_show(timeframe)
+			time = DateTime.now - 1.send(timeframe)
+			Show.find_all_by_id(
+				Like.popular(time).map do |like|
+					like.show_id
+				end
+			)
+		end
 end

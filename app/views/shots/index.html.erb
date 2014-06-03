@@ -1,9 +1,18 @@
 <div class="container">
   <div class="filter-bar">
     <ul class="duration-filter clear-fix">
-      <li><input type="radio" id="daily" name="duration" value="daily" checked><label for="daily">今天</label></li>
-      <li><input type="radio" id="weekly" name="duration" value="weekly"><label for="weekly">本週</label></li>
-      <li><input type="radio" id="monthly" name="duration" value="monthly"><label for="monthly">本月</label></li>
+      <li>
+        <input type="radio" id="daily" name="duration" value="daily" <% if params[:timeframe]=='day' %>checked<% end %>>
+        <label for="daily">今天</label>
+      </li>
+      <li>
+        <input type="radio" id="weekly" name="duration" value="weekly"<% if params[:timeframe]=='week' %>checked<% end %>>
+        <label for="weekly">本週</label>
+      </li>
+      <li>
+        <input type="radio" id="monthly" name="duration" value="monthly"<% if params[:timeframe]=='month' %>checked<% end %>>
+        <label for="monthly">本月</label>
+      </li>
     </ul>
   </div>
   
