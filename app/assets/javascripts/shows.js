@@ -143,27 +143,45 @@ ShowWidget = {
 		ShowWidget.generateAxis(canvas);
 		console.log('!!!');
 	},
-	calFillBlock: function(x,y,preColor,fillColor){
-		console.log('x:'+x+'y:'+y);
-		if(x<0||x>(dataArr.length-1)||y<0||y>(dataArr[0].length-1)){
-			console.log('meet edge');
-			return;
-		}
-		var currentColor = dataArr[y][x];
-		if(dataArr[y][x]==fillColor){
-			console.log('dataArr[y][x]==fillColor');
-			return;
-		}
-		if(preColor!=dataArr[y][x]){
-			console.log('preColor!=dataArr[y][x]');
-			return;
-		}
-		dataArr[y][x] = fillColor;
-		// setTimeout(function() {},500);
-		ShowWidget.calFillBlock(x+1,y,currentColor,fillColor);
-		ShowWidget.calFillBlock(x,y+1,currentColor,fillColor);
-		ShowWidget.calFillBlock(x-1,y,currentColor,fillColor);
-		ShowWidget.calFillBlock(x,y-1,currentColor,fillColor);
-	}
+    outsideOfCanvas: function(x, y, size){
+        console.log('meet edge');
+        return x < 0 || y < 0 || x >= size || y >= size;
+    },
+    // color getter & setter
+    color: function(x, y, newColor){
+        if(newColor){
+            dataArr[y][x] = newColor;
+        }else{
+            dataArr[y][x];
+        }
+    },
+    pointSiblings: function(x, y){
+        return [
+            {"x": x - 1, "y": y    },
+            {"x": x    , "y": y - 1},
+            {"x": x + 1, "y": y    },
+            {"x": x    , "y": y + 1},
+        ];
+    },
+    calFillBlock: function(x,y,siblingColor,fillColor){
+        if(this.outsideOfCanvas(x, y, dataArr.length)){
+            return;
+        }
+        var currentColor = color(x, y);
+        if(currentColor == fillColor){
+            console.log('dataArr[y][x]==fillColor');
+            return;
+        }
+        if(siblingColor != currentColor){
+            console.log('preColor!=dataArr[y][x]');
+            return;
+        }
 
+        color(x, y, fillColor);
+
+        // setTimeout(function() {},500);
+        this.pointSiblings(x, y).forEach(function(item){
+            ShowWidget.calFillBlock(item["x"],item["y"],currentColor,fillColor);
+        });
+    }
 };
