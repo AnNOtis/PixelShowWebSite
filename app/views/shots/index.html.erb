@@ -1,32 +1,40 @@
 <div class="container">
-	<% @shots.in_groups_of(4) do |group| %>
-	<div class="row">
-		<% group.compact.each do |shot| %>
-			<div class="s-show-card to-table-cell">
-				<svg id="<%="show-#{shot.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{shot.id}"%>" js-data="<%=shot.data%>" link-to="<%= shot_path(shot) %>">
-				</svg>
-				<div class="muted info"><%= shot.updated_at.strftime("%b %d, %Y") %></div>
-				<div class="info"><%= shot.name %></div>
-				<div class="social-info">
-					<span class="viewer"><fi class="lsf-icon" title="view"></fi><span class="number"><%= shot.person_number %></span></span>
-					<span class="lover"><fi class="lsf-icon" title="love"></fi><span class="number">12</span></span>
-					<span class="commenter"><fi class="lsf-icon" title="comment"></fi><span class="number">4</span></span>
-				</div>
-				
-			</div>
-		<% end %>
-	</div>
-	<% end %>
-	
+  <div class="filter-bar">
+    <ul class="duration-filter clear-fix">
+      <li><input type="radio" id="daily" name="duration" value="daily" checked><label for="daily">今天</label></li>
+      <li><input type="radio" id="weekly" name="duration" value="weekly"><label for="weekly">本週</label></li>
+      <li><input type="radio" id="monthly" name="duration" value="monthly"><label for="monthly">本月</label></li>
+    </ul>
+  </div>
+  
+  <% @shots.in_groups_of(4) do |group| %>
+  <div class="row">
+    <% group.compact.each do |shot| %>
+      <div class="s-show-card to-table-cell">
+        <svg id="<%="show-#{shot.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{shot.id}"%>" js-data="<%=shot.data%>" link-to="<%= shot_path(shot) %>">
+        </svg>
+        <div class="muted info"><%= shot.updated_at.strftime("%b %d, %Y") %></div>
+        <div class="info"><%= shot.name %></div>
+        <div class="social-info">
+          <span class="viewer"><fi class="lsf-icon" title="view"></fi><span class="number"><%= shot.person_number %></span></span>
+          <span class="lover"><fi class="lsf-icon" title="love"></fi><span class="number">12</span></span>
+          <span class="commenter"><fi class="lsf-icon" title="comment"></fi><span class="number">4</span></span>
+        </div>
+        
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+  
 </div>
 
 <script>
-	$('.js-shows').each(function() {
-		var showID = $(this).attr('js-id');
-		var originData = $(this).attr('js-data');
-		var showData = ShowWidget.convertStrToCodeArr(originData);
-		ShowWidget.generateShow('#'+showID,10,showData);
-	});
+  $('.js-shows').each(function() {
+    var showID = $(this).attr('js-id');
+    var originData = $(this).attr('js-data');
+    var showData = ShowWidget.convertStrToCodeArr(originData);
+    ShowWidget.generateShow('#'+showID,10,showData);
+  });
 
 
 </script>

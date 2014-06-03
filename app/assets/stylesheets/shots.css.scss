@@ -232,3 +232,30 @@
 		}
 	}
 }
+
+.filter-bar{
+	.duration-filter{
+		list-style-type: none;
+		li{
+			float: left;
+			margin-right: 5px;
+		}
+		label{
+			display:inline-block;
+			line-height: 1.8;
+			font-size: 1.2em;
+			padding:0 15px;
+			border-radius: 3px;
+			&:hover{
+				background-color:#ddd;
+			}
+		}
+		input[type=radio]{
+			display:none;
+			&:checked+label{
+				background:rgb(31, 102, 173);
+				color:#fff;
+			}
+		}		
+	}
+}
