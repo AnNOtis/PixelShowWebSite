@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602045044) do
+ActiveRecord::Schema.define(version: 20140604023540) do
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20140602045044) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "likes", ["created_at"], name: "index_likes_on_created_at"
 
   create_table "shows", force: true do |t|
     t.string   "name"
