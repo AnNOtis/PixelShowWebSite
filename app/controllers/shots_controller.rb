@@ -1,10 +1,12 @@
 class ShotsController < ApplicationController
 	TIMEFRAME = ['day','week','month']
 	def index
-		if params[:timeframe]
+		if params[:timeframe].in?(TIMEFRAME)
 			@shots = popular_show(params[:timeframe])
+			@timeframe = params[:timeframe]
 		else
 			@shots = Show.all.shuffle
+			@timeframe = 'all'
 		end
 		
 	end
