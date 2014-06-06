@@ -150,6 +150,7 @@
         success:function(result) {
           console.log(result);
           PageWidget.activeLikeIcon($this);
+          $('#like-btn .number').text(result.like_number);
         }
       });
     },
@@ -162,6 +163,7 @@
         success:function(result) {
           console.log(result);
           PageWidget.unactiveLikeIcon($this);
+          $('#like-btn .number').text(result.like_number);
         }
       });
     },
