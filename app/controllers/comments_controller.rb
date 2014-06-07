@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     	@comment.user_id = current_user.id
 		respond_to	do |format|
 			if @comment.save
-				format.json {render json: @comment}
+				format.json {render json: @comment, include:{ user:{ only: :name}} }
 			else
 				format.json {render json: @comment.errors}
 			end
