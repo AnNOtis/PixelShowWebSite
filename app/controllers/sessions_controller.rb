@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if auth_hash.nil?
       #一般方式登入
       #is_auth確保為一般方式登入的帳號
-    	user = User.find_by(email:params[:session][:email].downcase,is_auth:false)
+    	user = User.find_by(email:params[:session][:email].downcase,is_auth:nil)
     	if user && user.authenticate(params[:session][:password])
     		# 使用者存在且密碼正確的話
     		sign_in user
