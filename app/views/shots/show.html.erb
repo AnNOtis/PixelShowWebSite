@@ -26,7 +26,7 @@
 
     <div class="action-container">
       <div id="like-btn" class="like-box <% if @is_like %> active <% end %>">
-        <div class="number"><%= @shot.like_number %></div>
+        <div class="number"><%= @shot.likes_count %></div>
         <div class="text">likes</div>
         <span class="lsf-icon" title="heartempty"></span>
       </div>
@@ -162,7 +162,7 @@
         success:function(result) {
           console.log(result);
           PageWidget.activeLikeIcon($this);
-          $('#like-btn .number').text(result.like_number);
+          $('#like-btn .number').text(result);
         }
       });
     },
@@ -175,7 +175,7 @@
         success:function(result) {
           console.log(result);
           PageWidget.unactiveLikeIcon($this);
-          $('#like-btn .number').text(result.like_number);
+          $('#like-btn .number').text(result);
         }
       });
     },

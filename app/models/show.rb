@@ -11,11 +11,6 @@ class Show < ActiveRecord::Base
 	default_scope { order("created_at DESC") } #按照創建時間排序
 	before_save :init_data
 
-	after_initialize do |user|
-    if self.like_number.nil?
-    	self.like_number = 0
-    end
-  end	
 	def normalize_friendly_id(input)
     #strip the string
     str = input.strip
@@ -27,11 +22,11 @@ class Show < ActiveRecord::Base
 	private
 	def init_data
 		if self.data.nil?
-	      self.data = ('_'+'#ffffff'*10)*10
-	    end
-	    if self.person_number.nil?
-	    	self.person_number = 0
-	    end
+      self.data = ('_'+'#ffffff'*10)*10
+    end
+    if self.person_number.nil?
+    	self.person_number = 0
+    end
 	end
 
 	def name_and_creator

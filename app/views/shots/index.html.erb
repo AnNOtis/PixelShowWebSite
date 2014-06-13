@@ -23,17 +23,11 @@
   <% @shots.in_groups_of(4) do |group| %>
   <div class="row">
     <% group.compact.each do |shot| %>
-      <div class="s-show-card to-table-cell">
+      <div class="ex-show-card">
         <svg id="<%="show-#{shot.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{shot.id}"%>" js-data="<%=shot.data%>" link-to="<%= shot_path(shot) %>">
         </svg>
-        <div class="muted info"><%= shot.updated_at.strftime("%b %d, %Y") %></div>
-        <div class="info"><%= shot.name %></div>
-        <div class="social-info">
-          <span class="viewer"><fi class="lsf-icon" title="view"></fi><span class="number"><%= shot.person_number %></span></span>
-          <span class="lover"><fi class="lsf-icon" title="love"></fi><span class="number">12</span></span>
-          <span class="commenter"><fi class="lsf-icon" title="comment"></fi><span class="number">4</span></span>
-        </div>
-        
+        <div class="info"><div class="title"><%= shot.name %></div></div>
+        <div class="name"><span class="muted">by</span> <%= shot.user.name %></div>
       </div>
     <% end %>
   </div>
