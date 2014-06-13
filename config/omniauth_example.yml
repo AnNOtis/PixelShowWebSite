@@ -1,0 +1,8 @@
+development:
+    oauht_provider: [facebook, github]
+    facebook:
+        app_id: 'your_id'
+        app_secret: 'your_secret'
+    github:
+        app_id: ''
+        app_secret: ''
