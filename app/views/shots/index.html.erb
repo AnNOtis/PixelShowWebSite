@@ -23,8 +23,8 @@
   <% @shots.in_groups_of(4) do |group| %>
   <div class="row">
     <% group.compact.each do |shot| %>
-      <div class="ex-show-card">
-        <svg id="<%="show-#{shot.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{shot.id}"%>" js-data="<%=shot.data%>" link-to="<%= shot_path(shot) %>">
+      <div class="ex-show-card"  link-to="<%= shot_path(shot) %>">
+        <svg id="<%="show-#{shot.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{shot.id}"%>" js-data="<%=shot.data%>">
         </svg>
         <div class="info"><div class="title"><%= shot.name %></div></div>
         <div class="name"><span class="muted">by</span> <%= shot.user.name %></div>
