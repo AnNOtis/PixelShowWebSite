@@ -1,0 +1,41 @@
+<div class="container">
+  <%= form_for @user, html: {class: "form-horizontal"} do |f|%>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-6">
+        <h1>個人資料修改</h1>
+      </div>
+    </div> 
+    <div class="form-group">
+      <%= f.label :name, 'email: ', class: "col-sm-2 control-label" %>
+      <div class="col-sm-4">
+        <div class="col-sm-2 form-control"><%= @user.email %></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :name, '暱稱: ', class: "col-sm-2 control-label" %>
+      <div class="col-sm-4">
+        <%= f.text_field :name, class: "col-sm-2 form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, '密碼', class: "col-sm-2 control-label" %>
+      <div class="col-sm-4">
+        <%= f.password_field :password, class: "col-sm-2 form-control", placeholder: "輸入密碼" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, '確認密碼', class: "col-sm-2 control-label" %>
+      <div class="col-sm-4">
+        <%= f.password_field :password_confirmation, class: "col-sm-2 form-control", placeholder: "再次輸入密碼" %>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-2">
+        <%= f.submit class: " btn btn-primary"%>
+      </div>
+    </div>  
+  <% end %>
+</div>
