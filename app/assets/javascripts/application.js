@@ -17,6 +17,7 @@
 //= require_tree .
 //= require spectrum
 //= require handlebars-v1.3.0
+//= require bootstrap
 
 
 $().ready(function() {
