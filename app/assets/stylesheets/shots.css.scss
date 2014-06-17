@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .shot-wrapper{
 	position:relative;
 	width:960px;
@@ -47,8 +46,11 @@
 				text-align: center;
 				color: #777;
 				text-shadow: 1px 1px 2px #aaa;
-				.lsf-icon:before{
-					margin:0;
+				.lsf-icon{
+					line-height: 1;
+					&:before{
+						margin:0;
+					}
 				}
 			}
 		}
@@ -234,6 +236,7 @@
 }
 
 .filter-bar{
+	margin-top: 30px;
 	.duration-filter{
 		list-style-type: none;
 		li{

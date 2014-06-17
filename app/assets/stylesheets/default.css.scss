@@ -115,7 +115,7 @@ header{
 			min-width: 100px;
 			text-align: center;
 			border:none;
-			.dropdown-menu{
+			.user-nav{
 				display:none;
 				position:absolute;
 				padding:0px;
@@ -131,7 +131,7 @@ header{
 					background-color: #444;
 				}
 			}
-			&:hover>.dropdown-menu{
+			&:hover>.user-nav{
 				display:block;
 			}
 		}
