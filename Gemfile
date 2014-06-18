@@ -17,6 +17,8 @@ gem 'friendly_id', '~> 5.0.1'
 # gem 'pg'
 gem 'sqlite3'
 
+gem 'simple_form'
+
 group :development do
   gem 'binding_of_caller'
   gem 'pry'
