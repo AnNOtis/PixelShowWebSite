@@ -22,11 +22,7 @@
 //= require bootstrap
 
 
-$().ready(function() {
-
-
-$("[link-to]").on("click",function() {window.location=""+$(this).attr("link-to")+"";});
-
-	
+$(document).on('page:change',function(){
+  $("[link-to]").on("click",function() {window.location=""+$(this).attr("link-to")+"";});
 });
 
