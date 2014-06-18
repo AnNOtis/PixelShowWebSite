@@ -9,7 +9,7 @@
 				<% if signed_in?%>
 				<%= current_user[:name]%>
 				<ul class="user-nav">
-					<li link-to="<%=user_path current_user%>">個人設定</li>
+					<li link-to="<%=edit_user_path current_user%>">個人設定</li>
 					<li link-to="<%=shows_path%>">作品集</li>	
 					<li link-to="<%=signout_path%>">登出</li>
 				</ul>
