@@ -39,75 +39,9 @@ $(document).on('page:change',function(){
 	ShowWidget.generateAxis('svg.canvas');
 
 	ColorPickerWidget.init();
-	MainWidget.init();
+	EditorWidget.init();
 });
-var ms;
-var MainWidget;
-MainWidget = {
-	settings:{
-		//畫筆的模式
-		PENCIL_MODE:1,
-		LINE_MODE:2,
-		FILL_MODE:3,
-		currentMode:1,//預設為畫筆模式
-		$canvas: $('#canvas')
-	},
-	init: function(){
-		ms = this.settings;
-		this.bindUIActions();
-		this.setUrlToDownloadField();
-	},
-	bindUIActions: function(){
-		var toggleMouseDown = false;//記錄滑鼠是否被按下
-		ms.$canvas.on('mousedown','rect',function(){
-			if(ms.currentMode == ms.FILL_MODE){
-				ShowWidget.autoFillBlock('svg.canvas',$(this).attr('data-x'),$(this).attr('data-y'),cs.currentColor);
-			}else{
-				toggleMouseDown = true;
-				$(this).attr("fill",cs.currentColor);
-			}
-		});
-		ms.$canvas.on('mouseover','rect',function(){
-			if(toggleMouseDown){
-				$(this).attr("fill",cs.currentColor);		
-			}
-		});
-		ms.$canvas.on('mouseup','rect',function(){
-			toggleMouseDown = false;
-			$(this).attr("fill",cs.currentColor);
-			MainWidget.sendDataToServer(ms.$canvas);
-		});
 
-		$(".mode-btn").click(function() {
-			ms.currentMode = $(this).attr("data-mode");
-			$(".mode-btn").removeClass('active');
-			$(this).addClass('active');
-		});
-
-		$("#save-btn").click(function() {
-			$("#show_data").val(ShowWidget.convertImgToStr(ms.$canvas));
-			$("#edit_show_<%=@show.id%>").submit();
-		});
-
-	},
-	sendDataToServer: function(canvas){
-		$.ajax({
-			url: "<%= show_path(@show) %>",
-			type: "PUT",
-			dataType: "JSON",
-			data: {data:ShowWidget.convertImgToStr(canvas)}
-		});
-	},
-	convertSVGToDataUrl: function(){
-		var svg = $('#canvas').parent().html();
-		canvg('temp-canvas', svg);
-		var canvas = document.getElementById("temp-canvas");
-		return canvas.toDataURL();
-	},
-	setUrlToDownloadField: function(){
-		$("a#download-png").attr('href',this.convertSVGToDataUrl());
-	}
-}
 
 
 </script>
@@ -121,11 +55,10 @@ MainWidget = {
 		settings:{
 			
 			initialColor:'#02508d',
-			currentColor:'',//init currentColor
 		},
 		init: function(){
 			cs = ColorPickerWidget.settings;
-			cs.currentColor = cs.initialColor;
+			es.currentColor = cs.initialColor;
 			ColorPickerWidget.bindUIActions();
 			ColorPickerWidget.initColorPicker();
 		},
@@ -148,11 +81,11 @@ MainWidget = {
 				},
 			    change: function(color) {
 			    	// console.log("change!!");
-			    	cs.currentColor = color;
+			    	es.currentColor = color;
 			    	$('#color-picker').css('background-color',color);
 				},
 				move: function(color) {
-					cs.currentColor = color;
+					es.currentColor = color;
 			    	$('#color-picker').css('background-color',color);
 				}
 			});

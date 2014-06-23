@@ -1,4 +1,7 @@
-<% if (!signed_in?) %>
+<% unless (signed_in?) %>
+<div class="canvas-container">
+	<svg id="canvas" class="canvas" width="400" height="400"></svg>
+</div>
 <div class="hint-field">
 	<div class="btn small-btn-blue reflect" link-to="/signup">Sign up</div><span> or </span><div class="btn small-btn-highlight reflect">Try now</div>
 </div>
@@ -26,6 +29,21 @@
 
 </style>
 <span class="club" style=""><span>Under construction...</span></span>
+<script>
+	var length = $("svg.canvas").attr("width");
+	var size = 10;
+	var dataset;
+	var dataArr;
+	var dataset;
+	var dataArr;
+	$(document).on('page:change',function(){
+		dataset = ShowWidget.convertStrToCodeArr("<%= @initShowData %>");
+		ShowWidget.generateShow('svg.canvas', 10, dataset);
+		ShowWidget.generateAxis('svg.canvas');
+
+		EditorWidget.init();
+	});
+</script>
 <!-- <div class="hero-unit">
 	<h1></h1>
 	<div class="right-panel">

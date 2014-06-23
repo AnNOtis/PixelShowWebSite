@@ -12,7 +12,12 @@ ShowWidget = {
     d3Canvas.selectAll("g").remove();
     d3Canvas.selectAll("line").remove();
     var canvasLength = d3Canvas.attr("width");
-    var rowG = this.generateG(d3Canvas,size,showData);
+    var rowG;
+    if(showData){
+      rowG = this.generateG(d3Canvas,size,showData);
+    }else{
+      rowG = this.generateG(d3Canvas,size);
+    }
     this.generateRect(rowG,d3Canvas,size)
   },
   generateG: function(d3Canvas,size,showData){
@@ -23,7 +28,7 @@ ShowWidget = {
           var cell = {};
           cell.x = xPosition;
           cell.y = yPosition;
-          cell.value = value;
+          cell.value = showData ? value : "#fff";
           row[xPosition] = cell;
         });
         return showData;
