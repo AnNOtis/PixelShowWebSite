@@ -11,7 +11,7 @@
 				<%= f.hidden_field :data %>
 				<%= f.hidden_field :behavior,{value:"finish_edit"}%>
 			<% end %>
-			<a href="#" id="download-png" download='TESTtest.png' style="font-size: 16px;">Download</a>
+			<a href="#" id="download-png" download='<%= @show.name %>.png' style="font-size: 16px;">Download</a>
 			<div id="save-btn" class="lsf-icon finished-btn" title="ok">完成</div>
 		</div>
 		

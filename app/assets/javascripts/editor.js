@@ -45,7 +45,9 @@ EditorWidget = {
       $("#show_data").val(ShowWidget.convertImgToStr($(es.canvasID)));
       $("#edit_show_"+$('#show_id').val()).submit();
     });
-
+    $("a#download-png").click(function() {
+      EditorWidget.setUrlToDownloadField();
+    });
   },
   sendDataToServer: function(canvas){
     var postFormUrl = $("#edit_show_"+$('#show_id').val()).attr('action');
