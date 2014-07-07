@@ -151,7 +151,7 @@ ShowWidget = {
     ];
   },
   calFillBlock: function(x,y,siblingColor,fillColor){
-    console.log('x:'+x+', y:'+y);
+    console.log('x:'+x+', y:'+y+'siblingColor:'+siblingColor+' ,fillColor:'+fillColor);
     if(this.outsideOfCanvas(x, y, dataArr.length)){
       return;
     }

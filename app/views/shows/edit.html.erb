@@ -38,8 +38,8 @@ $(document).on('page:change',function(){
 	ShowWidget.generateShow('svg.canvas', 10, dataset);
 	ShowWidget.generateAxis('svg.canvas');
 
-	ColorPickerWidget.init();
 	EditorWidget.init();
+	ColorPickerWidget.init();
 });
 
 
@@ -85,7 +85,7 @@ $(document).on('page:change',function(){
 			    	$('#color-picker').css('background-color',color);
 				},
 				move: function(color) {
-					es.currentColor = color;
+						es.currentColor = color;
 			    	$('#color-picker').css('background-color',color);
 				}
 			});

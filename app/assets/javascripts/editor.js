@@ -18,7 +18,7 @@ EditorWidget = {
     var toggleMouseDown = false;//記錄滑鼠是否被按下
     $(es.canvasID).on('mousedown','rect',function(){
       if(es.currentMode == es.FILL_MODE){
-        ShowWidget.autoFillBlock('svg.canvas',$(this).attr('data-x'),$(this).attr('data-y'),cs.currentColor);
+        ShowWidget.autoFillBlock('svg.canvas',$(this).attr('data-x'),$(this).attr('data-y'),es.currentColor);
       }else{
         toggleMouseDown = true;
         $(this).attr("fill",es.currentColor);
