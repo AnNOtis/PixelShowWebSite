@@ -17,3 +17,5 @@
 
 #oauth設定檔，儲存secret&id
 omniauth.yml
+
+.powder
