@@ -20,6 +20,7 @@
 //= require canvas2image
 //= require base64
 //= require bootstrap
+//= require isotope.min
 
 
 $(document).on('page:change',function(){
