@@ -1,3 +1,13 @@
+<style>
+	.item {
+	  float: left;
+	  width: 160px;
+	  height: 160px;
+	  background: #0D8;
+	  border: 2px solid #333;
+	  border-color: hsla(0, 0%, 0%, 0.7);
+	}
+</style>
 <div class="container">
 	<% @shows.in_groups_of(4) do |group| %>
 	<div class="row">
@@ -12,7 +22,7 @@
 					<span class="lover"><fi class="lsf-icon" title="love"></fi><span class="number"><%= show.likes_count %></span></span>
 					<span class="commenter"><fi class="lsf-icon" title="comment"></fi><span class="number"><%= show.comments_count %></span></span>
 				</div>
-				
+
 			</div>
 		<% end %>
 	</div>
@@ -20,10 +30,10 @@
 	<div class="row">
 		<div class="s-show-card add-btn" link-to="<%= new_show_path %>">
 			+
-		</div>	
+		</div>
 
 	</div>
-	
+
 </div>
 
 <script>
