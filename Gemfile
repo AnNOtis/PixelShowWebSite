@@ -14,18 +14,18 @@ gem "d3_rails"
 #permalink plugin
 gem 'friendly_id', '~> 5.0.1'
 
-# gem 'pg'
-gem 'sqlite3'
 
 gem 'simple_form'
 
 group :development do
+  gem 'sqlite3'
   gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-debugger'
 end
 
 group :production do
+  gem 'pg'
   gem 'rails_12factor'
 end
 
