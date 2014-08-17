@@ -26,7 +26,7 @@ class ShowsController < ApplicationController
   end
 
   def show
-    
+
   end
 
 
@@ -41,13 +41,13 @@ class ShowsController < ApplicationController
       @show = current_user.shows.update(params[:id],data: autosave_params[:data]);
       if @show
         respond_to do |format|
-          format.json { 
+          format.json {
             render json: true
           }
         end
       else
         respond_to do |format|
-          format.json { 
+          format.json {
             render json: @show.errors
           }
         end
@@ -59,5 +59,5 @@ class ShowsController < ApplicationController
     def autosave_params
       params.permit(:name, :data)
     end
-  
+
 end
