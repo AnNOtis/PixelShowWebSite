@@ -16,7 +16,7 @@ class ShotsController < ApplicationController
 			@is_like = @shot.likes.find_by(user_id:current_user.id).nil? ? false : true
 		end
 		@comments = @shot.comments.order(created_at: :desc).all
-		@shot.person_number ? 0 : @shot.person_number+=1
+		@shot.person_number = @shot.person_number? ? @shot.person_number+1 : 0
 		@shot.save
 	end
 
