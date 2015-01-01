@@ -8,7 +8,7 @@ class ShotsController < ApplicationController
 			@shots = Show.all.shuffle
 			@timeframe = 'all'
 		end
-		
+
 	end
 	def show
 		@shot = Show.find(params[:id])
@@ -16,11 +16,11 @@ class ShotsController < ApplicationController
 			@is_like = @shot.likes.find_by(user_id:current_user.id).nil? ? false : true
 		end
 		@comments = @shot.comments.order(created_at: :desc).all
-		@shot.person_number+=1
+		@shot.person_number ? 0 : @shot.person_number+=1
 		@shot.save
 	end
 
-	private 
+	private
 		def popular_show(timeframe)
 			time = DateTime.now - 1.send(timeframe)
 			Show.find_all_by_id(
