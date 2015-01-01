@@ -19,3 +19,5 @@
 omniauth.yml
 
 .powder
+# Ignore application configuration
+/config/application.yml
