@@ -3,23 +3,22 @@
 		<div class="header" link-to="<%= root_path%>"><span>Pixel Show</span></div>
 		<nav>
 			<ul>
-				<li link-to="<%=shows_path%>">My Show</li>
 				<li link-to="<%=shots_path%>">Explore</li>
 				<li class="account-field">
 				<% if signed_in?%>
 				<%= current_user[:name]%>
 				<ul class="user-nav">
+					<li link-to="<%=shows_path%>">My Show</li>
 					<li link-to="<%=edit_user_path current_user%>">個人設定</li>
-					<li link-to="<%=shows_path%>">作品集</li>	
 					<li link-to="<%=signout_path%>">登出</li>
 				</ul>
 				<% else %>
 					<div link-to="<%=login_path%>">登入</div>
-				<% end %>	
+				<% end %>
 				</li>
 			</ul>
 		</nav>
 	</div>
-	
+
 </header>
 

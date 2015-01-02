@@ -1,4 +1,4 @@
-<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script> 
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script>
 <script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/StackBlur.js"></script>
 <script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>
 <div class="container">
@@ -14,7 +14,7 @@
 			<a href="#" id="download-png" download='<%= @show.name %>.png' style="font-size: 16px;">Download</a>
 			<div id="save-btn" class="lsf-icon finished-btn" title="ok">完成</div>
 		</div>
-		
+
 	</div>
 	<div class="edit-tool">
 		<div type="color" class="color-picker" id="color-picker"></div>
@@ -22,30 +22,10 @@
 			<div class="mode-btn lsf-icon active" title="brush" data-mode=1></div>
 			<div class="mode-btn lsf-icon" title="paint" data-mode=3></div>
 		</div>
-		
+
 	</div>
 </div>
 <canvas id="temp-canvas" style="display:none"></canvas>
-<script type="text/javascript">
-var length=400;
-var length = $("svg.canvas").attr("width");
-var size = 10;
-var dataset;
-var dataArr;
-$(document).on('page:change',function(){
-
-	dataset = ShowWidget.convertStrToCodeArr("<%= @show.data %>");
-	ShowWidget.generateShow('svg.canvas', 10, dataset);
-	ShowWidget.generateAxis('svg.canvas');
-
-	EditorWidget.init();
-	ColorPickerWidget.init();
-});
-
-
-
-</script>
-
 <script>
 
 	var cs;
@@ -53,7 +33,7 @@ $(document).on('page:change',function(){
 
 	ColorPickerWidget = {
 		settings:{
-			
+
 			initialColor:'#02508d',
 		},
 		init: function(){
@@ -63,7 +43,7 @@ $(document).on('page:change',function(){
 			ColorPickerWidget.initColorPicker();
 		},
 		bindUIActions: function(){
-			
+
 		},
 		initColorPicker: function(){
 			$('#color-picker').css('background-color',cs.initialColor);
@@ -77,7 +57,6 @@ $(document).on('page:change',function(){
 			    showInitial: true,
 			    showButtons: false,
 			    beforeShow: function(color) {
-			    	
 				},
 			    change: function(color) {
 			    	// console.log("change!!");
@@ -92,4 +71,23 @@ $(document).on('page:change',function(){
 		}
 	}
 
+</script>
+<script type="text/javascript">
+	var length=400;
+	var length = $("svg.canvas").attr("width");
+	var size = 10;
+	var dataset;
+	var dataArr;
+	$(document).on('page:change',function(){
+		if($('.shows.edit').length <= 0){
+			return false;
+		}
+
+		dataset = ShowWidget.convertStrToCodeArr("<%= @show.data %>");
+		ShowWidget.generateShow('svg.canvas', 10, dataset);
+		ShowWidget.generateAxis('svg.canvas');
+
+		EditorWidget.init();
+		ColorPickerWidget.init();
+	});
 </script>

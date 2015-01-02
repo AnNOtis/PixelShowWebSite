@@ -83,6 +83,9 @@
   var PageWidget = {};
   var commentTemplate;
   $(document).on('page:change',function() {
+    if($(".shots.show").lenght <= 0 ){
+      return false;
+    }
     PageWidget.init();
   });
 
