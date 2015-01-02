@@ -8,14 +8,21 @@ EditorWidget = {
     FILL_MODE:3,
     currentMode:1,//預設為畫筆模式
     currentColor:'#345',//init currentColor
-    canvasID: '#canvas'
+    canvasID: '#canvas',
+    stacks: [],
+    stackIndex: -1,
   },
-  init: function(canvasId){
+  init: function(){
     es = this.settings;
+    this.pushImgToStack();
     this.bindUIActions();
+  },
+  currentCanvas: function(){
+    return $(es.canvasID);
   },
   bindUIActions: function(){
     var toggleMouseDown = false;//記錄滑鼠是否被按下
+    _this = this;
     $(es.canvasID).on('mousedown','rect',function(){
       if(es.currentMode == es.FILL_MODE){
         ShowWidget.autoFillBlock('svg.canvas',$(this).attr('data-x'),$(this).attr('data-y'),es.currentColor);
@@ -26,12 +33,13 @@ EditorWidget = {
     });
     $(es.canvasID).on('mouseover','rect',function(){
       if(toggleMouseDown){
-        $(this).attr("fill",es.currentColor);   
+        $(this).attr("fill",es.currentColor);
       }
     });
     $(es.canvasID).on('mouseup','rect',function(){
       toggleMouseDown = false;
       $(this).attr("fill",es.currentColor);
+      _this.pushImgToStack();
       EditorWidget.sendDataToServer($(es.canvasID));
     });
 
@@ -48,6 +56,36 @@ EditorWidget = {
     $("a#download-png").click(function() {
       EditorWidget.setUrlToDownloadField();
     });
+    $("#undoBtn").click(function(){
+      _this.undo();
+    });
+    $("#redoBtn").click(function(){
+      _this.redo();
+    });
+  },
+  pushImgToStack: function(){
+    var data = ShowWidget.convertImgToStr(es.currentCanvas);
+    es.stackIndex += 1;
+    es.stacks.splice(es.stackIndex, es.stacks.length);
+    es.stacks.push(data);
+  },
+  undo: function(){
+    var targetIndex = es.stackIndex - 1;
+    if(targetIndex < 0 ){
+      return false;
+    }
+    es.stackIndex = targetIndex;
+    var targetImg = es.stacks[targetIndex];
+    this.overwriteCanvas(targetImg);
+  },
+  redo: function(){
+    var targetIndex = es.stackIndex + 1;
+    if(targetIndex >= es.stacks.length ){
+      return false;
+    }
+    es.stackIndex = targetIndex;
+    var targetImg = es.stacks[targetIndex];
+    this.overwriteCanvas(targetImg);
   },
   sendDataToServer: function(canvas){
     var postFormUrl = $("#edit_show_"+$('#show_id').val()).attr('action');
@@ -66,5 +104,9 @@ EditorWidget = {
   },
   setUrlToDownloadField: function(){
     $("a#download-png").attr('href',this.getSVGToDataUrl());
+  },
+  overwriteCanvas: function(data){
+    var showData = ShowWidget.convertStrToCodeArr(data);
+    ShowWidget.generateShow( es.canvasID , 10, showData);
   }
 }
