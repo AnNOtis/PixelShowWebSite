@@ -34,6 +34,9 @@ class User < ActiveRecord::Base
     	user = User.create(user_create_attr)
     end
   end
+  def has_show?(show)
+    show.user.id == id
+  end
 	private
 	  def create_remember_token
 	  	self.remember_token = User.hash(User.new_remember_token)

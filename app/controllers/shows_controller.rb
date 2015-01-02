@@ -2,10 +2,13 @@ class ShowsController < ApplicationController
   before_action :require_login
   def index
     @shows = current_user.shows.all
+    @new_show = current_user.shows.build()
   end
+
   def new
   	@show = current_user.shows.build()
   end
+
   def create
   	@show = current_user.shows.build(show_params)
   	if @show.save
@@ -14,12 +17,14 @@ class ShowsController < ApplicationController
   		render 'new'
   	end
   end
+
   def edit
     @show = current_user.shows.find(params[:id])
     if @show.data.nil?
       @show.data = ('_'+'#ffffff'*10)*10
     end
   end
+
   def update
     behavior = show_params ? show_params['behavior'] : 'auto_save'
     self.send(behavior.to_sym,params)

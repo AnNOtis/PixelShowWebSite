@@ -2,11 +2,15 @@ PixelShowWeb::Application.routes.draw do
   get "likes/create"
   get "shows/new"
   get "shows/show"
-  resources :users
-  
+  resources :users do
+    member do
+      get "shows"
+    end
+  end
+
   resources :shows do
     resource :comment, only: :create
-    resource :like, only: [ :create, :destroy ] 
+    resource :like, only: [ :create, :destroy ]
   end
 
   get '/auth/:provider/callback', to:'sessions#create'

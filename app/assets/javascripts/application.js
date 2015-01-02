@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require fb_sdk
 //= require d3.v3
 //= require jquery_ujs
 //= require turbolinks

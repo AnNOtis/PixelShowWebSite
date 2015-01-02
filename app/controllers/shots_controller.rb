@@ -10,6 +10,7 @@ class ShotsController < ApplicationController
 		end
 
 	end
+
 	def show
 		@shot = Show.find(params[:id])
 		if signed_in?

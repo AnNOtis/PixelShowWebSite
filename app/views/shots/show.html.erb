@@ -10,15 +10,15 @@
       <div class="person-number">
         <div class="lsf-icon" title="user"></div>
         <div class="number"><%= @shot.person_number %></div>
-      </div>    
+      </div>
     </div>
 
     <div class="view-container">
       <div class="view-operation">
         <ul class="clear-fix">
-          <li>1x</li>
-          <li>2x</li>
-          <li>4x</li>
+          <% if current_user.try(:has_show?, @shot) %>
+            <li><%= link_to '編輯', edit_show_path(@shot) %></li>
+          <% end %>
         </ul>
       </div>
       <svg id="canvas" class="canvas" width="350" height="350"></svg>
@@ -30,15 +30,14 @@
         <div class="text">likes</div>
         <span class="lsf-icon" title="heartempty"></span>
       </div>
-      <div class="share-box">
-        <div class="number">0</div>
-        <div class="text">share</div>
-        <span class="lsf-icon" title="share"></span>
-      </div>
       <div class="fork-box">
         <div class="number">0</div>
         <div class="text">fork</div>
         <span class="lsf-icon" title="dish"></span>
+      </div>
+      <div id="share-btn" class="share-box">
+        <div class="text"><div>FB</div><div>share</div></div>
+        <span class="lsf-icon" title="share"></span>
       </div>
     </div>
   </div>
@@ -53,10 +52,10 @@
       </ul> -->
     </div>
     <div class="description-container">
-      
+
     </div>
     <div class="comment-container">
-      <div class="comment-number">13 Responses</div>
+      <div class="comment-number"><%= @comments.size %> 人回應</div>
       <div class="comment-list">
         <% if (signed_in?) %>
         <div id="enter-block" class="comment-block">
@@ -186,7 +185,7 @@
       $this.removeClass("active");
     }
   };
-  
+
 
 
 </script>
