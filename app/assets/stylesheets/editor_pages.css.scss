@@ -80,25 +80,39 @@ $mode-btn-size: 50px;
 		margin:30px auto;
 		border: 2px solid #fff;
 	}
-	.paint-mode-group{
+	.paint-mode-group, .tool-group{
 		background-color: rgba(0, 0, 0, 0.1);
 		padding: 10px 0;
 		border-radius: 5px;
 	}
-	.mode-btn{
+	.tool-btn{
+		display: inline-block;
+		width: 60px;
 		font-size: 30px;
 		text-align: center;
 		color: #aaa;
+		cursor: pointer;
+		border: 0;
+		background-color: rgba(0, 0, 0, 0);
+		outline: none;
 	}
-	.mode-btn:hover{
+	.tool-btn:hover{
 		color:#999;
 	}
-	.mode-btn:before{
+	.tool-btn:before{
 		margin:0;
 	}
-	.mode-btn.active{
+	.tool-btn:active {
+		color: #aaa;
+	}
+	.tool-btn.active{
 		color: #FFF;
 		text-shadow: 1px 3px 0px #5897C9;
+	}
+	.tool-btn.is_disabled{
+		color: #eee;
+		cursor: default;
+		opacity: 0.5;
 	}
 
 }
