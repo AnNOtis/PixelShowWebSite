@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.shot-wrapper{
+.show-wrapper{
 	position:relative;
 	width:960px;
 	margin:30px auto;
@@ -15,7 +15,7 @@
 			.main-info{
 				height:50px;
 				.name{
-					font-size: 1.5em;	
+					font-size: 1.5em;
 					font-weight: 700;
 				}
 				.creator{
@@ -64,7 +64,7 @@
 				font-size:12px;
 				color:#999;
 				height:24px;
-				ul{	
+				ul{
 					position:absolute;
 					right:10px;
 					display:inline-block;
@@ -194,7 +194,7 @@
 					 -moz-transition: all 0.3s;
 					 -ms-transition: all 0.3s;
 					 -o-transition: all 0.3s;
-					 transition: all 0.3s; 
+					 transition: all 0.3s;
 					&.active{
 						border: 2px solid #AAA;
 						padding: 10px;
@@ -230,7 +230,7 @@
 						color: #aeff32;
 					}
 				}
-			}	
+			}
 		}
 	}
 }
@@ -259,6 +259,6 @@
 				background:rgb(31, 102, 173);
 				color:#fff;
 			}
-		}		
+		}
 	}
 }

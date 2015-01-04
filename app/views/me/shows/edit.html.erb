@@ -5,7 +5,7 @@
 	<div class="editor-wrapper">
 		<div class="canvas-container"><svg id="canvas" class="canvas" width="400" height="400"></svg></div>
 		<div class="info-field">
-			<%= form_for @show do |f|%>
+			<%= form_for @show, url: me_show_path(@show), method: :put do |f|%>
 				<%= f.hidden_field :id %>
 				<%= f.text_field :name, autocomplete:"off",placeholder:"type name..." %>
 				<%= f.hidden_field :data %>

@@ -43,10 +43,10 @@
 <div class="isotope-container">
 	<% @shows.each do |show| %>
 		<% unless (show.id)%6 == 0 %>
-			<svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= shot_path(show) %>">
+			<svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= show_path(show) %>">
 						</svg>
 		<% else %>
-			<svg id="<%="show-#{show.id}"%>" class="js-shows" width="330" height="330" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= shot_path(show) %>">
+			<svg id="<%="show-#{show.id}"%>" class="js-shows" width="330" height="330" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= show_path(show) %>">
 						</svg>
 		<% end %>
 	<% end %>
@@ -60,8 +60,6 @@
 	var dataset;
 	var dataArr;
 	$(document).on('page:change',function(){
-
-		EditorWidget.init();
 		$('.js-shows').each(function() {
 	    var showID = $(this).attr('js-id');
 	    var originData = $(this).attr('js-data');

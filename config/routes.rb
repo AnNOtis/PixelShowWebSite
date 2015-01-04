@@ -1,21 +1,29 @@
 PixelShowWeb::Application.routes.draw do
   get "likes/create"
-  get "shows/new"
-  get "shows/show"
+
+  namespace :me do
+    resources :shows do
+      member do
+        resource :comment, only: :create
+        resource :like, only: [ :create, :destroy ]
+      end
+    end
+  end
+
   resources :users do
     member do
       get "shows"
     end
   end
 
-  resources :shows do
-    resource :comment, only: :create
-    resource :like, only: [ :create, :destroy ]
-  end
+  # resources :shows do
+  #   resource :comment, only: :create
+  #   resource :like, only: [ :create, :destroy ]
+  # end
 
   get '/auth/:provider/callback', to:'sessions#create'
 
-  resources :shots, only:[:index, :show]
+  resources :shows, only:[:index, :show]
 
   resources :sessions, only:[:new,:create, :destroy]
   get "static_pages/about"

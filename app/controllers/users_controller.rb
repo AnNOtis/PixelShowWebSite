@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :shows]
   before_action :require_login, :only => [:show, :edit, :update]
+  before_action :is_owner, :only => [:edit, :update]
   def show
 
   end
@@ -47,5 +48,11 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def is_owner
+      if params[:id].to_i != current_user.id
+        redirect_to root_path, notice: "無此頁面"
+      end
     end
 end

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     	if user && user.authenticate(params[:session][:password])
     		# 使用者存在且密碼正確的話
     		sign_in user
-  	    redirect_to shows_path
+  	    redirect_to me_shows_path
     	else
     		flash[:error] = '錯誤的賬戶或密碼' # Not quite right!
     		render 'new'
@@ -32,5 +32,5 @@ class SessionsController < ApplicationController
     def auth_hash
       request.env['omniauth.auth']
     end
-    
+
 end

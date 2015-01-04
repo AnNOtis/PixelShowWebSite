@@ -1,4 +1,4 @@
-<%=form_for(@show) do |f|%>
+<%=form_for @show, url: me_shows_path(@show), method: :post do |f|%>
 <%= render 'shared/error_messages', object:f.object%>
 <div class="title">title</div>
 <%= f.text_field :name %>

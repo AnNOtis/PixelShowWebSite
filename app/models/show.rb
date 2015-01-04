@@ -7,6 +7,7 @@ class Show < ActiveRecord::Base
 	has_many :likes , autosave:true
 
 	validates :name, presence: true
+  validates :name, uniqueness: {scope: :user_id, message: "名字已經被使用囉！"}
 	validates :slug, presence: true
 	default_scope { order("created_at DESC") } #按照創建時間排序
 	before_save :init_data
