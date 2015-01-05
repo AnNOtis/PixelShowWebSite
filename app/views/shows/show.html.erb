@@ -3,6 +3,9 @@
   <div class="main-wrapper">
     <div class="info-container">
       <div class="main-info">
+        <% if @show.fork? %>
+          <%= forked_show_link(@show.fork, class: "fork_info") %>
+        <% end %>
         <div class="name"><%= @show.name %></div>
         <span class="creator">by <span><a href="#"><%= @show.user.name %></a></span></span>
         <span class="created-time"><%= @show.created_at.strftime("%b %d, %Y") %></span>
@@ -25,17 +28,17 @@
     </div>
 
     <div class="action-container">
-      <div id="like-btn" class="like-box <% if @is_like %> active <% end %>">
+      <div id="like-btn" class="action-box like-box <% if @is_like %> active <% end %>">
         <div class="number"><%= @show.likes_count %></div>
         <div class="text">likes</div>
         <span class="lsf-icon" title="heartempty"></span>
       </div>
-      <div class="fork-box">
+      <%= link_to me_fork_path(@show), method: :post, class: 'action-box fork-box' do %>
         <div class="number">0</div>
         <div class="text">fork</div>
         <span class="lsf-icon" title="dish"></span>
-      </div>
-      <div id="share-btn" class="share-box">
+      <% end %>
+      <div id="share-btn" class="action-box share-box">
         <div class="text"><div>FB</div><div>share</div></div>
         <span class="lsf-icon" title="share"></span>
       </div>

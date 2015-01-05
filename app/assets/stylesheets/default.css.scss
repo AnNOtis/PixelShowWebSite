@@ -8,8 +8,10 @@ $deep-blue-hover:#1A4872;
 	box-sizing:border-box;
 }
 a,a:hover,a:active{
-	text-decoration: none;
-	color:black;
+	font-size: 16px;
+  color: #2B74AD;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .debug_dump{
@@ -109,7 +111,7 @@ header{
 			}
 
 		}
-		
+
 		.account-field{
 			margin-left: 130px;
 			min-width: 100px;
@@ -123,10 +125,10 @@ header{
 				left:0;
 				top: 60px;
 				list-style: none;
-				background-color: #555; 
+				background-color: #555;
 				color:#fff;
 				z-index: 2;
-				
+
 				li:hover{
 					background-color: #444;
 				}

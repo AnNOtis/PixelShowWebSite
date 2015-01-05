@@ -5,7 +5,8 @@ PixelShowWeb::Application.routes.draw do
     resources :shows do
       member do
         resource :comment, only: :create
-        resource :like, only: [ :create, :destroy ]
+        resource :like, only: [:create, :destroy ]
+        resource :fork, only: [:create]
       end
     end
   end

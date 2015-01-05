@@ -7,8 +7,10 @@ class Show < ActiveRecord::Base
 	has_many :likes , autosave:true
 
 	validates :name, presence: true
-  validates :name, uniqueness: {scope: :user_id, message: "名字已經被使用囉！"}
+  validates :name, uniqueness: {scope: :user_id, message: "名字已經被使用囉！"}, unless: :fork?
+  # validates :fork_id, uniqueness: {scope: :user_id, message: "你已經fork過了！"}, if: :fork?
 	validates :slug, presence: true
+
 	default_scope { order("created_at DESC") } #按照創建時間排序
 	before_save :init_data
 
@@ -16,9 +18,21 @@ class Show < ActiveRecord::Base
     #strip the string
     str = input.strip
     # str.gsub! /\s*[^A-Za-z0-9]\s*/, '-'
-    str.gsub! /[^-\p{L}]/, '-'
+    str.gsub! /[^-\p{Alnum}]/, '-'
     str.gsub! /-+/, "-"
     str.downcase
+  end
+
+  def user_name
+    user.name
+  end
+
+  def fork?
+    !fork_id.nil?
+  end
+
+  def fork
+    Show.find(fork_id)
   end
 	private
 	def init_data

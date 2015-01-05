@@ -2,6 +2,7 @@
 	background-color: #FFF;
 	display: inline-block;
 	box-shadow: 1px 1px 3px 3px rgba(0,0,0,0.2);
+	font-size: 0;
 }
 .editor-wrapper{
 	position:relative;
@@ -10,7 +11,6 @@
 	min-height: 300px;
 	margin: 30px auto;
 	margin-left: 100px;
-	font-size: 0;
 
 	.info-field{
 		position:absolute;
@@ -38,19 +38,26 @@
 			font-size: 16px;
 		}
 	}
-	.finished-btn{
-		cursor: pointer;
+	.bottom{
 		position: absolute;
 		right: 0;
 		bottom: 20px;
+		width: 100%;
+		line-height: 40px;
+		text-align: right;
+	}
+	.finished-btn{
+		cursor: pointer;
+		display: inline-block;
 		width: 50%;
 		font-size: 16px;
-		margin: 30px 0 10px 0;
+		margin-left: 20px;
 		border-radius: 5px;
 		background-color: rgba(0, 0, 0, 0.1);
 		color: rgba(0, 0, 0, 0.3);
 		line-height: 40px;
 		padding-left: 5%;
+		text-align: left;
 		padding-right: 20px;
 		-webkit-transition: all 0.3s ease;
 		-moz-transition: all 0.3s ease;

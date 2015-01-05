@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618143916) do
+ActiveRecord::Schema.define(version: 20150105014731) do
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(version: 20140618143916) do
     t.string   "slug"
     t.integer  "likes_count",    default: 0
     t.integer  "comments_count", default: 0
+    t.integer  "fork_id"
   end
 
+  add_index "shows", ["fork_id"], name: "index_shows_on_fork_id"
   add_index "shows", ["slug"], name: "index_shows_on_slug", unique: true
 
   create_table "users", force: true do |t|

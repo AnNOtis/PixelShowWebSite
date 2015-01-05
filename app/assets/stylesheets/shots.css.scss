@@ -13,26 +13,23 @@
 			padding:10px;
 			padding-right:70px;
 			.main-info{
-				height:50px;
 				.name{
 					font-size: 1.5em;
 					font-weight: 700;
 				}
-				.creator{
+				.creator,
+				.created-time,
+				.fork_info{
 					color:#999;
 					font-size:12px;
-					a{
-						font-size:16px;
-						color:#2B74AD;
-						font-weight: 700;
-					}
 				}
 				.created-time{
-					color:#999;
-					font-size:12px;
 					margin-left: 10px;
-					&:before{
-
+				}
+				.fork_info{
+					display: block;
+					a{
+						font-size:12px;
 					}
 				}
 			}
@@ -92,7 +89,7 @@
 			padding:0 10px;
 			background:#fff;
 			border-top: 1px solid #eee;
-			>div{
+			>.action-box, a.action-box{
 				position:relative;
 				cursor:pointer;
 				height:60px;
@@ -103,6 +100,8 @@
 				font-weight: 700;
 				padding: 10px 40px 10px 10px;
 				overflow: hidden;
+				color:#ccc;
+				text-decoration: none;
 				.number{
 					font-size:24px;
 					line-height: 26px;
