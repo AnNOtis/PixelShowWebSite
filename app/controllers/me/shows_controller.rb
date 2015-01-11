@@ -38,8 +38,8 @@ class Me::ShowsController < ApplicationController
     def finish_edit(params)
       assign_params = show_params.dup
       assign_params.delete(:behavior)
-      Show.update(params['id'],assign_params)
-      redirect_to me_shows_url
+      show = Show.update(params['id'],assign_params)
+      redirect_to show_url(show)
     end
 
     def auto_save(params)

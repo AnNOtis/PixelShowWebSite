@@ -13,7 +13,7 @@
 	<div class="row">
 		<% group.compact.each do |show| %>
 			<div class="s-show-card to-table-cell">
-				<svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= edit_me_show_path(show) %>">
+				<svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= show_path(show) %>">
 				</svg>
 				<div class="muted info"><%= show.updated_at.strftime("%b %d, %Y") %></div>
 				<div class="info"><%= show.name %></div>

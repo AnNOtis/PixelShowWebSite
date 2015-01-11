@@ -17,7 +17,7 @@ class ShowsController < ApplicationController
 			@is_like = @show.likes.find_by(user_id:current_user.id).nil? ? false : true
 		end
 		@comments = @show.comments.order(created_at: :desc).all
-		@show.person_number = @show.person_number? ? @show.person_number+1 : 0
+		@show.increment(:person_number)
 		@show.save
 	end
 

@@ -34,6 +34,25 @@ class Show < ActiveRecord::Base
   def fork
     Show.find(fork_id)
   end
+
+  def increment(attribute, by = 1)
+    self[attribute] ||= 0
+    self[attribute] += by
+    self
+  end
+
+  def update_forks_count(by = 1)
+    count = forks_count
+    count ||= 0
+    count += by
+    self.update_attribute(:forks_count, count)
+  end
+
+  # trace origin show's forks_count
+  def forks_number
+    number = fork? ? fork.forks_count : forks_count
+    number ||= 0
+  end
 	private
 	def init_data
 		if self.data.nil?
@@ -53,6 +72,5 @@ class Show < ActiveRecord::Base
 	def should_generate_new_friendly_id?
 	    name_changed?||self.slug.nil?
 	end
-
 
 end

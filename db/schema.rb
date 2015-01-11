@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105014731) do
+ActiveRecord::Schema.define(version: 20150111144819) do
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150105014731) do
     t.integer  "likes_count",    default: 0
     t.integer  "comments_count", default: 0
     t.integer  "fork_id"
+    t.integer  "forks_count"
   end
 
   add_index "shows", ["fork_id"], name: "index_shows_on_fork_id"

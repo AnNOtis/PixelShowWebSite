@@ -34,7 +34,7 @@
         <span class="lsf-icon" title="heartempty"></span>
       </div>
       <%= link_to me_fork_path(@show), method: :post, class: 'action-box fork-box' do %>
-        <div class="number">0</div>
+        <div class="number"><%= @show.forks_number %></div>
         <div class="text">fork</div>
         <span class="lsf-icon" title="dish"></span>
       <% end %>
