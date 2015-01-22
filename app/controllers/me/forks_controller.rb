@@ -10,7 +10,7 @@ class Me::ForksController < ApplicationController
     end
     show = current_user.shows.build(
       fork_id: forked_show.id,
-      name: "#{forked_show.name}-#{forked_show.forks_count+1}",
+      name: "#{ forked_show.name }-#{ (forked_show.forks_count || 0)+1 }",
       data: forked_show_data
     )
     if show.save
