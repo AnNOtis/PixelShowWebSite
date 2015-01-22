@@ -1,20 +1,32 @@
 <header>
 	<div class="container">
-		<div class="header" link-to="<%= root_path%>"><span>Pixel Show</span></div>
+		<%= link_to root_path, class: 'logo' do %>
+			<span><img src="/images/logo.png" alt="">Pixel Show</span>
+		<% end %>
 		<nav>
 			<ul>
-				<li link-to="<%=shows_path%>">Explore</li>
-				<li class="account-field">
-				<% if signed_in?%>
-				<%= current_user[:name]%>
-				<ul class="user-nav">
-					<li link-to="<%=me_shows_path%>">My Show</li>
-					<li link-to="<%=edit_user_path current_user%>">個人設定</li>
-					<li link-to="<%=signout_path%>">登出</li>
-				</ul>
-				<% else %>
-					<div link-to="<%=login_path%>">登入</div>
+				<%= link_to shows_path do %>
+					<li>找找看</li>
 				<% end %>
+				<%= link_to me_shows_path do %>
+					<li>我的作品</li>
+				<% end %>
+				<li class="account-field">
+					<% if signed_in?%>
+						<%= current_user[:name]%>
+						<ul class="user-nav">
+							<%= link_to me_shows_path do %>
+								<li>我的作品</li>
+							<% end %>
+							<%= link_to signout_path do %>
+								<li>登出</li>
+							<% end %>
+						</ul>
+					<% else %>
+						<%= link_to login_path do %>
+							<div>登入</div>
+						<% end %>
+					<% end %>
 				</li>
 			</ul>
 		</nav>

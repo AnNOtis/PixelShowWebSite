@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
-gem 'bcrypt-ruby', '~> 3.1.2'
+# gem 'bcrypt-ruby'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -18,11 +18,17 @@ gem 'friendly_id', '~> 5.0.1'
 gem 'simple_form'
 
 group :development do
+  # Use Capistrano for deployment
   gem 'sqlite3'
   gem 'binding_of_caller'
   gem 'pry'
   gem 'pry-debugger'
 end
+
+gem 'capistrano'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
 gem 'pg'
 
@@ -62,16 +68,17 @@ group :test, :development do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
+
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem "figaro"
 
 gem 'kaminari'
+
+gem 'therubyracer'

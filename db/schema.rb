@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111144819) do
+ActiveRecord::Schema.define(version: 20150122151042) do
 
   create_table "authorizations", force: true do |t|
     t.string   "provider"
@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 20150111144819) do
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "user_id"
-    t.integer  "person_number",  default: 0
+    t.integer  "user_id",        limit: 255
+    t.integer  "person_number",              default: 0
     t.string   "slug"
-    t.integer  "likes_count",    default: 0
-    t.integer  "comments_count", default: 0
+    t.integer  "likes_count",                default: 0
+    t.integer  "comments_count",             default: 0
     t.integer  "fork_id"
     t.integer  "forks_count"
   end

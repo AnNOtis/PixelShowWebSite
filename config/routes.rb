@@ -11,7 +11,7 @@ PixelShowWeb::Application.routes.draw do
     end
   end
 
-  resources :users do
+  resources :users, except: :edit do
     member do
       get "shows"
     end

@@ -1,19 +1,16 @@
 <%= form_for :session, url:sessions_path, :html=>{:class=>'login-form'} do |f| %>
 <div class="title">登入</div>
 
-<%= f.label :email %>
-<%= f.text_field :email%>
-<%= f.label :password %>
-<%= f.password_field :password%>
-
-<%= f.submit '登入' %>
+  <%= f.label :email %>
+  <%= f.text_field :email%>
+  <%= f.label :password %>
+  <%= f.password_field :password%>
+  <%= f.submit '登入' %>
+  <%= link_to '註冊', signup_path, class: 'signup' %>
 <% end %>
 
 <div class="auth-form">
   <%= link_to '/auth/facebook',class:'each-auth' do%>
-    <span class="lsf-icon facebook" title="facebook"></span>
-  <% end %>
-  <%= link_to '/auth/facebook',class:'each-auth' do%>
-    <span class="lsf-icon google" title="google"></span>
+    <span class="lsf-icon facebook" title="facebook">facebook登入</span>
   <% end %>
 </div>
