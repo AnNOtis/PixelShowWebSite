@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def owner?(user)
-    current_user.id == user.id
+    current_user && (current_user.id == user.id)
   end
 end
