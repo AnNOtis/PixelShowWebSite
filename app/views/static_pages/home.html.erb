@@ -1,111 +1,17 @@
-<% unless (signed_in?) %>
-	<div class="hint-field">
-		<a class="btn small-btn-blue reflect" href="/signup">註冊</a>
-		<span> or </span>
-		<a class="btn small-btn-highlight reflect" href="/login">登入</a>
-	</div>
-<% else %>
-	<div class="hint-field">
-		<a class="btn small-btn-highlight reflect" data-toggle="modal" data-target="#newShow">新增你的pixelshow</a>
-	</div>
-	<div class="modal fade" id="newShow">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	        	<span aria-hidden="true">&times;</span>
-	        </button>
-	        <h4 class="modal-title">新增 Pixel Show</h4>
-	      </div>
-	      <%=form_for @new_show, url: me_shows_path(@new_show), method: :post do |f|%>
-		      <div class="modal-body">
-							<%= render 'shared/error_messages', object:f.object%>
-							<div class="title">title</div>
-							<%= f.text_field :name %>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<%= f.submit "新增", class: "btn btn-primary" %>
-		      </div>
-				<% end %>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-<% end %>
-<style>
-	.club{
-		position:absolute;
-		width:35px;
-		height:35px;
-		margin-top:200px;
-		left:50%;
-		right:50%;
-	}
-	.club>span{
-		width: 200px;
-		z-index: 9;
-		text-align: center;
-		display: inline-block;
-		margin-left: -70px;
-		margin-top: 60px;
-		font-size: 20px;
-		font-family: fantasy;
-		text-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
-	}
-	.js-shows{
-		line-height: 0;
-		font-size: 0;
-		margin-bottom: 10px;
-		box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.3);
-	}
-	.js-shows:hover{
-		/*transform: ;*/
-	}
-	.isotope-container{
-		width: 1020px;
-		margin: 10px auto;
-	}
-</style>
+<%= render partial: 'static_pages/hint_banner', locals: {new_show: @new_show} %>
 <div class="isotope-container">
 	<% @shows.each do |show| %>
-		<% unless (show.id)%6 == 0 %>
-			<svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= show_path(show) %>">
-						</svg>
-		<% else %>
-			<svg id="<%="show-#{show.id}"%>" class="js-shows" width="330" height="330" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= show_path(show) %>">
-						</svg>
+		<%= link_to show_path(show) do %>
+			<% unless show.id % 6 == 0 %>
+				<svg id="<%="show-#{show.id}"%>" class="js-show Card" width="160" height="160"
+					data-id="<%="show-#{show.id}"%>" data-matrix="<%=show.data%>">
+				</svg>
+			<% else %>
+				<svg id="<%="show-#{show.id}"%>" class="js-show Card" width="330" height="330"
+					data-id="<%="show-#{show.id}"%>" data-matrix="<%=show.data%>">
+				</svg>
+			<% end %>
 		<% end %>
 	<% end %>
 </div>
-<!-- <span class="club" style=""><span>Under construction...</span></span> -->
-<script>
-	var length = $("svg.canvas").attr("width");
-	var size = 10;
-	var dataset;
-	var dataArr;
-	var dataset;
-	var dataArr;
-	$(document).on('page:change',function(){
-		$('.js-shows').each(function() {
-	    var showID = $(this).attr('js-id');
-	    var originData = $(this).attr('js-data');
-	    var showData = ShowWidget.convertStrToCodeArr(originData);
-	    ShowWidget.generateShow('#'+showID, 10, showData);
-	  });
-		$('.isotope-container').isotope({
-	    itemSelector: '.js-shows',
-	    masonry: {
-	      columnWidth: 160,
-	      gutter: 10
-	    }
-	  });
-	});
-</script>
-<!-- <div class="hero-unit">
-	<h1></h1>
-	<div class="right-panel">
-		<div class="btn btn-highlight">
-			Start
-		</div>
-	</div>
-</div> -->
+<span class="club club--center" style=""></span>

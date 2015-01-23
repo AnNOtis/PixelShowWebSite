@@ -1,12 +1,6 @@
 //顯示show
 var ShowWidget={};
 ShowWidget = {
-  settings:{
-
-  },
-  init: function(){
-
-  },
   generateShow: function(s_canvas, size, showData){
     var d3Canvas = d3.select(s_canvas);
     d3Canvas.selectAll("g").remove();
