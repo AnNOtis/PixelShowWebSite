@@ -8,6 +8,18 @@
 	  border-color: hsla(0, 0%, 0%, 0.7);
 	}
 </style>
+<div class="PageHead">
+	<div class="container">
+		<span class="Score Score--medium Score--rank pull-right" title="shows"><%= @shows.size %></span>
+		<h2 class="PageHead-title"><%= @user.name %></h2>
+		<span class="PageHead-detail label">
+			<%= @user.created_at.strftime("%B %d, %Y") %> 加入
+		</span>
+		<% if owner?(@user) %>
+			<span class="label label-danger">me</span>
+		<% end %>
+	</div>
+</div>
 <div class="container">
 	<% @shows.in_groups_of(4) do |group| %>
 	<div class="row">
@@ -22,43 +34,19 @@
 					<span class="lover"><fi class="lsf-icon" title="love"></fi><span class="number"><%= show.likes_count %></span></span>
 					<span class="commenter"><fi class="lsf-icon" title="comment"></fi><span class="number"><%= show.comments_count %></span></span>
 				</div>
-
 			</div>
 		<% end %>
 	</div>
 	<% end %>
-	<div class="row">
-		<div class="s-show-card add-btn" data-toggle="modal" data-target="#newShow">
-			+
+
+	<% if @new_show  %>
+		<div class="row">
+			<div class="s-show-card add-btn" data-toggle="modal" data-target="#newShow">
+				+
+			</div>
 		</div>
-
-	</div>
-
-	<div class="modal fade" id="newShow">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	        	<span aria-hidden="true">&times;</span>
-	        </button>
-	        <h4 class="modal-title">新增 Pixel Show</h4>
-	      </div>
-        <%=form_for @new_show, url: me_shows_path(@new_show), method: :post do |f|%>
-		      <div class="modal-body">
-							<%= render 'shared/error_messages', object:f.object%>
-							<div class="title">title</div>
-							<%= f.text_field :name %>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<%= f.submit "新增", class: "btn btn-primary" %>
-		      </div>
-				<% end %>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-
+		<%= render partial: 'me/shows/create_action_modal', locals: {new_show: @new_show} %>
+	<% end %>
 </div>
 
 <script>
@@ -68,6 +56,4 @@
 		var showData = ShowWidget.convertStrToCodeArr(originData);
 		ShowWidget.generateShow('#'+showID,10,showData);
 	});
-
-
 </script>

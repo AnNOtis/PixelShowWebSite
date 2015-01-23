@@ -7,7 +7,7 @@
           <%= forked_show_link(@show.fork, class: "fork_info") %>
         <% end %>
         <div class="name"><%= @show.name %></div>
-        <span class="creator">by <span><a href="#"><%= @show.user.name %></a></span></span>
+        <span class="creator">by <span><%=link_to @show.user.name, shows_user_path(@show.user) %></span></span>
         <span class="created-time"><%= @show.created_at.strftime("%b %d, %Y") %></span>
       </div>
       <div class="person-number">

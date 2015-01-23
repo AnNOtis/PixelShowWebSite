@@ -32,9 +32,13 @@ class UsersController < ApplicationController
   end
 
   def shows
+    if current_user.id == @user.id
+      redirect_to me_shows_path
+      return
+    end
     @shows = @user.shows.all
-    @new_show = @user.shows.build
-    render 'shows/index'
+    
+    render 'me/shows/index'
   end
 
   private

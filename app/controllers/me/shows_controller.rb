@@ -1,6 +1,7 @@
 class Me::ShowsController < ApplicationController
   before_action :require_login
   def index
+    @user = current_user
     @shows = current_user.shows.all
     @new_show = current_user.shows.build()
   end
@@ -28,10 +29,6 @@ class Me::ShowsController < ApplicationController
   def update
     behavior = show_params ? show_params['behavior'] : 'auto_save'
     self.send(behavior.to_sym,params)
-  end
-
-  def show
-
   end
 
   private

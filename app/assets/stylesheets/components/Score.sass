@@ -1,0 +1,108 @@
+// *************************************
+//
+//   Score
+//   -> Display ranking score, checking number or likes number ..etc.
+//
+// *************************************
+
+$score-default-c-bg: #FFD94F
+$score-default-c-border: #FDF4BE
+$score-default-c-text: #333
+$score-default-c-hint: #999
+
+$score-none-c-bg: #DDD
+$score-none-c-border: #EEE
+$score-none-c-text: #FFF
+$score-none-c-hint: #DDD
+
+$score-high-c-bg: #7BC70B
+$score-high-c-border: #E3FDBE
+$score-high-c-text: #FFF
+$score-high-c-hint: #7BC70B
+
+$score-medium-c-bg: #FFD94F
+$score-medium-c-border: #FDF4BE
+$score-medium-c-text: #333
+$score-medium-c-hint: #555
+
+$score-low-c-bg: #BD0A0A
+$score-low-c-border: #F05D5D
+$score-low-c-text: #FFF
+$score-low-c-hint: #EEE
+
+$score-fb-c-bg: #FFF
+$score-fb-c-border: #407BB0
+$score-fb-c-text: $c-text
+$score-fb-c-hint: $whitesmoke
+
+=score-variant($bg, $border, $text, $hint)
+  background-color: $bg
+  color: $text
+  border: 3px solid $border
+  &:after
+    background-color: $border
+    color: $hint
+
+.Score
+  position: relative
+  display: inline-block
+  max-width: 100px
+  min-width: 50px
+  padding-bottom: 16px
+  border: 3px solid transparent
+  border-radius: 0.25em
+  text-align: center
+  line-height: 1.5
+  font-family: $b-fontFamily-heading
+  &:after
+    content: attr(title)
+    position: absolute
+    bottom: 0
+    left: 0
+    display: block
+    width: 100%
+    height: 20px
+    line-height: 20px
+    font-size: 12px
+    text-align: center
+    color: #BBB
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+.Score--default
+
+.Score--rank
+  font-size: 30px
+  margin: $b-space 0
+  min-height: 60px
+  min-width: 60px
+  &:after
+    font-size: 14px
+
+.Score--none
+  +score-variant($score-none-c-bg, $score-none-c-border, $score-none-c-text, $score-none-c-hint)
+
+.Score--high
+  +score-variant($score-high-c-bg, $score-high-c-border, $score-high-c-text, $score-high-c-hint)
+
+.Score--medium
+  +score-variant($score-medium-c-bg, $score-medium-c-border, $score-medium-c-text, $score-medium-c-hint)
+
+.Score--low
+  +score-variant($score-low-c-bg, $score-low-c-border, $score-low-c-text, $score-low-c-hint)
+
+.Score--fb
+  +score-variant($score-fb-c-bg, $score-fb-c-border, $score-fb-c-text, $score-fb-c-hint)
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+// -------------------------------------
+//   Context
+// -------------------------------------
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
