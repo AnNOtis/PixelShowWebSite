@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
-
+gem 'bundler', '>= 1.7.0'
 # gem 'bcrypt-ruby'
 
 gem 'omniauth'
@@ -82,3 +82,7 @@ gem "figaro"
 gem 'kaminari'
 
 gem 'therubyracer'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-infinite-scroll'
+end

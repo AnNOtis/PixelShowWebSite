@@ -1,3 +1,27 @@
+/* infinite scroll hacking*/
+#infscr-loading {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  /* right: 50%; */
+  display: block;
+  width: 160px;
+  padding: 10px 0;
+  margin-left: -80px;
+  font-family: "Open Sans", helvetica, arial, "Hiragino Sans GB", "Heiti TC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: normal;
+  text-align: center;
+  color: #565656;
+  border: 2px solid;
+  background-color: #FFD700;
+
+  > img {
+    margin-bottom: 5px;
+  }
+}
+
 .club {
   position: relative;
   display: inline-block;
@@ -8,13 +32,15 @@
   /*opacity:0;*/
 }
 
-.club--center {
-  position: absolute;
-  width: 35px;
-  height: 35px;
-  margin-top: 200px;
+.club--isotope {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  bottom: 20px;
+  margin-left: -30px;
   left: 50%;
   right: 50%;
+  overflow: visible;
 }
 
 .club > span {
@@ -34,8 +60,8 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 75%;
-  height: 75%;
+  width: 30px;
+  height: 30px;
   background-color: #FC0;
   opacity: 0.8;
   border: 0.2em solid #111;
@@ -50,8 +76,8 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 75%;
-  height: 75%;
+  width: 30px;
+  height: 30px;
   background-color: #1646C2;
   opacity: 0.8;
   border: 0.2em solid #111;

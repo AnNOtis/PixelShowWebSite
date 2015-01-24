@@ -13,7 +13,8 @@ $(document).on('page:change',function(){
   });
 
   $('.isotope-container').isotope({
-    itemSelector: '.js-show',
+    itemSelector: '.Card',
+    infiniteScroll: true,
     masonry: {
       columnWidth: 160,
       gutter: 10

@@ -22,6 +22,7 @@
 //= require base64
 //= require bootstrap
 //= require isotope.min
+//= require infinite-scroll
 
 
 $(document).on('page:change',function(){
