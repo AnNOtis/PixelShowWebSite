@@ -129,7 +129,7 @@ EditorWidget = {
     var svg = $('#canvas').parent().html();
     canvg('temp-canvas', svg);
     var canvas = document.getElementById("temp-canvas");
-    return canvas.toDataURL();
+    return canvas.toDataURL("image/png");
   },
   setUrlToDownloadField: function(){
     $("a#download-png").attr('href',this.getSVGToDataUrl());

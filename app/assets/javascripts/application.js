@@ -21,6 +21,7 @@
 //= require spectrum
 //= require canvas2image
 //= require base64
+//= require base64binary
 //= require bootstrap
 //= require isotope.min
 //= require infinite-scroll
