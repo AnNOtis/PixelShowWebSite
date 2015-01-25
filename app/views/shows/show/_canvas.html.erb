@@ -1,0 +1,31 @@
+<div class="view-container">
+  <div class="view-operation">
+    <ul class="clear-fix">
+      <% if current_user.try(:has_show?, show) %>
+        <li><%= link_to '編輯', edit_me_show_path(show) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <svg id="canvas" class="canvas"
+       width="350" height="350"
+       data-id="<%= show.id %>"
+       data-matrix="<%= show.data %>">
+  </svg>
+</div>
+
+<div class="action-container">
+  <div id="like-btn" class="action-box like-box <% if is_like %> active <% end %>">
+    <div class="number"><%= show.likes_count %></div>
+    <div class="text">likes</div>
+    <span class="lsf-icon" title="heartempty"></span>
+  </div>
+  <%= link_to me_fork_path(show), method: :post, class: 'action-box fork-box' do %>
+    <div class="number"><%= show.forks_number %></div>
+    <div class="text">fork</div>
+    <span class="lsf-icon" title="dish"></span>
+  <% end %>
+  <div id="share-btn" class="action-box share-box">
+    <div class="text"><div>FB</div><div>share</div></div>
+    <span class="lsf-icon" title="share"></span>
+  </div>
+</div>

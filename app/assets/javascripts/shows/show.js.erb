@@ -1,0 +1,122 @@
+var PageWidget = {};
+var commentTemplate;
+var ps;
+PageWidget = {
+  settings:{
+  },
+  init: function(options){
+    ps = this.settings;
+    options = options || {};
+    ps.canvasSelector = options.selector || '#canvas';
+    ps.$canvas =  $(ps.canvasSelector);
+    ps.id = ps.$canvas.attr('data-id');
+
+    ShowWidget.generateShow(
+      ps.canvasSelector,
+      10,
+      ShowWidget.convertStrToCodeArr(ps.$canvas.attr('data-matrix'))
+    );
+    this.bindUIActions();
+    this.initHbTemplate();
+  },
+  initHbTemplate: function(){
+    commentTemplate = HBS['comments/comment'];
+  },
+  bindUIActions: function(){
+    var that = this
+    $("#send-comment").click(function() {
+      that.sendComment($("#comment-field"));
+    });
+    $("#comment-field").click(function(){
+      $(this).addClass('active');
+    });
+    $(document).on("click",function(event) {
+      if(!$(event.target).hasClass("comment-focus-group")){
+        that.unactiveCommentField();
+      }
+    });
+
+    $("#like-btn").click(function() {
+      if(!$(this).hasClass("active")){
+        that.addLike($(this));
+      }else{
+        that.cancelLike($(this));
+      }
+    });
+
+    $("#share-btn").click(function(){
+      that.triggerDialog();
+    });
+  },
+  unactiveCommentField: function() {
+    $("#comment-field").removeClass("active");
+  },
+  clearCommentField:function() {
+    $("#comment-field").val("");
+    this.unactiveCommentField();
+  },
+  sendComment: function($commentObj){
+    var content = $commentObj.val();
+    $.ajax({
+      url:"/me/shows/"+ps.id+"/comment",
+      type:"POST",
+      dataType:"JSON",
+      data:{
+        content:content
+      },
+      success:function(data) {
+        PageWidget.clearCommentField();
+        PageWidget.insertComment(data);
+      }
+
+    });
+  },
+  insertComment: function(data){
+    $('#enter-block').after(commentTemplate(data));
+    this.hideAndFadeIn('.comment-block:eq(1)');
+  },
+  triggerDialog: function(){
+    FB.ui({
+      method: 'share',
+      href: document.URL
+    },function(response){});
+  },
+  hideAndFadeIn: function(elem){
+    $(elem).hide().fadeIn(600);
+  },
+  addLike: function($this){
+    $.ajax({
+      url:"/me/shows/"+ps.id+"/like",
+      type:"POST",
+      dataType:"JSON",
+      success:function(result) {
+        PageWidget.activeLikeIcon($this);
+        $('#like-btn .number').text(result);
+      }
+    });
+  },
+  cancelLike: function($this){
+    $.ajax({
+      url:"/me/shows/"+ps.id+"/like",
+      type:"DELETE",
+      dataType:"JSON",
+      success:function(result) {
+        PageWidget.unactiveLikeIcon($this);
+        $('#like-btn .number').text(result);
+      }
+    });
+  },
+  activeLikeIcon: function($this){
+    $this.addClass("active");
+  },
+  unactiveLikeIcon: function($this){
+    $this.removeClass("active");
+  }
+};
+
+$(document).on('page:change', function(){
+  if($(".shows.show").length <= 0 ){ return false; }
+
+  PageWidget.init();
+});
+
