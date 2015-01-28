@@ -5,7 +5,7 @@ class Me::CommentsController < ApplicationController
   	@comment.user_id = current_user.id
 		respond_to	do |format|
 			if @comment.save
-				format.json {render json: @comment, include:{ user:{ only: :name}} }
+				format.json {render json: @comment, serializer: CommentSerializer}
 			else
 				format.json {render json: @comment.errors}
 			end

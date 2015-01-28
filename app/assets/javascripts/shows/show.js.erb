@@ -82,7 +82,7 @@ PageWidget = {
     });
   },
   insertComment: function(data){
-    $('#enter-block').after(commentTemplate(data));
+    $('.CommentsBlock').append(commentTemplate(data.comment));
     this.hideAndFadeIn('.comment-block:eq(1)');
   },
   triggerDialog: function(){

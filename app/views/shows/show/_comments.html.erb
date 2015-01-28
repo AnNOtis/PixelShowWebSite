@@ -2,8 +2,8 @@
   <div class="CommentsBlock-number"><%= comments.size %> 人回應</div>
   <% if (signed_in?) %>
     <div id="enter-block" class="Comment">
-      <div class="Thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>
-      <div class="Comment-name lsf-icon" title="quote"><%= current_user.name %></div>
+      <!-- <div class="Thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div> -->
+      <div class="Comment-name lsf-icon" title="quote"><%= link_to(current_user.name, shows_user_path(current_user)) %></div>
 
       <textarea id="comment-field" class="comment-focus-group Comment-field" placeholder="say something . . ."></textarea>
       <div id="send-comment" class="comment-focus-group Comment-submit lsf-icon" title="ok">送出</div>
@@ -12,8 +12,9 @@
 
   <% comments.each do |comment| %>
     <div class="Comment">
-      <div class="Thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>
-      <div class="Comment-name lsf-icon" title="quote"><%= comment.user.name %></div>
+      <!-- <div class="Thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div> -->
+      <span class="Comment-name lsf-icon" title="quote"><%= link_to(comment.user.name, shows_user_path(comment.user)) %></span>
+      <span class="Comment-date"><%= comment.time_ago %>前</span>
       <div class="Comment-body"><%= comment.content %></div>
     </div>
   <% end %>

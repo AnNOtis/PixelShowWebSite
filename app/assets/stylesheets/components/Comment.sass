@@ -9,6 +9,7 @@
   position: relative
   border-top: 1px solid #ccc
   padding: 20px 60px
+  padding-left: 0
 
 // -------------------------------------
 //   Modifiers
@@ -44,8 +45,20 @@
     height: 100%
 
 .Comment-name
+  display: inline-block
+  margin-right: 5px
   font-weight: bold
   color: $endeavour
+  a
+    font-weight: bold
+    color: $endeavour
+    text-decoration: none
+
+.Comment-date
+  display: inline-block
+  font-size: $b-fontSize * 0.75
+  font-family: $b-fontFamily-heading
+  color: $c-text-gray
 
 .Comment-body
 
@@ -69,6 +82,7 @@
     border: 2px solid #AAA
     padding: 10px
     height: 70px
+    margin-bottom: 30px
   &.active + .Comment-submit
     opacity: 1
     line-height: 1.5
@@ -77,8 +91,9 @@
 
 .Comment-submit
   cursor: pointer
-  position: relative
-  left: 330px
+  position: absolute
+  right: 60px
+  bottom: 15px
   width: 100px
   font-size: 16px
   margin: 10px 0 0 0
