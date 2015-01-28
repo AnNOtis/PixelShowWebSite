@@ -125,14 +125,15 @@ EditorWidget = {
       data: {data:ShowWidget.convertImgToStr(canvas)}
     });
   },
-  getSVGToDataUrl: function(){
-    var svg = $('#canvas').parent().html();
+  getSVGToDataUrl: function(canvasSelector){
+    $('<canvas id="temp-canvas" style="display:none"></canvas>').appendTo('body');
+    var svg = $("<div />").append($(canvasSelector).clone()).html();
     canvg('temp-canvas', svg);
     var canvas = document.getElementById("temp-canvas");
-    return canvas.toDataURL();
+    return canvas.toDataURL("image/png");
   },
   setUrlToDownloadField: function(){
-    $("a#download-png").attr('href',this.getSVGToDataUrl());
+    $("a#download-png").attr('href',this.getSVGToDataUrl('#canvas'));
   },
   overwriteCanvas: function(data){
     var showData = ShowWidget.convertStrToCodeArr(data);

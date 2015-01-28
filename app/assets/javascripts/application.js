@@ -15,11 +15,13 @@
 //= require d3.v3
 //= require jquery_ujs
 //= require turbolinks
+//= require handlebars.runtime
+//= require_tree ./handlebars_templates
 //= require_tree .
 //= require spectrum
-//= require handlebars-v1.3.0
 //= require canvas2image
 //= require base64
+//= require base64binary
 //= require bootstrap
 //= require isotope.min
 //= require infinite-scroll

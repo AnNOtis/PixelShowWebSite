@@ -1,62 +1,45 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 gem 'bundler', '>= 1.7.0'
-# gem 'bcrypt-ruby'
+gem 'pg'
+gem 'bcrypt-ruby', '~> 3.1.2'
+gem "figaro"
+gem 'therubyracer'
+gem 'turbolinks'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem "d3_rails"
-# Use sqlite3 as the database for Active Record
+gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.1.1'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'jquery-rails'
+gem 'handlebars_assets'
 
-#permalink plugin
 gem 'friendly_id', '~> 5.0.1'
-
-
 gem 'simple_form'
-
-group :development do
-  # Use Capistrano for deployment
-  gem 'sqlite3'
-  gem 'binding_of_caller'
-  gem 'pry'
-  gem 'pry-debugger'
-end
+gem 'kaminari'
+gem 'jbuilder', '~> 1.2'
 
 gem 'capistrano'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
-gem 'pg'
+group :development do
+  gem 'sqlite3'
+  gem 'binding_of_caller'
+  gem 'pry'
+  gem 'pry-debugger'
+  gem 'xray-rails'
+end
 
 group :production do
   gem 'rails_12factor'
 end
-
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-gem 'bootstrap-sass', '~> 3.1.1'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -66,22 +49,6 @@ end
 group :test, :development do
   gem 'konacha'
 end
-
-# Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-gem "figaro"
-
-gem 'kaminari'
-
-gem 'therubyracer'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-infinite-scroll'

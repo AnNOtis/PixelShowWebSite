@@ -1,4 +1,5 @@
 <%= render partial: 'static_pages/hint_banner', locals: {new_show: @new_show} %>
+
 <div class="isotope-container">
 	<% @shows.each do |show| %>
 		<%= link_to show_path(show), class: 'Card' do %>
@@ -14,37 +15,7 @@
 		<% end %>
 	<% end %>
 </div>
+
 <div style="opacity: 0;">
 	<%= paginate @shows %>
 </div>
-<style type="text/css">
-
-</style>
-<!-- <span id="loading" class="club club--center" style=""></span> -->
-
-
-<script type="text/javascript">
-	$('body').infinitescroll({
-    navSelector  : "nav.pagination",
-    nextSelector : "nav.pagination .next a",
-    itemSelector : ".Card",
-    contentSelector: ".isotope-container",
-    bufferPx: 0,
-    loading: {
-    	img:'/images/pix-loading.gif',
-    	msgText: "載入中...",
-    	finishedMsg: '已經到底了！',
-    	speed: 'slow'
-		}
-  }, function(newElems){
-  	var $newElems = $( newElems ).css({ opacity: 0 });
-  	$('.js-show').each(function() {
-	    var showID     = $(this).attr('data-id');
-	    var originData = $(this).attr('data-matrix');
-	    var showData   = ShowWidget.convertStrToCodeArr(originData);
-	    ShowWidget.generateShow('#'+showID, 10, showData);
-	  });
-	  $('.isotope-container').isotope( 'appended', $newElems, true );
-	  $newElems.animate({ opacity: 1 });
-  });
-</script>
