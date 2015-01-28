@@ -1,0 +1,100 @@
+// *************************************
+//
+//   Comment
+//   -> comment.
+//
+// *************************************
+
+.Comment
+  position: relative
+  border-top: 1px solid #ccc
+  padding: 20px 60px
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+// -------------------------------------
+//   Context
+// -------------------------------------
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+.Thumbnail
+  position: absolute
+  left: 10px
+  display: block
+  width: 40px
+  height: 40px
+  padding: 4px
+  margin-bottom: 20px
+  line-height: 1.42857
+  background-color: #FFF
+  border: 1px solid #DDD
+  border-radius: 4px
+  overflow: hidden
+  > img
+    width: 100%
+    height: 100%
+
+.Comment-name
+  font-weight: bold
+  color: $endeavour
+
+.Comment-body
+
+.Comment-field
+  border-radius: 5px
+  height: 30px
+  min-height: 20px
+  max-height: 200px
+  width: 100%
+  resize: none
+  outline: none
+  border: 2px solid #EEE
+  padding-left: 10px
+  padding-top: 3px
+  -webkit-transition: all 0.3s
+  -moz-transition: all 0.3s
+  -ms-transition: all 0.3s
+  -o-transition: all 0.3s
+  transition: all 0.3s
+  &.active
+    border: 2px solid #AAA
+    padding: 10px
+    height: 70px
+  &.active + .Comment-submit
+    opacity: 1
+    line-height: 1.5
+  &:focus
+    border: 2px solid #AAA
+
+.Comment-submit
+  cursor: pointer
+  position: relative
+  left: 330px
+  width: 100px
+  font-size: 16px
+  margin: 10px 0 0 0
+  border-radius: 5px
+  background-color: rgba(0, 0, 0, 0.1)
+  color: rgba(0, 0, 0, 0.3)
+  line-height: 0
+  padding-left: 3%
+  padding-right: 20px
+  -webkit-transition: all 0.3s ease
+  -moz-transition: all 0.3s ease
+  -ms-transition: all 0.3s ease
+  -o-transition: all 0.3s ease
+  transition: all 0.3s ease
+  opacity: 0
+  &:hover
+    padding-left: 5%
+    background-color: #367294
+    color: #aeff32

@@ -1,22 +1,20 @@
-<div class="comment-container">
-  <div class="comment-number"><%= comments.size %> 人回應</div>
-  <div class="comment-list">
-    <% if (signed_in?) %>
-      <div id="enter-block" class="comment-block">
-        <div class="thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>
-        <div class="name lsf-icon" title="quote"><%= current_user.name %></div>
+<div class="CommentsBlock">
+  <div class="CommentsBlock-number"><%= comments.size %> 人回應</div>
+  <% if (signed_in?) %>
+    <div id="enter-block" class="Comment">
+      <div class="Thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>
+      <div class="Comment-name lsf-icon" title="quote"><%= current_user.name %></div>
 
-        <textarea id="comment-field" type="textarea" class="comment-focus-group comment-field" placeholder="say something . . ."></textarea>
-        <div id="send-comment" class="comment-focus-group lsf-icon finished-btn" title="ok">送出</div>
-      </div>
-    <% end %>
+      <textarea id="comment-field" class="comment-focus-group Comment-field" placeholder="say something . . ."></textarea>
+      <div id="send-comment" class="comment-focus-group Comment-submit lsf-icon" title="ok">送出</div>
+    </div>
+  <% end %>
 
-    <% comments.each do |comment| %>
-      <div class="comment-block">
-        <div class="thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>
-        <div class="name lsf-icon" title="quote"><%= comment.user.name %></div>
-        <div class="comment"><%= comment.content %></div>
-      </div>
-    <% end %>
-  </div>
+  <% comments.each do |comment| %>
+    <div class="Comment">
+      <div class="Thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div>
+      <div class="Comment-name lsf-icon" title="quote"><%= comment.user.name %></div>
+      <div class="Comment-body"><%= comment.content %></div>
+    </div>
+  <% end %>
 </div>
