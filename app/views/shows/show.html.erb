@@ -7,4 +7,6 @@
   <div class="detail-wrapper">
     <%= render partial: 'shows/show/comments', locals: { comments: @comments } %>
   </div>
+
+  <%= render partial: 'shared/fb_shared_modal', locals: { show: @show} %>
 </div>

@@ -45,8 +45,18 @@ PageWidget = {
     });
 
     $("#share-btn").click(function(){
-      that.triggerDialog();
+      var imageDataUrl = EditorWidget.getSVGToDataUrl('#canvas');
+      $('#fb-share-image').attr('src', EditorWidget.getSVGToDataUrl('#canvas'));
     });
+
+    $("#post-image-to-fB").click(function(){
+      var $modal = $('#fb-share-modal'),
+          imageDataUrl = EditorWidget.getSVGToDataUrl('#canvas'),
+          fileName = $modal.attr('data-name'),
+          message = $modal.find('textarea').val();
+      postDataUrlImageToFacebook(imageDataUrl, fileName, message);
+    });
+
   },
   unactiveCommentField: function() {
     $("#comment-field").removeClass("active");

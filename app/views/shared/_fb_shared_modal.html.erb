@@ -1,0 +1,22 @@
+<form class="modal fade" id="fb-share-modal" data-name="<%= show.name %>" tabindex="-1" role="dialog" aria-labelledby="FbShareModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">送出facebook訊息</h4>
+      </div>
+      <div class="modal-body media">
+        <div class="media-left pull-left">
+          <img class="media-object" id="fb-share-image" src="" width="100" height="100">
+        </div>
+        <div class="media-body">
+          <textarea style="width:100%; height: 100px;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button id="post-image-to-fB" type="button" class="btn btn-primary">送出</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</form><!-- /.modal -->
