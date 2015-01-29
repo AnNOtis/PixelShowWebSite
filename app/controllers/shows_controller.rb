@@ -2,10 +2,10 @@ class ShowsController < ApplicationController
 	TIMEFRAME = ['day','week','month']
 	def index
 		if params[:timeframe].in?(TIMEFRAME)
-			@shows = popular_show(params[:timeframe])
+			@shows = Show.all.between(DateTime.now, 1.send(params[:timeframe]).ago)
 			@timeframe = params[:timeframe]
 		else
-			@shows = Show.all.shuffle
+			@shows = Show.all
 			@timeframe = 'all'
 		end
 
@@ -21,13 +21,4 @@ class ShowsController < ApplicationController
 		@show.save
 	end
 
-	private
-		def popular_show(timeframe)
-			time = DateTime.now - 1.send(timeframe)
-			Show.find_all_by_id(
-				Like.popular(time).map do |like|
-					like.show_id
-				end
-			)
-		end
 end

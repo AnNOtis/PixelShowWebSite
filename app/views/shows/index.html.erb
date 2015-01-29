@@ -23,12 +23,14 @@
   <% @shows.in_groups_of(4) do |group| %>
   <div class="row">
     <% group.compact.each do |show| %>
-      <div class="ex-show-card"  link-to="<%= show_path(show) %>">
-        <svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>">
-        </svg>
-        <div class="info"><div class="title"><%= show.name %></div></div>
-        <div class="name"><span class="muted">by</span> <%= show.user.name %></div>
-      </div>
+      <%= link_to show_path(show) do %>
+        <div class="ex-show-card">
+          <svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>">
+          </svg>
+          <div class="info"><div class="title"><%= show.name %></div></div>
+          <div class="name"><span class="muted">by</span> <%= link_to show.user.name, shows_user_path(show.user) %></div>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <% end %>
