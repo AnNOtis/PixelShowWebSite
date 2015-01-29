@@ -25,6 +25,8 @@
 //= require bootstrap
 //= require isotope.min
 //= require infinite-scroll
+//= require toastr
+//= require toastr_settings
 
 
 $(document).on('page:change',function(){

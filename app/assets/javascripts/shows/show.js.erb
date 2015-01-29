@@ -55,6 +55,7 @@ PageWidget = {
           fileName = $modal.attr('data-name'),
           message = $modal.find('textarea').val();
       postDataUrlImageToFacebook(imageDataUrl, fileName, message);
+      $modal.modal('hide');
     });
 
   },

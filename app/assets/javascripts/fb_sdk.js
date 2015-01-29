@@ -49,6 +49,15 @@ function postImageToFacebook( authToken, filename, mimeType, imageData, message 
   };
   xhr.setRequestHeader( "Content-Type", "multipart/form-data; boundary=" + boundary );
   xhr.sendAsBinary( formData );
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status == 200 && xhr.status < 300){
+        toastr["success"]("訊息已送出")
+      }else{
+        toastr["error"]("訊息送出失敗")
+      }
+    }
+  }
 };
 
 function postDataUrlImageToFacebook(dataUrl, filename, message) {

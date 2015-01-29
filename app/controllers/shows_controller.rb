@@ -8,7 +8,6 @@ class ShowsController < ApplicationController
 			@shows = Show.all
 			@timeframe = 'all'
 		end
-
 	end
 
 	def show
