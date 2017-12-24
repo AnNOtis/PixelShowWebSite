@@ -40,7 +40,7 @@
     });
   };
 
-  $(document).on('page:change',function(){
+  $(document).on('turbolinks:load',function(){
     if($(".static_pages.home").length == 0){ return; }
 
     generateShow();

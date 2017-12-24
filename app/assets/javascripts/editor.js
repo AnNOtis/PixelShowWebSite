@@ -1,5 +1,6 @@
 var es;
 var EditorWidget;
+
 EditorWidget = {
   settings:{
     //畫筆的模式

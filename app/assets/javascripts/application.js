@@ -29,7 +29,7 @@
 //= require toastr_settings
 
 
-$(document).on('page:change',function(){
+$(document).on('turbolinks:load',function(){
   $("[link-to]").on("click",function() {window.location=""+$(this).attr("link-to")+"";});
 });
 

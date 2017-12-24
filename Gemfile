@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.3'
+gem 'rails', '4.0.6'
 gem 'bundler', '>= 1.7.0'
 gem 'pg'
 gem 'bcrypt-ruby', '~> 3.1.2'
@@ -34,7 +34,7 @@ group :development do
   gem 'sqlite3'
   gem 'binding_of_caller'
   gem 'pry'
-  gem 'pry-debugger'
+  gem 'pry-byebug'
   gem 'xray-rails'
 end
 
