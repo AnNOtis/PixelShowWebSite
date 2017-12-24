@@ -50,7 +50,3 @@ end
 group :test, :development do
   gem 'konacha'
 end
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-infinite-scroll'
-end
