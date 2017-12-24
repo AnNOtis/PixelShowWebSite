@@ -24,7 +24,7 @@
 //= require base64binary
 //= require bootstrap
 //= require isotope.min
-//= require infinite-scroll
+//= require jquery.infinitescroll
 //= require toastr
 //= require toastr_settings
 
