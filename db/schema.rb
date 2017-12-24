@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150122151042) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "authorizations", force: true do |t|
     t.string   "provider"
     t.integer  "user_id"
@@ -37,24 +40,24 @@ ActiveRecord::Schema.define(version: 20150122151042) do
     t.datetime "updated_at"
   end
 
-  add_index "likes", ["created_at"], name: "index_likes_on_created_at"
+  add_index "likes", ["created_at"], name: "index_likes_on_created_at", using: :btree
 
   create_table "shows", force: true do |t|
     t.string   "name"
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",        limit: 255
-    t.integer  "person_number",              default: 0
+    t.integer  "user_id"
+    t.integer  "person_number",  default: 0
     t.string   "slug"
-    t.integer  "likes_count",                default: 0
-    t.integer  "comments_count",             default: 0
+    t.integer  "likes_count",    default: 0
+    t.integer  "comments_count", default: 0
     t.integer  "fork_id"
     t.integer  "forks_count"
   end
 
-  add_index "shows", ["fork_id"], name: "index_shows_on_fork_id"
-  add_index "shows", ["slug"], name: "index_shows_on_slug", unique: true
+  add_index "shows", ["fork_id"], name: "index_shows_on_fork_id", using: :btree
+  add_index "shows", ["slug"], name: "index_shows_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -66,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150122151042) do
     t.boolean  "is_auth"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
 end

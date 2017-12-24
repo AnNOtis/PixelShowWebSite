@@ -84,7 +84,7 @@
 	var size = 10;
 	var dataset;
 	var dataArr;
-	$(document).on('page:change',function(){
+	$(document).on('turbolinks:load',function(){
 		if($('.shows.edit').length <= 0){
 			return false;
 		}

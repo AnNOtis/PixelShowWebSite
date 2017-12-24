@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-PixelShowWeb::Application.config.secret_key_base = ENV["secret"]
+PixelShowWeb::Application.config.secret_key_base = '5929c4853db3dbb93b9c789f43f2630e33694814bdf1257f84978c4acb991a731f7d2073f33bf390665ed3573af3c802e31f21cfe304d3ffd1bbdf79b9ade341'
