@@ -8,7 +8,6 @@ GIT
 
 GEM
   remote: https://rubygems.org/
-  remote: https://rails-assets.org/
   specs:
     actionmailer (4.0.6)
       actionpack (= 4.0.6)
@@ -168,13 +167,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.6)
       sprockets-rails (~> 2.0)
-    rails-assets-desandro-matches-selector (2.0.2)
-    rails-assets-ev-emitter (1.1.1)
-    rails-assets-fizzy-ui-utils (2.0.5)
-      rails-assets-desandro-matches-selector (>= 2.0.0, < 3)
-    rails-assets-infinite-scroll (3.0.2)
-      rails-assets-ev-emitter (>= 1.1.0, < 2)
-      rails-assets-fizzy-ui-utils (>= 2.0.5, < 3)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -261,7 +253,6 @@ DEPENDENCIES
   pry
   pry-byebug
   rails (= 4.0.6)
-  rails-assets-infinite-scroll!
   rails_12factor
   sass-rails (~> 4.0.0)
   sdoc
