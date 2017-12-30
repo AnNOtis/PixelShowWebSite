@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  logout: "Log out"
+  sign_in: "Sign in"
+  nav:
+    explore:: "Explore"
+    my_show: "My Show"

@@ -6,25 +6,25 @@
 		<nav>
 			<ul>
 				<%= link_to shows_path do %>
-					<li>找找看</li>
+					<li><%= t('nav.explore') %></li>
 				<% end %>
 				<%= link_to me_shows_path do %>
-					<li>我的作品</li>
+					<li><%= t('nav.my_show') %></li>
 				<% end %>
 				<li class="account-field">
 					<% if signed_in?%>
 						<%= current_user[:name]%>
 						<ul class="user-nav">
 							<%= link_to me_shows_path do %>
-								<li>我的作品</li>
+								<li><%= t('nav.my_show') %></li>
 							<% end %>
 							<%= link_to signout_path do %>
-								<li>登出</li>
+								<li><%= t('logout') %></li>
 							<% end %>
 						</ul>
 					<% else %>
 						<%= link_to login_path do %>
-							<div>登入</div>
+							<div><%= t('sign_in') %></div>
 						<% end %>
 					<% end %>
 				</li>
@@ -33,4 +33,3 @@
 	</div>
 
 </header>
-
