@@ -15,6 +15,8 @@ class Show < ActiveRecord::Base
 	default_scope { order("created_at DESC") } #按照創建時間排序
 	before_save :init_data
 
+  paginates_per 20
+
 	def normalize_friendly_id(input)
     #strip the string
     str = input.strip
