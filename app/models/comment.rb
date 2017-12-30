@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :show, :counter_cache => true
 	validates :content, presence: true
-  default_scope order('created_at ASC')
+  default_scope order('created_at DESC')
 
   def formatted_created_time
     created_at.strftime("%Y/%m/%d %H:%M")

@@ -9,13 +9,14 @@
       <div id="send-comment" class="comment-focus-group Comment-submit lsf-icon" title="ok"><%= t('send') %></div>
     </div>
   <% end %>
-
-  <% comments.each do |comment| %>
+  <div class="CommentsBlock-list">
+    <% comments.each do |comment| %>
     <div class="Comment">
       <!-- <div class="Thumbnail"><img src="http://1.bp.blogspot.com/-k5XaBDOKiMY/UdjlSeFESbI/AAAAAAAABnQ/4gVl6okwqSM/s1600/Avatar.jpg" alt=""></div> -->
       <span class="Comment-name lsf-icon" title="quote"><%= link_to(comment.user.name, shows_user_path(comment.user)) %></span>
       <span class="Comment-date"><%= comment.time_ago %> <%= t('comment.ago') %></span>
       <div class="Comment-body"><%= comment.content %></div>
     </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

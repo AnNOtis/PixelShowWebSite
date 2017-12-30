@@ -7,7 +7,6 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem "figaro"
 gem 'therubyracer'
 gem 'turbolinks'
-gem 'active_model_serializers'
 
 gem 'omniauth'
 gem 'omniauth-facebook'

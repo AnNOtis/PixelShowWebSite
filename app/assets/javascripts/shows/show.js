@@ -83,7 +83,10 @@ PageWidget = {
     });
   },
   insertComment: function(data){
-    $('.CommentsBlock').append(commentTemplate(data.comment));
+    var $comment = $(commentTemplate(data.comment))
+    $comment.hide()
+    $('.CommentsBlock-list').prepend($comment);
+    $comment.fadeIn()
     this.hideAndFadeIn('.comment-block:eq(1)');
   },
   triggerDialog: function(){
@@ -130,4 +133,3 @@ $(document).on('turbolinks:load', function(){
 
   PageWidget.init();
 });
-
