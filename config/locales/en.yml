@@ -39,10 +39,15 @@ en:
     password_confirmation: "Confirm password"
   my_show:
     naming: "Naming it..."
-    done: "Done"
+    publish: "Publish"
+    unpublish: "Unpublish"
+    save: "Save"
     create: "Create"
     create_your_pixelshow: "Create your pixelshow"
     edit: "Edit"
+    delete_hint: "Are you sure to delete"
+    publish_hint: "Are you sure to publish"
+    unpublish_hint: "Are you sure to unpublish"
   facebook_share_form:
     title: "Share to Facebook"
     write_message: "What's on your mind?"

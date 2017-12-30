@@ -7,6 +7,7 @@ PixelShowWeb::Application.routes.draw do
         resource :comment, only: :create
         resource :like, only: [:create, :destroy ]
         resource :fork, only: [:create]
+        get :publish, only: [:create]
       end
     end
   end

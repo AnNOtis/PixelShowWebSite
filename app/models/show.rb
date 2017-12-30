@@ -12,6 +12,7 @@ class Show < ActiveRecord::Base
 	validates :slug, presence: true
 
   scope :between, ->(start, endtime) { where(updated_at: endtime..start) }
+  scope :is_public, ->() { where(is_public: true) }
 	default_scope { order("created_at DESC") } #按照創建時間排序
 	before_save :init_data
 
