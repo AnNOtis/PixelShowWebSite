@@ -6,4 +6,11 @@ module ShowsHelper
       raw "forked from #{show_link}"
     end
   end
+  def comments_count size
+    unless size <= 1
+      "#{size} #{t('comment.responses')}"
+    else
+      "#{size} #{t('comment.responses').singularize }"
+    end
+  end
 end

@@ -1,20 +1,20 @@
 
 <!-- <h1>Sign up</h1> -->
 <%= form_for @user, :html=>{:class=>'signup-form'} do |f| %>
-  <div class="title">註冊</div>
-  <%= f.label :name ,'姓名' %>
+  <div class="title"><%= t('sign_up') %></div>
+  <%= f.label :name, t('login_signup_form.name') %>
   <%= f.text_field :name, :placeholder=>''%>
   <%= f.label :email %>
   <%= f.text_field :email %>
-  <%= f.label :password , "密碼"%>
+  <%= f.label :password, t('login_signup_form.password') %>
   <%= f.password_field :password %>
-  <%= f.label :password_confirmation, '密碼確認' %>
+  <%= f.label :password_confirmation, t('login_signup_form.password_confirmation') %>
   <%= f.password_field :password_confirmation%>
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.submit %>
 <% end %>
 <div class="auth-form">
   <%= link_to '/auth/facebook',class:'each-auth' do%>
-    <span class="lsf-icon facebook" title="facebook">facebook登入</span>
+    <span class="lsf-icon facebook" title="facebook"><%= t('facebook_login') %></span>
   <% end %>
 </div>
