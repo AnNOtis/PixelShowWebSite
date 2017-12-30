@@ -13,7 +13,6 @@ ShowWidget = {
       rowG = this.generateG(d3Canvas,size);
     }
     this.generateRect(rowG,d3Canvas,size);
-    this.generateAxis(canvas);
   },
   generateG: function(d3Canvas,size,showData){
     var canvasLength = d3Canvas.attr("width");
