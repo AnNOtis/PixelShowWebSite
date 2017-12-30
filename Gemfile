@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'handlebars_assets'
+gem 'slim'
 
 gem 'friendly_id', '~> 5.0.1'
 gem 'simple_form'

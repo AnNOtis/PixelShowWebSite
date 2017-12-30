@@ -1,11 +1,4 @@
 <div class="view-container">
-  <div class="view-operation">
-    <ul class="clear-fix">
-      <% if current_user.try(:has_show?, show) %>
-        <li><%= link_to t('my_show.edit'), edit_me_show_path(show) %></li>
-      <% end %>
-    </ul>
-  </div>
   <svg id="canvas" class="canvas"
        width="350" height="350"
        data-id="<%= show.id %>"

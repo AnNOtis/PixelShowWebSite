@@ -2,10 +2,10 @@ class ShowsController < ApplicationController
 	TIMEFRAME = ['day','week','month']
 	def index
 		if params[:timeframe].in?(TIMEFRAME)
-			@shows = Show.all.between(DateTime.now, 1.send(params[:timeframe]).ago)
+			@shows = Show.all.is_public.between(DateTime.now, 1.send(params[:timeframe]).ago)
 			@timeframe = params[:timeframe]
 		else
-			@shows = Show.all
+			@shows = Show.all.is_public
 			@timeframe = 'all'
 		end
 	end
