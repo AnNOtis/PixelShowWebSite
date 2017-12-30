@@ -21,8 +21,34 @@
 
 en:
   hello: "Hello world"
-  logout: "Log out"
-  sign_in: "Sign in"
+  log_out: "Log Out"
+  log_in: "Log In"
+  sign_up: "Sign Up"
+  facebook_login: "Login with facebook"
+  update_account: "Update Account"
   nav:
-    explore:: "Explore"
+    explore: "Explore"
     my_show: "My Show"
+    all: "All"
+    today: "Today"
+    this_week: "This Week"
+    this_month: "This Month"
+  login_signup_form:
+    name: "Name"
+    password: "Password"
+    password_confirmation: "Confirm password"
+  my_show:
+    naming: "Naming it..."
+    done: "Done"
+    create: "Create"
+    create_your_pixelshow: "Create your pixelshow"
+    edit: "Edit"
+  facebook_share_form:
+    title: "Share to Facebook"
+    write_message: "What's on your mind?"
+  comment:
+    ago: "ago"
+    responses: "Responses"
+  send: "Send"
+  cancel: "Cancel"
+  joined: "joined"

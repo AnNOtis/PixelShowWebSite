@@ -1,12 +1,12 @@
 <% unless (signed_in?) %>
   <div class="hint-field">
-    <a class="btn small-btn-blue reflect" href="/signup">註冊</a>
+    <a class="btn small-btn-blue reflect" href="/signup"><%= t('sign_up') %></a>
     <span> or </span>
-    <a class="btn small-btn-highlight reflect" href="/login">登入</a>
+    <a class="btn small-btn-highlight reflect" href="/login"><%= t('log_in') %></a>
   </div>
 <% else %>
   <div class="hint-field">
-    <a class="btn small-btn-highlight reflect" data-toggle="modal" data-target="#newShow">新增你的pixelshow</a>
+    <a class="btn small-btn-highlight reflect" data-toggle="modal" data-target="#newShow"><%= t('my_show.create_your_pixelshow') %></a>
   </div>
   <div class="modal fade" id="newShow">
     <div class="modal-dialog">
@@ -15,7 +15,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title">新增 Pixel Show</h4>
+          <h4 class="modal-title"><%= t('my_show.create') %> Pixel Show</h4>
         </div>
         <%=form_for new_show, url: me_shows_path(new_show), method: :post do |f|%>
           <div class="modal-body">
@@ -25,7 +25,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= f.submit "新增", class: "btn btn-primary" %>
+            <%= f.submit t("my_show.create"), class: "btn btn-primary" %>
           </div>
         <% end %>
       </div><!-- /.modal-content -->

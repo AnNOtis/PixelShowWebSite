@@ -18,13 +18,13 @@
 			<% end %>
 			<%= form_for @show, url: me_show_path(@show), method: :put do |f|%>
 				<%= f.hidden_field :id %>
-				<%= f.text_field :name, autocomplete:"off",placeholder:"取個名字吧..." %>
+				<%= f.text_field :name, autocomplete:"off",placeholder: t('my_show.naming') %>
 				<%= f.hidden_field :data %>
 				<%= f.hidden_field :behavior,{value:"finish_edit"}%>
 			<% end %>
 			<div class="bottom">
 				<a href="#" id="download-png" download='<%= @show.name %>.png' style="font-size: 16px;">Download</a>
-				<div id="save-btn" class="lsf-icon finished-btn" title="ok">完成</div>
+				<div id="save-btn" class="lsf-icon finished-btn" title="ok"> <%= t('my_show.done') %></div>
 			</div>
 		</div>
 

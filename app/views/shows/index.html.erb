@@ -3,19 +3,19 @@
     <ul class="duration-filter clear-fix">
       <li>
         <input type="radio" id="all" name="duration" value="" <% if @timeframe=='all' %>checked<% end %>>
-        <label for="all">全部</label>
+        <label for="all"><%= t('nav.all') %></label>
       </li>
       <li>
         <input type="radio" id="daily" name="duration" value="day" <% if params[:timeframe]=='day' %>checked<% end %>>
-        <label for="daily">今天</label>
+        <label for="daily"><%= t('nav.today') %></label>
       </li>
       <li>
         <input type="radio" id="weekly" name="duration" value="week"<% if params[:timeframe]=='week' %>checked<% end %>>
-        <label for="weekly">本週</label>
+        <label for="weekly"><%= t('nav.this_week') %></label>
       </li>
       <li>
         <input type="radio" id="monthly" name="duration" value="month"<% if params[:timeframe]=='month'%>checked<% end %>>
-        <label for="monthly">本月</label>
+        <label for="monthly"><%= t('nav.this_month') %></label>
       </li>
     </ul>
   </div>

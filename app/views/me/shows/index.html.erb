@@ -13,7 +13,7 @@
 		<span class="Score Score--medium Score--rank pull-right" title="shows"><%= @shows.size %></span>
 		<h2 class="PageHead-title"><%= @user.name %></h2>
 		<span class="PageHead-detail label">
-			<%= @user.created_at.strftime("%B %d, %Y") %> 加入
+			<%= "#{@user.created_at.strftime("%B %d, %Y")} #{t('joined')}" %>
 		</span>
 		<% if owner?(@user) %>
 			<span class="label label-danger">me</span>

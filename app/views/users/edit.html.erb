@@ -2,7 +2,7 @@
   <%= form_for @user, html: {class: "form-horizontal"} do |f|%>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-6">
-        <h1>個人資料修改</h1>
+        <h1><%= t('update_account') %></h1>
       </div>
     </div> 
     <div class="form-group">
@@ -12,23 +12,23 @@
       </div>
     </div>
     <div class="form-group">
-      <%= f.label :name, '暱稱: ', class: "col-sm-2 control-label" %>
+      <%= f.label :name, t('login_signup_form.name'), class: "col-sm-2 control-label" %>
       <div class="col-sm-4">
         <%= f.text_field :name, class: "col-sm-2 form-control" %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :password, '密碼', class: "col-sm-2 control-label" %>
+      <%= f.label :password, t('login_signup_form.password'), class: "col-sm-2 control-label" %>
       <div class="col-sm-4">
-        <%= f.password_field :password, class: "col-sm-2 form-control", placeholder: "輸入密碼" %>
+        <%= f.password_field :password, class: "col-sm-2 form-control", placeholder: t('login_signup_form.password') %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :password_confirmation, '確認密碼', class: "col-sm-2 control-label" %>
+      <%= f.label :password_confirmation, t('login_signup_form.password_confirmation'), class: "col-sm-2 control-label" %>
       <div class="col-sm-4">
-        <%= f.password_field :password_confirmation, class: "col-sm-2 form-control", placeholder: "再次輸入密碼" %>
+        <%= f.password_field :password_confirmation, class: "col-sm-2 form-control", placeholder: t('login_signup_form.password_confirmation') %>
       </div>
     </div>
   
