@@ -12,7 +12,8 @@ ShowWidget = {
     }else{
       rowG = this.generateG(d3Canvas,size);
     }
-    this.generateRect(rowG,d3Canvas,size)
+    this.generateRect(rowG,d3Canvas,size);
+    this.generateAxis(canvas);
   },
   generateG: function(d3Canvas,size,showData){
     var canvasLength = d3Canvas.attr("width");
@@ -123,7 +124,6 @@ ShowWidget = {
     var preColor = this.color(x, y);
     this.calFillBlock(x,y,preColor,fillColor);
     this.generateShow(canvas,10,dataArr);
-    this.generateAxis(canvas);
   },
   outsideOfCanvas: function(x, y, size){
     return x < 0 || y < 0 || x >= size || y >= size;

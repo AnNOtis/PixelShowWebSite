@@ -1,4 +1,15 @@
 <div class="container">
+  <div class="edit-tool">
+		<div class="tool-group">
+			<button id="undoBtn" class="tool-btn undo lsf-icon" title="reply"></button>
+			<button id="redoBtn" class="tool-btn redo lsf-icon" title="forward"></button>
+		</div>
+		<div class="paint-mode-group">
+			<button class="js-mode-btn tool-btn lsf-icon active" title="brush" data-mode=1></button>
+			<button class="js-mode-btn tool-btn lsf-icon" title="paint" data-mode=3></button>
+		</div>
+    <div type="color" class="color-picker" id="color-picker"></div>
+	</div>
 	<div class="editor-wrapper">
 		<div class="canvas-container"><svg id="canvas" class="canvas" width="400" height="400"></svg></div>
 		<div class="info-field">
@@ -18,18 +29,6 @@
 		</div>
 
 	</div>
-	<div class="edit-tool">
-		<div class="tool-group">
-			<button id="undoBtn" class="tool-btn undo lsf-icon" title="reply"></button>
-			<button id="redoBtn" class="tool-btn redo lsf-icon" title="forward"></button>
-		</div>
-		<div type="color" class="color-picker" id="color-picker"></div>
-		<div class="paint-mode-group">
-			<button class="js-mode-btn tool-btn lsf-icon active" title="brush" data-mode=1></button>
-			<button class="js-mode-btn tool-btn lsf-icon" title="paint" data-mode=3></button>
-		</div>
-
-	</div>
 </div>
 <canvas id="temp-canvas" style="display:none"></canvas>
 <script>
@@ -39,10 +38,11 @@
 
 	ColorPickerWidget = {
 		settings:{
-
+      $modeBtns: $('.js-mode-btn'),
 			initialColor:'#02508d',
 		},
 		init: function(){
+      this.s = this.settings;
 			cs = ColorPickerWidget.settings;
 			es.currentColor = cs.initialColor;
 			ColorPickerWidget.bindUIActions();
@@ -52,29 +52,36 @@
 
 		},
 		initColorPicker: function(){
+      var self = this
 			$('#color-picker').css('background-color',cs.initialColor);
 			$("#color-picker").spectrum({
 				className: 'color-picker',
-			    color: cs.initialColor,
-			    preferredFormat: "hex",
-			    showInput: true,
-			    showPalette: true,
-			    clickoutFiresChange: true,
-			    showInitial: true,
-			    showButtons: false,
-			    beforeShow: function(color) {
-				},
-			    change: function(color) {
-			    	// console.log("change!!");
-			    	es.currentColor = color;
-			    	$('#color-picker').css('background-color',color);
+		    color: cs.initialColor,
+		    preferredFormat: "hex",
+		    showInput: true,
+		    showPalette: true,
+		    clickoutFiresChange: true,
+		    showInitial: true,
+		    showButtons: false,
+        show: function (){
+          $('#color-picker').addClass('active')
+        },
+		    hide: function (){
+          $('#color-picker').removeClass('active')
+        },
+			  change: function(color) {
+          self.changeColor(color)
 				},
 				move: function(color) {
-						es.currentColor = color;
-			    	$('#color-picker').css('background-color',color);
+          self.changeColor(color)
 				}
 			});
-		}
+		},
+    changeColor: function (color) {
+      es.currentColor = color;
+      $('#color-picker').css('background-color', color);
+      cs.$modeBtns.css('text-shadow', '1px 3px 0px' + color);
+    }
 	}
 
 </script>
