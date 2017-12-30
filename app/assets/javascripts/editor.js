@@ -139,6 +139,7 @@ EditorWidget = {
   overwriteCanvas: function(data){
     var showData = ShowWidget.convertStrToCodeArr(data);
     ShowWidget.generateShow( es.canvasID , 10, showData);
+    ShowWidget.generateAxis(es.canvasID);
     this.sendDataToServer(this.currentCanvas())
   }
 }
