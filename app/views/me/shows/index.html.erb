@@ -27,7 +27,14 @@
 			<div class="s-show-card to-table-cell">
 				<svg id="<%="show-#{show.id}"%>" class="js-shows" width="160" height="160" js-id="<%="show-#{show.id}"%>" js-data="<%=show.data%>" link-to="<%= show_path(show) %>">
 				</svg>
-				<div class="muted info"><%= show.updated_at.strftime("%b %d, %Y") %></div>
+				<div class="muted info">
+          <% if show.is_public %>
+            <span class="label label-public float-left">public</span>
+          <% else %>
+            <span class="label label-draft float-left">draft</span>
+          <% end %>
+          <span><%= show.updated_at.strftime("%b %d, %Y") %></span>
+        </div>
 				<div class="info"><%= show.name %></div>
 				<div class="social-info">
 					<span class="viewer"><fi class="lsf-icon" title="view"></fi><span class="number"><%= show.person_number %></span></span>

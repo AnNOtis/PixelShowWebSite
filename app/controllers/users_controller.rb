@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       redirect_to me_shows_path
       return
     end
-    @shows = @user.shows.all
+    @shows = @user.shows.is_public
 
     render 'me/shows/index'
   end
