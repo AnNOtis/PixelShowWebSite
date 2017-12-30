@@ -118,11 +118,6 @@ header {
         width: 0;
         border-top: 10px solid $primary-yellow;
         opacity: 0;
-        -webkit-transition: opacity 0.3s;
-        -moz-transition: opacity 0.3s;
-        -ms-transition: opacity 0.3s;
-        -o-transition: opacity 0.3s;
-        transition: opacity 0.3s;
       }
 
       & > a:before,
@@ -137,11 +132,6 @@ header {
         width: 0;
         border-top: 12px solid #555;
         opacity: 0;
-        -webkit-transition: opacity 0.2s;
-        -moz-transition: opacity 0.2s;
-        -ms-transition: opacity 0.2s;
-        -o-transition: opacity 0.2s;
-        transition: opacity 0.2s;
         display: none;
       }
 
