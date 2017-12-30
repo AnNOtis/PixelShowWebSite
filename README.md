@@ -9,7 +9,10 @@
 
 ## Screenshot
 
+#### 1.
 ![PIXELSHOW](https://github.com/AnNOtis/PixelShowWebSite/blob/master/misc/screenshot.png "PIXELSHOW2")
+
+#### 2.
 ![PIXELSHOW](https://github.com/AnNOtis/PixelShowWebSite/blob/master/misc/screenshot2.png "PIXELSHOW2")
 
 ## Contributing
