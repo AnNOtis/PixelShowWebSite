@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122151042) do
+ActiveRecord::Schema.define(version: 20171230020801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150122151042) do
     t.integer  "comments_count", default: 0
     t.integer  "fork_id"
     t.integer  "forks_count"
+    t.boolean  "is_public",      default: false
   end
 
   add_index "shows", ["fork_id"], name: "index_shows_on_fork_id", using: :btree
