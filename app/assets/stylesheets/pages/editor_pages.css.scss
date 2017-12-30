@@ -6,11 +6,9 @@
 }
 .editor-wrapper{
 	position:relative;
-	display:inline-block;
-	width: 800px;
+	max-width: 800px;
 	min-height: 300px;
 	margin: 30px auto;
-	margin-left: 100px;
 
 	.info-field{
 		position:absolute;
@@ -75,22 +73,28 @@
 $colorpicker-size: 60px;
 $mode-btn-size: 50px;
 .edit-tool{
-	position:absolute;
-	top:0;
-	left:0;
-	height:100%;
-	padding: 100px 20px;
+  display: flex;
+  max-width: 800px;
+  margin: 30px auto;
 	font-size: 20px;
 	.color-picker{
-		width:$colorpicker-size;
-		height:$colorpicker-size;
-		margin:30px auto;
+		width:$colorpicker-size - 8px;
+		height:$colorpicker-size - 8px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+		margin-right: 30px;
 		border: 2px solid #fff;
+    cursor: pointer;
+    border-radius: 50%;
+    &:hover, &.active{
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(0, 0, 0, 0.2);
+    }
 	}
 	.paint-mode-group, .tool-group{
 		background-color: rgba(0, 0, 0, 0.1);
-		padding: 10px 0;
+    margin-right: 30px;
 		border-radius: 5px;
+    line-height: 60px;
 	}
 	.tool-btn{
 		display: inline-block;
@@ -116,10 +120,14 @@ $mode-btn-size: 50px;
 		color: #FFF;
 		text-shadow: 1px 3px 0px #5897C9;
 	}
+  .tool-btn:not(.active){
+		text-shadow: none !important;
+	}
 	.tool-btn.is_disabled{
 		color: #eee;
 		cursor: default;
 		opacity: 0.5;
+    text-shadow: none !important;
 	}
 
 }
