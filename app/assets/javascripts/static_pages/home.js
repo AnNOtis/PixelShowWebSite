@@ -1,6 +1,7 @@
 (function(){
-  var generateShow = function(){
-    $('.js-show').each(function() {
+  generateShow = function(elements){
+    if (!elements) {elements = $('body')}
+    $(elements).find('.js-show').each(function() {
       var showID     = $(this).attr('data-id');
       var originData = $(this).attr('data-matrix');
       var showData   = ShowWidget.convertStrToCodeArr(originData);
@@ -9,34 +10,28 @@
   };
 
   var initMasonry = function(){
-    $('.isotope-container').isotope({
+    $('.isotope-container').masonry({
       itemSelector: '.Card',
-      infiniteScroll: true,
-      masonry: {
-        columnWidth: 160,
-        gutter: 10
-      }
+      columnWidth: 160, gutter: 10
     });
+
+    $('.isotope-container').on('layoutComplete', function (event, items, a) {
+      generateShow(items.map(function(item) {return item.element}))
+    });
+
+    return $('.isotope-container').data('masonry')
   };
 
-  var initInfiniteScroll = function(){
-    $('body').infinitescroll({
-      navSelector  : "nav.pagination",
-      nextSelector : "nav.pagination .next a",
-      itemSelector : ".Card",
-      contentSelector: ".isotope-container",
-      bufferPx: 0,
-      loading: {
-        img:'/images/pix-loading.gif',
-        msgText: '載入中...',
-        finishedMsg: '已經到底了！',
-        speed: 'slow'
-      }
+  var initInfiniteScroll = function(mansory){
+    $('.isotope-container').infiniteScroll({
+      path : "nav.pagination .next a",
+      append: '.Card',
+      status: '.page-load-status',
+      history: false,
+      outlayer: mansory,
     }, function(newElems){
-      var $newElems = $( newElems ).css({ opacity: 0 });
-      generateShow();
-      $('.isotope-container').isotope( 'appended', $newElems, true );
-      $newElems.animate({ opacity: 1 });
+      var $newElems = $(newElems).find('.Card')
+      $('.isotope-container').masonry('appended', $newElems)
     });
   };
 
@@ -44,8 +39,8 @@
     if($(".static_pages.home").length == 0){ return; }
 
     generateShow();
-    initMasonry();
-    initInfiniteScroll()
+    var mansory = initMasonry();
+    initInfiniteScroll(mansory)
   });
 
 })();

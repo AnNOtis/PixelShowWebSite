@@ -16,6 +16,17 @@
 	<% end %>
 </div>
 
-<div style="opacity: 0;">
+
+<div style="display: none;">
 	<%= paginate @shows %>
+</div>
+
+
+<div class="page-load-status">
+  <div class="infinite-scroll-request">
+    <%= image_tag '/images/pix-loading.gif' %>
+    <span>loading...</span>
+  </div>
+  <div class="infinite-scroll-last">End of content</div>
+  <div class="infinite-scroll-error">No more pages to load</div>
 </div>
