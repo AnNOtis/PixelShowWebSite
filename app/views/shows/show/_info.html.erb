@@ -6,6 +6,13 @@
     <div class="name"><%= show.name %></div>
     <span class="creator">by <span><%=link_to show.user.name, shows_user_path(show.user) %></span></span>
     <span class="created-time"><%= show.created_at.strftime("%b %d, %Y") %></span>
+    <% if current_user.try(:has_show?, show) %>
+      <% if show.is_public %>
+        <span class="label label-public float-left" style="margin-left: 8px;     padding-bottom: 0.1em;">public</span>
+      <% else %>
+        <span class="label label-draft float-left" style="margin-left: 8px;     padding-bottom: 0.1em;">draft</span>
+      <% end %>
+    <% end %>
   </div>
   <div class="person-number">
     <div class="lsf-icon" title="user"></div>

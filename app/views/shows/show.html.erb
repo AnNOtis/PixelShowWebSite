@@ -1,11 +1,11 @@
 <div class="show-wrapper">
   <div class="main-wrapper">
     <%= render partial: 'shows/show/info', locals: { show: @show } %>
+    <%= render partial: 'shows/show/actions', locals: { show: @show } %>
     <%= render partial: 'shows/show/canvas', locals: { is_like: @is_like, show: @show } %>
   </div>
 
   <div class="detail-wrapper">
-    <%= render partial: 'shows/show/actions', locals: { show: @show } %>
     <%= render partial: 'shows/show/comments', locals: { comments: @comments } %>
   </div>
 

@@ -1,8 +1,8 @@
 - if current_user.try(:has_show?, show)
-  .view-operation
-    = link_to t('my_show.edit'), edit_me_show_path(show)
+  .showOperations
+    = link_to t('my_show.edit'), edit_me_show_path(show), class: 'showOperations-action showOperations-action--major'
     - if show.is_public?
-      = link_to t('my_show.unpublish'), publish_me_show_path(show, is_publish: false), data: { confirm: "#{t('my_show.unpublish_hint')} *#{show.name}*?" }
+      = link_to t('my_show.unpublish'), publish_me_show_path(show, is_publish: false), data: { confirm: "#{t('my_show.unpublish_hint')} *#{show.name}*?" }, class: 'showOperations-action'
     - else
-      = link_to t('my_show.publish'), publish_me_show_path(show, is_publish: true), data: { confirm: "#{t('my_show.publish_hint')} *#{show.name}*?" }
-    = link_to t('my_show.delete'), me_show_path(show), method: :delete, data: { confirm: "#{t('my_show.delete_hint')} *#{show.name}*?" }
+      = link_to t('my_show.publish'), publish_me_show_path(show, is_publish: true), data: { confirm: "#{t('my_show.publish_hint')} *#{show.name}*?" }, class: 'showOperations-action'
+    = link_to t('my_show.delete'), me_show_path(show), method: :delete, data: { confirm: "#{t('my_show.delete_hint')} *#{show.name}*?" }, class: 'showOperations-action'

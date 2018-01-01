@@ -1,3 +1,40 @@
 // Place all the styles related to the shows controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.showOperations {
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.showOperations-action {
+  flex: 0;
+  height: 40px;
+  line-height: 36px;
+  border-radius: 4px;
+  text-align: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:not(:first-child) {
+    margin-left: 12px;
+  }
+}
+
+.showOperations-action--major {
+  flex: 1;
+  font-size: 16px;
+  color: #444;
+  background-color: #ffd600;
+  padding: 0 12px;
+
+  &:hover {
+    background-color: #FDD837;
+    color: #444;
+    text-decoration: none;
+  }
+}
